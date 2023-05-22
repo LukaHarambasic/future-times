@@ -1,0 +1,21 @@
+{
+  "name": "future-times",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .js --fix"
+  },
+  "devDependencies": {
+    "vite": "^4.2.0"
+  },
+  "dependencies": {
+    "eslint": "^8.38.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "phaser": "^3.6.0",
+    "prettier": "^2.8.7"
+  }
+}

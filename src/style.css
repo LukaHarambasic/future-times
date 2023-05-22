@@ -1,0 +1,17 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #161616;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+}
+
+canvas {
+  display: block;
+  border-radius: 0.25rem;
+}
