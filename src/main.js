@@ -15,7 +15,7 @@ import { Consts } from './utils/Consts'
 
 const canvasElement = document.getElementById('game')
 
-export const CONFIG = {
+const CONFIG = {
   type: WEBGL,
   mode: Scale.FIT,
   width: Consts.width,

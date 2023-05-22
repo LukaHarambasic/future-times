@@ -27,6 +27,7 @@ The game will visualize the factory with the assembly line. The player has to ti
   - [ ] Workers
   - [ ] Robots
   - [ ] AI
+  - [ ] Font
 - [ ] Sound/Music
   - [ ] Background music
   - [ ] Atmospheric sounds
