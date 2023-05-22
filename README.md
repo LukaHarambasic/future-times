@@ -19,26 +19,26 @@ The game will visualize the factory with the assembly line. The player has to ti
 
 ## Tasks
 
-- [] Visuals
-  - [] Background
-  - [] Belt
-  - [] Parts
-  - [] Charlie
-  - [] Workers
-  - [] Robots
-  - [] AI
-- [] Sound/Music
-  - [] Background music
-  - [] Atmospheric sounds
-  - [] Sound effects TBD
-- [] AI integration
-  - [] Design prompts for the different questions
-  - [] Define when the AI is satisified with the users answer
-  - [] Inteegrate API
-- [] Game mechanics
-  - [] Move and interact with belt
-- [] Bonus
-  - Global highscore on Supabase
+- [ ] Visuals
+  - [ ] Background
+  - [ ] Belt
+  - [ ] Parts
+  - [ ] Charlie
+  - [ ] Workers
+  - [ ] Robots
+  - [ ] AI
+- [ ] Sound/Music
+  - [ ] Background music
+  - [ ] Atmospheric sounds
+  - [ ] Sound effects TBD
+- [ ] AI integration
+  - [ ] Design prompts for the different questions
+  - [ ] Define when the AI is satisified with the users answer
+  - [ ] Inteegrate API
+- [ ] Game mechanics
+  - [ ] Move and interact with belt
+- [ ] Bonus
+  - [ ] Global highscore on Supabase
 
 ## Checklist
 
