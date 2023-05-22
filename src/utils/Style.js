@@ -1,98 +1,84 @@
-export class Style {
+import { Consts } from './Consts'
+
+export class Text {
   constructor() {
     throw new Error('Static class cannot be instantiated.')
-  }
-  static primary = '#FAE44C'
-  static onPrimary = '#000000'
-  static dark = '#420FBF'
-  static onDark = '#FFFFFF'
-  static light = '#FFFFFF'
-  static onBackground = '#FFFFFF'
-  static fontFamily = "'Open Sans', sans-serif"
-  static fontSizes = {
-    title: '32px',
-    body: '24px',
-    small: '16px',
-  }
-  static padding = {
-    default: 16,
-    small: 8,
   }
 
   static body() {
     return {
-      fontFamily: Style.fontFamily,
-      fontSize: Style.fontSizes.body,
-      color: Style.onBackground,
+      fontFamily: Consts.fontFamily,
+      fontSize: Consts.fontSize.body,
+      color: Consts.onBackground,
       align: 'center',
     }
   }
 
   static bodySmall() {
     return {
-      fontFamily: Style.fontFamily,
-      fontSize: Style.fontSizes.small,
-      color: Style.onBackground,
+      fontFamily: Consts.fontFamily,
+      fontSize: Consts.fontSize.small,
+      color: Consts.onBackground,
       align: 'center',
     }
   }
 
   static bodyLong() {
     return {
-      fontFamily: Style.fontFamily,
-      fontSize: Style.fontSizes.body,
-      color: Style.onBackground,
+      fontFamily: Consts.fontFamily,
+      fontSize: Consts.fontSize.body,
+      color: Consts.onBackground,
       align: 'left',
       fixedWidth: 520,
       wordWrap: {
-        width: 520 - Style.padding.default * 2,
+        width: 520 - Consts.padding.medium * 2,
         useAdvancedWrap: true,
       },
-      padding: Style.padding.default,
+      padding: Consts.padding.medium,
     }
   }
 
   static title(hasBackground = false) {
     return {
-      fontFamily: Style.fontFamily,
-      fontSize: Style.fontSizes.title,
-      backgroundColor: hasBackground ? Style.primary : null,
-      color: hasBackground ? Style.onPrimary : Style.light,
+      fontFamily: Consts.fontFamily,
+      fontSize: Consts.fontSize.title,
+      backgroundColor: hasBackground ? Consts.primary : null,
+      color: hasBackground ? Consts.onPrimary : Consts.light,
       align: 'center',
-      padding: hasBackground ? Style.padding.default : 0,
+      padding: hasBackground ? Consts.padding.medium : 0,
     }
   }
 
   static subtitle(hasBackground = false) {
     return {
-      fontFamily: Style.fontFamily,
-      fontSize: Style.fontSizes.body,
-      backgroundColor: hasBackground ? Style.primary : null,
-      color: hasBackground ? Style.onPrimary : Style.light,
+      fontFamily: Consts.fontFamily,
+      fontSize: Consts.fontSize.body,
+      backgroundColor: hasBackground ? Consts.primary : null,
+      color: hasBackground ? Consts.onPrimary : Consts.light,
       align: 'center',
-      padding: hasBackground ? Style.padding.default : 0,
+      padding: hasBackground ? Consts.padding.medium : 0,
     }
   }
 
   static instruction(hasBackground = true) {
     return {
-      fontFamily: Style.fontFamily,
-      fontSize: Style.fontSizes.small,
-      backgroundColor: hasBackground ? Style.dark : null,
-      color: hasBackground ? Style.onDark : Style.light,
+      fontFamily: Consts.fontFamily,
+      fontSize: Consts.fontSize.small,
+      backgroundColor: hasBackground ? Consts.dark : null,
+      color: hasBackground ? Consts.onDark : Consts.light,
       align: 'center',
-      padding: hasBackground ? Style.padding.small : 0,
+      padding: hasBackground ? Consts.padding.small : 0,
     }
   }
 
   static highscoreItem(selected = false) {
     return {
-      fontFamily: Style.fontFamily,
-      fontSize: Style.fontSizes.body,
-      backgroundColor: selected ? Style.dark : null,
-      color: selected ? Style.onDark : Style.light,
+      fontFamily: Consts.fontFamily,
+      fontSize: Consts.fontSize.body,
+      backgroundColor: selected ? Consts.dark : null,
+      color: selected ? Consts.onDark : Consts.light,
       align: 'center',
-      padding: Style.padding.small,
+      padding: Consts.padding.small,
     }
   }
 }
