@@ -1,50 +1,45 @@
-# Koben
+# Future Times
 
-[Game](https://lukaharambasic.github.io/koben/)
+[TBD Game](https://lukaharambasic.github.io/future-times/)
 
-## Dev
+## Concept
+
+Modern times (1936)
+
+### Scene
+
+**Background**
+The game will be about the first 20 minutes of the movie. At this time, Charlie works in a factory on an assembly line tightening bolts n a moving conveyer belt. He struggles to keep up with the speed. During that time, it also gets clear that he might be close to a mental breakdown based on how he moves while he isn't working. During this time, also a robot is presented, demonstrating how human productivity could be increased with machines or even replaced.
+
+**Motivation**
+This first 20 minutes set the stage for the entire movie, as it explains why he gets into the hospital, gets into prison, and is restlessly searching for a new job. I chose this chapter as it is almost 90 years old but seems very relevant in the current discussion around AI. Will jobs be replaced? Which jobs we'll be replaced, and how does society handle this.
+
+**Game**
+The game will visualize the factory with the assembly line. The player has to tighten bolts on parts moving on the conveyer belt. Therefore the user has to press a button at the perfect moment; the better the timing, the more points the player gets. The AI shows up if the player misses a specific number of pieces. This will use a third-party API like OpenAI to let the user interact with the AI. The user must prove to the AI that he/she is worth doing this job. If the player fails, another worker on the line will be replaced by a robot until one Charlie is left. If the question satisfies the AI, everyone keeps their jobs. The game doesn't aim to give an answer to these highly complex questions, but it might spark some fruitful conversations.
 
 ## Tasks
 
-- [x] Improve graphics
-  - [x] Add more
-  - [x] Animate them
-  - [x] Pixel them
-  - [x] Background and sides
-- [x] Music
-- [x] Make game harder every 10 seconds
-- [x] Fix game over: everythign should stop where it is
-- [x] Adjust hitbox of boat
-- [x] Adjust styling
-- [x] Add content on story scene
+- [] Visuals
+  - [] Background
+  - [] Belt
+  - [] Parts
+  - [] Charlie
+  - [] Workers
+  - [] Robots
+  - [] AI
+- [] Sound/Music
+  - [] Background music
+  - [] Atmospheric sounds
+  - [] Sound effects TBD
+- [] AI integration
+  - [] Design prompts for the different questions
+  - [] Define when the AI is satisified with the users answer
+  - [] Inteegrate API
+- [] Game mechanics
+  - [] Move and interact with belt
+- [] Bonus
+  - Global highscore on Supabase
 
 ## Checklist
 
-- [x] Organization (15 points)
-
-  - [x] Submit a link to your GitHub repository that shows a history of multiple meaningful commits with descriptive messages (5)
-  - [x] Submit a playable link on GitHub pages (5)
-  - [x] In main.js (or equivalent), include a comment header with your name, game title, approximate hours spent on project, and your creative tilt justification (see below) (5)
-
-- [x] Structure and Design (75 points)
-
-  - [x] Use multiple Scene classes (dictated by your game's style) (5)
-  - [x] Properly transition between Scenes and allow the player to restart w/out having to reload the page (5)
-  - [x] Include in-game instructions using text or other means (e.g., tooltips, tutorial, diagram, etc.) (5)
-  - [x] Have some form of player input/control appropriate to your game design (5)
-  - [x] Include one or more animated characters that use a texture atlas (5)
-  - [x] Simulate scrolling with a tileSprite (or equivalent means) (5)
-  - [x] Implement proper collision detection (via Arcade Physics or a custom routine) (5)
-  - [x] Have looping background music (5)
-  - [x] Use a minimum of three sound effects for key mechanics, UI, and/or significant events appropriate to your game design (5)
-  - [x] Use randomness to generate escalating challenge, e.g. terrain, pickups, etc. (5)
-  - [x] Include some metric of accomplishment that a player can improve over time, e.g., score, survival time, etc. (5)
-  - [x] Be theoretically endless (5)
-  - [x] Be playable for at least 15 seconds for a new player of low to moderate skill (5)
-  - [x] Run without significant crashes or errors (5)
-  - [x] Include in-game credits for all roles, assets, music, etc. (5)
-  - [x] You must make all of your own visual assets (without AI assistance). It's OK to use royalty-free music/SFX.
-
-- [x] Creative Tilt (10 points)
-  - [x] ...do something technically interesting? Are you particularly proud of a programming technique you implemented? Did you look beyond the class examples and learn how to do something new? (5)
-  - [x] ...have a great visual style? Does it use music or art that you're particularly proud of? Are you trying something new or clever with the endless runner form? (5)
+TBD
