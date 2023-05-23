@@ -1,5 +1,7 @@
 // extract all the logic for the highscore from the Localstorage
 
+import DbServiceInstance from './DbService'
+
 let instance
 let globalState = {}
 
@@ -10,6 +12,23 @@ class SurvivorService {
     }
 
     instance = this
+  }
+
+  async addSurvivor(name) {
+    const { data, error } = await DbServiceInstance.db.from('survivors').insert([{ name }])
+    if (error) {
+      throw error
+    }
+    return true
+  }
+
+  async getSurvivors() {
+    const { data, error } = await DbServiceInstance.db.from('survivors').select('*')
+    if (error) {
+      throw error
+    }
+    globalState.survivors = data
+    return data
   }
 }
 

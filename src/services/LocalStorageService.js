@@ -10,19 +10,19 @@ class LocalStorageService {
     instance = this
   }
 
-  static set difficultyLevel(value) {
+  set difficultyLevel(value) {
     localStorage.setItem('difficultyLevel', value)
   }
 
-  static get difficultyLevel() {
+  get difficultyLevel() {
     return globalState['difficultyLevel'] || JSON.parse(localStorage.getItem('difficultyLevel')) || 'easy'
   }
 
-  static set playerName(value) {
+  set playerName(value) {
     localStorage.setItem('playerName', value)
   }
 
-  static get playerName() {
+  get playerName() {
     return globalState['playerName'] || JSON.parse(localStorage.getItem('playerName')) || ''
   }
 }

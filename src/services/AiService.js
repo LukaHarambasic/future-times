@@ -1,8 +1,6 @@
 // handle API calls to OpenAI
 
 let instance
-let globalState = {}
-
 class AiService {
   constructor() {
     if (instance) {
@@ -10,6 +8,14 @@ class AiService {
     }
 
     instance = this
+  }
+
+  ask(prompt) {
+    // TODO implementation
+    // TODO as the key is private this should communicate with a serverless function to call the API
+    // https://platform.openai.com/docs/guides/chat
+    // Communication should at least use a bearer token
+    return 'This is a test response'
   }
 }
 
