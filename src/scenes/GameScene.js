@@ -1,10 +1,7 @@
 import { Scene, Actions, Input, Math as PMath } from 'phaser'
-import { CONFIG } from '../main'
-import { Raft } from '../prefabs/Raft'
-import { Ship } from '../prefabs/Ship'
-import { Storage } from '../utils/Storage'
+import { Storage } from '../utils/LocalStorage'
 import { formatTime } from '../utils/Helpers'
-import { Style } from '../utils/Style'
+import { Text } from '../utils/Text'
 
 export class GameScene extends Scene {
   constructor() {
@@ -15,27 +12,20 @@ export class GameScene extends Scene {
   create() {
     console.log('create game scene')
     this.isGameOver = false
-    this.isStartTimeSet = false
-
-    this.startTime = this.time.now
 
     // Background
-    this.water = this.add.tileSprite(0, 0, CONFIG.width, CONFIG.height, 'water').setOrigin(0, 0)
-    this.canal = this.add.tileSprite(0, 0, CONFIG.width, CONFIG.height, 'canal').setOrigin(0, 0)
+    // this.water = this.add.tileSprite(0, 0, CONFIG.width, CONFIG.height, 'water').setOrigin(0, 0)
 
-    this.physics.world.setBounds(64, 0, CONFIG.playableArea, CONFIG.height)
-
-    // Raft
-    this.raft = new Raft(this)
+    // this.physics.world.setBounds(64, 0, CONFIG.playableArea, CONFIG.height)
 
     this._handleSpawning()
     this._handleScore()
     this._handleDifficulty()
 
     // Input
-    this.keyH = this.input.keyboard.addKey(Input.Keyboard.KeyCodes.H)
-    this.keyM = this.input.keyboard.addKey(Input.Keyboard.KeyCodes.M)
-    this.keyR = this.input.keyboard.addKey(Input.Keyboard.KeyCodes.R)
+    // https://rexrainbow.github.io/phaser3-rex-notes/docs/site/touchevents/
+    // touch down, but also has to work if you press space
+    // this.keyH = this.input.keyboard.addKey(Input.Keyboard.KeyCodes.H)
   }
 
   update() {

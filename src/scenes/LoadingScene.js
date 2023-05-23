@@ -28,9 +28,14 @@ export class LoadingScene extends Scene {
 
     // this.add.tileSprite(0, 0, Consts.width, Consts.height, 'water').setOrigin(0, 0)
 
+    // TODO check if is mobile, persist in local storage
+    // Maybe use this: https://browsergameshub.com/check-player-is-on-mobile-or-desktop/
     this.add
       .text(Consts.width / 2, Consts.height - 50, 'Press (Space) to continue.', Style.instruction())
       .setOrigin(0.5, 0.5)
+
+    // TODO ask user for name
+    // https://github.com/photonstorm/phaser3-examples/blob/master/public/src/input/keyboard/text%20entry.js
 
     // Animations
     // this.anims.create({

@@ -1,3 +1,5 @@
+// singleton class: https://www.freecodecamp.org/news/singleton-design-pattern-with-javascript/
+
 export class Storage {
   // TODO there should be a difficulty class
   static set difficultyLevel(value) {

@@ -1,6 +1,6 @@
 import { Scene, Input, Math as PMath } from 'phaser'
 import { CONFIG } from '../main'
-import { Style } from '../utils/Style'
+import { Style } from '../utils/Text'
 
 export class CreditScene extends Scene {
   constructor() {
@@ -14,6 +14,7 @@ export class CreditScene extends Scene {
 
     this.add.text(CONFIG.width / 2, CONFIG.height - 50, 'Press (M) for Menu.', Style.instruction()).setOrigin(0.5, 0.5)
 
+    // TODO add everything
     const credits = [
       {
         title: 'Gentle ocean waves birdsong and gull',
@@ -25,16 +26,7 @@ export class CreditScene extends Scene {
 
     credits.forEach((credit, i) => {
       const y = 150 + i * 80
-      const text1 = `${credit.title}`
-      const text2 = `${credit.author} - ${credit.file}`
-      this.add.text(CONFIG.width / 2, y, text1, Style.body()).setOrigin(0.5)
-      this.add
-        .text(CONFIG.width / 2, y + 30, text2, Style.bodySmall())
-        .setOrigin(0.5)
-        .setInteractive({ useHandCursor: true })
-        .on('pointerup', function () {
-          window.open(credit.link, '_blank')
-        })
+      this._addEntry(credit, y)
     })
 
     // Input
@@ -46,11 +38,22 @@ export class CreditScene extends Scene {
   }
 
   _handleInput() {
-    const splashs = ['audio_splash1', 'audio_splash2', 'audio_splash3', 'audio_splash4']
-    const randomSplash = splashs[PMath.Between(0, splashs.length - 1)]
     if (Input.Keyboard.JustDown(this.keyM)) {
-      this.sound.add(randomSplash, { volume: 0.2 }).play()
+      // this.sound.add(randomSplash, { volume: 0.2 }).play()
       this.scene.start('menuScene')
     }
+  }
+
+  _addEntry(credit, y) {
+    const text1 = `${credit.title}`
+    const text2 = `${credit.author} - ${credit.file}`
+    this.add.text(CONFIG.width / 2, y, text1, Style.body()).setOrigin(0.5)
+    this.add
+      .text(CONFIG.width / 2, y + 30, text2, Style.bodySmall())
+      .setOrigin(0.5)
+      .setInteractive({ useHandCursor: true })
+      .on('pointerup', function () {
+        window.open(credit.link, '_blank')
+      })
   }
 }

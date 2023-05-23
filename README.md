@@ -17,8 +17,22 @@ This first 20 minutes set the stage for the entire movie, as it explains why he 
 **Game**
 The game will visualize the factory with the assembly line. The player has to tighten bolts on parts moving on the conveyer belt. Therefore the user has to press a button at the perfect moment; the better the timing, the more points the player gets. The AI shows up if the player misses a specific number of pieces. This will use a third-party API like OpenAI to let the user interact with the AI. The user must prove to the AI that he/she is worth doing this job. If the player fails, another worker on the line will be replaced by a robot until one Charlie is left. If the question satisfies the AI, everyone keeps their jobs. The game doesn't aim to give an answer to these highly complex questions, but it might spark some fruitful conversations.
 
+## Mechanics
+
+- No timer, it's just about surviving -> the highscore is a "word cloud" with everyone who survived, it get's bigger the more often you survived
+
 ## Tasks
 
+- [ ] Mechanics
+  - [ ] Ask for player name in the beginning
+  - [ ] Integrate supabase for survivor list
+  - [ ]
+  - [ ]
+  - [ ]
+- [ ] Input - focus on mobile
+  - [ ] Menu items are touchable
+  - [ ] Display key bindings on PC
+  - [ ] Main game input touch/ press space (text shown until user presses it)
 - [ ] Visuals
   - [ ] Background
   - [ ] Belt
@@ -40,6 +54,8 @@ The game will visualize the factory with the assembly line. The player has to ti
   - [ ] Move and interact with belt
 - [ ] Bonus
   - [ ] Global highscore on Supabase
+  - [ ] Take picture of user
+  - [ ] PWA
 
 ## Checklist
 
