@@ -1,6 +1,6 @@
 // Title: Future Times
 // Author: Luka Harambasic
-// Hours: 
+// Hours:
 
 import { Game, WEBGL, Scale } from 'phaser'
 // import { LoadingScene } from './scenes/LoadingScene'
