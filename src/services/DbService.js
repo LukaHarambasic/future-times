@@ -1,2 +1,18 @@
 // connect to supabase
-// singleton class: https://www.freecodecamp.org/news/singleton-design-pattern-with-javascript/
+
+let instance
+let globalState = {}
+
+class DbService {
+  constructor() {
+    if (instance) {
+      throw new Error('New instance cannot be created!!')
+    }
+
+    instance = this
+  }
+}
+
+const DbServiceInstance = Object.freeze(new DbService())
+
+export default DbServiceInstance

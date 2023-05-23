@@ -1,39 +1,32 @@
-// singleton class: https://www.freecodecamp.org/news/singleton-design-pattern-with-javascript/
+let instance
+let globalState = {}
 
-export class Storage {
-  // TODO there should be a difficulty class
+class LocalStorageService {
+  constructor() {
+    if (instance) {
+      throw new Error('New instance cannot be created!!')
+    }
+
+    instance = this
+  }
+
   static set difficultyLevel(value) {
     localStorage.setItem('difficultyLevel', value)
   }
 
   static get difficultyLevel() {
-    return JSON.parse(localStorage.getItem('difficultyLevel')) || 'easy'
+    return globalState['difficultyLevel'] || JSON.parse(localStorage.getItem('difficultyLevel')) || 'easy'
   }
 
-  static set currentScore(value) {
-    localStorage.setItem('currentScore', Number(value.toFixed(0)))
+  static set playerName(value) {
+    localStorage.setItem('playerName', value)
   }
 
-  static get currentScore() {
-    return Number(localStorage.getItem('currentScore')) || 0
-  }
-
-  static tryHighscore(value) {
-    // TODO there should be a highscore class
-    const highscore = JSON.parse(JSON.stringify(this.highscore))
-    highscore.push(Number(value.toFixed(0)))
-    highscore.sort((a, b) => b - a)
-    highscore.pop()
-    console.log('highscore', highscore)
-    this.highscore = highscore
-    return highscore.indexOf(value)
-  }
-
-  static set highscore(value) {
-    localStorage.setItem('highscore', JSON.stringify(value))
-  }
-
-  static get highscore() {
-    return JSON.parse(localStorage.getItem('highscore')) || [0, 0, 0, 0, 0]
+  static get playerName() {
+    return globalState['playerName'] || JSON.parse(localStorage.getItem('playerName')) || ''
   }
 }
+
+const LocalStorageServiceInstance = Object.freeze(new LocalStorageService())
+
+export default LocalStorageServiceInstance

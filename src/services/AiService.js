@@ -1,2 +1,18 @@
 // handle API calls to OpenAI
-// singleton class: https://www.freecodecamp.org/news/singleton-design-pattern-with-javascript/
+
+let instance
+let globalState = {}
+
+class AiService {
+  constructor() {
+    if (instance) {
+      throw new Error('New instance cannot be created!!')
+    }
+
+    instance = this
+  }
+}
+
+const AiServiceInstance = Object.freeze(new AiService())
+
+export default AiServiceInstance
