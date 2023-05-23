@@ -1,31 +1,11 @@
 export class Storage {
-  static setDifficulty({
-    difficultyChangeRate,
-    raftVelocity,
-    shipVelocity,
-    shipVelocityInitial,
-    shipVelocityIncreaseFactor,
-    shipSpawnRate,
-    shipSpawnRateIncreaseFactor,
-  }) {
-    const difficulty = {
-      difficultyChangeRate: difficultyChangeRate || 10000,
-      raftVelocity: raftVelocity || 13,
-      shipVelocity: shipVelocity || 100,
-      shipVelocityInitial: shipVelocityInitial || 100,
-      shipVelocityIncreaseFactor: shipVelocityIncreaseFactor || 1.25,
-      shipSpawnRate: shipSpawnRate || 2000,
-      shipSpawnRateIncreaseFactor: shipSpawnRateIncreaseFactor || 0.9,
-    }
-    localStorage.setItem('difficulty', JSON.stringify(difficulty))
+  // TODO there should be a difficulty class
+  static set difficultyLevel(value) {
+    localStorage.setItem('difficultyLevel', value)
   }
 
-  static get difficulty() {
-    const difficulty = JSON.parse(localStorage.getItem('difficulty'))
-    if (!difficulty) {
-      this.setDifficulty({})
-    }
-    return difficulty
+  static get difficultyLevel() {
+    return JSON.parse(localStorage.getItem('difficultyLevel')) || 'easy'
   }
 
   static set currentScore(value) {
@@ -37,6 +17,7 @@ export class Storage {
   }
 
   static tryHighscore(value) {
+    // TODO there should be a highscore class
     const highscore = JSON.parse(JSON.stringify(this.highscore))
     highscore.push(Number(value.toFixed(0)))
     highscore.sort((a, b) => b - a)

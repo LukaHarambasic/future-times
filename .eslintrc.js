@@ -27,4 +27,7 @@ module.exports = {
     console: true,
     localStorage: true,
   },
+  parserOptions: {
+    ecmaVersion: 2022,
+  },
 }
