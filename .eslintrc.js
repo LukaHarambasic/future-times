@@ -19,7 +19,9 @@ module.exports = {
     },
   },
   rules: {
-    // Add your own rules here to override ones from the extended configs.
+    'import/default': 'error',
+    'import/named': 'error',
+    'import/no-named-as-default': 'off'
   },
   globals: {
     window: true,

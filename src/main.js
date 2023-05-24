@@ -12,16 +12,21 @@ import { Game, WEBGL, Scale } from 'phaser'
 // import { Style } from './utils/Style'
 import './style.css'
 import Consts from './utils/Consts'
+// TODO why the hell are named imports not working for objects?
+const { width, height } = Consts
 
 const canvasElement = document.getElementById('game')
+
+console.log(width, height)
 
 const CONFIG = {
   type: WEBGL,
   mode: Scale.FIT,
-  width: Consts.width,
-  height: Consts.height,
+  width: width,
+  height: height,
   canvas: canvasElement,
   scene: [],
 }
 
 new Game(CONFIG)
+

@@ -1,16 +1,10 @@
-import Consts from './Consts'
+import { fontFamily, fontSize, onBackground } from './Consts'
 
-export default class Texts {
-  constructor() {
-    throw new Error('Static class cannot be instantiated.')
-  }
-
-  static body() {
-    return {
-      fontFamily: Consts.fontFamily,
-      fontSize: Consts.fontSize.body,
-      color: Consts.onBackground,
-      align: 'center',
-    }
-  }
+export default {
+  body: {
+    fontFamily: fontFamily,
+    fontSize: fontSize.body,
+    color: onBackground,
+    align: 'center',
+  },
 }
