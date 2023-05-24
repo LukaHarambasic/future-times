@@ -1,4 +1,4 @@
-export class Consts {
+export default class Consts {
   constructor() {
     throw new Error('Static class cannot be instantiated.')
   }

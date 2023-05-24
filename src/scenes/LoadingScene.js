@@ -2,7 +2,7 @@ import { Scene, Input, Math as PMath } from 'phaser'
 import { Consts } from '../utils/Consts'
 // import { Style } from '../utils/Style'
 
-export class LoadingScene extends Scene {
+export default class LoadingScene extends Scene {
   constructor() {
     super('loadingScene')
   }

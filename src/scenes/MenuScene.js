@@ -3,7 +3,7 @@ import { CONFIG } from '../main'
 import { Style } from '../utils/Style'
 import { Storage } from '../utils/Storage'
 
-export class MenuScene extends Scene {
+export default class MenuScene extends Scene {
   constructor() {
     super('menuScene')
   }

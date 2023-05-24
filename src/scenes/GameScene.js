@@ -1,9 +1,9 @@
 import { Scene, Actions, Input, Math as PMath } from 'phaser'
 import { Storage } from '../utils/LocalStorage'
 import { formatTime } from '../utils/Helpers'
-import { Text } from '../utils/Text'
+import { Text } from '../utils/Texts'
 
-export class GameScene extends Scene {
+export default class GameScene extends Scene {
   constructor() {
     super('gameScene')
     this.startTime = 0

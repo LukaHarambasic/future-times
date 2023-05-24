@@ -1,6 +1,6 @@
-import { Consts } from './Consts'
+import Consts from './Consts'
 
-export class Text {
+export default class Texts {
   constructor() {
     throw new Error('Static class cannot be instantiated.')
   }

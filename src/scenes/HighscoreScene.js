@@ -4,7 +4,7 @@ import { Style } from '../utils/Style'
 import { formatTime } from '../utils/Helpers'
 import { Storage } from '../utils/Storage'
 
-export class HighscoreScene extends Scene {
+export default class HighscoreScene extends Scene {
   constructor() {
     super('highscoreScene')
   }
