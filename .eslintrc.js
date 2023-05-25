@@ -28,6 +28,9 @@ module.exports = {
     document: true,
     console: true,
     localStorage: true,
+    process: true,
+    exports: true,
+    require: true,
   },
   parserOptions: {
     ecmaVersion: 2022,
