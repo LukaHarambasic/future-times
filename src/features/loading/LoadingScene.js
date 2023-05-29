@@ -1,5 +1,5 @@
 import { Scene, Input, Math as PMath } from 'phaser'
-import { Consts } from '../utils/Consts'
+import { Consts } from '../../core/utils/Consts'
 // import { Style } from '../utils/Style'
 
 export default class LoadingScene extends Scene {

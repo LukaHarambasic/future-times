@@ -1,7 +1,7 @@
 import { Scene, Actions, Input, Math as PMath } from 'phaser'
 import { Storage } from '../utils/LocalStorage'
 import { formatTime } from '../utils/Helpers'
-import { Text } from '../utils/Texts'
+import { Text } from '../../core/utils/Texts'
 
 export default class GameScene extends Scene {
   constructor() {

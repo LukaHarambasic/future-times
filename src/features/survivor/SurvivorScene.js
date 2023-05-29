@@ -1,12 +1,12 @@
 import { Scene, Input, Math as PMath } from 'phaser'
-import { CONFIG } from '../main'
+import { CONFIG } from '../../main'
 import { Style } from '../utils/Style'
 import { formatTime } from '../utils/Helpers'
 import { Storage } from '../utils/Storage'
 
-export default class HighscoreScene extends Scene {
+export default class SurvivorScene extends Scene {
   constructor() {
-    super('highscoreScene')
+    super('survivorScene')
   }
 
   create() {

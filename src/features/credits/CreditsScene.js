@@ -1,10 +1,10 @@
 import { Scene, Input, Math as PMath } from 'phaser'
-import { CONFIG } from '../main'
-import { Style } from '../utils/Texts'
+import { CONFIG } from '../../main'
+import { Style } from '../../utils/Texts'
 
-export default class CreditScene extends Scene {
+export default class CreditsScene extends Scene {
   constructor() {
-    super('creditScene')
+    super('creditsScene')
   }
 
   create() {

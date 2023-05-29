@@ -1,5 +1,5 @@
 import { Scene, Input, Math as PMath } from 'phaser'
-import { CONFIG } from '../main'
+import { CONFIG } from '../../main'
 import { Style } from '../utils/Style'
 import { Storage } from '../utils/Storage'
 

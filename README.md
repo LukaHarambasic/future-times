@@ -26,9 +26,6 @@ The game will visualize the factory with the assembly line. The player has to ti
 - [ ] Mechanics
   - [ ] Ask for player name in the beginning
   - [ ] Integrate supabase for survivor list
-  - [ ]
-  - [ ]
-  - [ ]
 - [ ] Input - focus on mobile
   - [ ] Menu items are touchable
   - [ ] Display key bindings on PC

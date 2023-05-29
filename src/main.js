@@ -11,7 +11,7 @@ import { Game, WEBGL, Scale } from 'phaser'
 // import { StoryScene } from './scenes/StoryScene'
 // import { Style } from './utils/Style'
 import './style.css'
-import Consts from './utils/Consts'
+import Consts from './core/utils/Consts'
 // TODO why the hell are named imports not working for objects?
 const { width, height } = Consts
 
