@@ -26,6 +26,7 @@ The game will visualize the factory with the assembly line. The player has to ti
 - [ ] Mechanics
   - [ ] Ask for player name in the beginning
   - [ ] Integrate supabase for survivor list
+  - [ ] Move and interact with belt
 - [ ] Input - focus on mobile
   - [ ] Menu items are touchable
   - [ ] Display key bindings on PC
@@ -47,8 +48,8 @@ The game will visualize the factory with the assembly line. The player has to ti
   - [ ] Design prompts for the different questions
   - [ ] Define when the AI is satisified with the users answer
   - [ ] Inteegrate API
-- [ ] Game mechanics
-  - [ ] Move and interact with belt
+- [ ] Misc
+  - [ ] Refresh supabase and openai token
 - [ ] Bonus
   - [ ] Global highscore on Supabase
   - [ ] Take picture of user
