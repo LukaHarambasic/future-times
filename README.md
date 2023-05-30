@@ -59,16 +59,22 @@ The game will visualize the factory with the assembly line. The player has to ti
 
 TBD
 
-
 ## Development
 
-`npm install`
+```bash
+npm install
+```
 
 ### Default
 
-`npm run dev`
+```bash
+npm run dev
+```
 
 ### With Netlify functions
 
-`netlify functions:serve`
+```bash
+netlify functions:serve
+```
+
 https://docs.netlify.com/functions/create/?fn-language=js#test-locally-2
