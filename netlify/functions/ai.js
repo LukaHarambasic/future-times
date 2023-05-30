@@ -2,15 +2,20 @@ const { Configuration, OpenAIApi } = require("openai");
 
 require('dotenv').config()
 
+const headers = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'Content-Type',
+  'Access-Control-Allow-Methods': 'POST'
+};
+
 exports.handler = async function (event) {
   logRequest(event)
+  if(event.httpMethod !== "POST") return { statusCode: 405, body: "Method Not Allowed" }
   const messages = handleMessages(event)
   const assistentMessage = await askChatGPT(messages)
   return {
     statusCode: 200,
-    headers: {
-      'Access-Control-Allow-Origin': '*'
-    },
+    headers,
     body: JSON.stringify([...messages, assistentMessage]),
   }
 }
