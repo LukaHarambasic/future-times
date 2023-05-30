@@ -11,7 +11,7 @@ const headers = {
 
 exports.handler = async function (event) {
   logRequest(event)
-  if(event.httpMethod !== "POST" || event.httpMethod !== "OPTIONS") return { statusCode: 405, body: "Method Not Allowed" }
+  if(event.httpMethod !== "POST" || event.httpMethod !== "OPTIONS") return { statusCode: 405, body: `Method (${event.httpMethod})Not Allowed` }
   const messages = handleMessages(event)
   const assistentMessage = await askChatGPT(messages)
   return {
