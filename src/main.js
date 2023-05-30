@@ -29,11 +29,9 @@ const CONFIG = {
 new Game(CONFIG)
 
 
-(async () => {
-  try {
-    const ai = new AiService()
-    console.log(await ai.chat("I'm the best worker in this factory."))
-  } catch (e) {
-      // Deal with the fact the chain failed
-  }
-})();
+async function main() {
+  const ai = new AiService()
+  console.log(await ai.chat("I'm the best worker in this factory."))
+}
+
+main()
