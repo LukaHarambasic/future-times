@@ -17,8 +17,6 @@ const { width, height } = Consts
 
 const canvasElement = document.getElementById('game')
 
-console.log(width, height)
-
 const CONFIG = {
   type: WEBGL,
   mode: Scale.FIT,
@@ -31,5 +29,11 @@ const CONFIG = {
 new Game(CONFIG)
 
 
-const ai = new AiService()
-console.log(await ai.chat("I'm the best worker in this factory."))
+(async () => {
+  try {
+    const ai = new AiService()
+    console.log(await ai.chat("I'm the best worker in this factory."))
+  } catch (e) {
+      // Deal with the fact the chain failed
+  }
+})();
