@@ -67,6 +67,8 @@ npm install
 
 ### Default
 
+Netlify function isn't running, you might would need to change to the production endpoint, buuuuut i always get CORS problems and I'm not able to fix it. So I recommend "With Netlify functions" as this spins up one server containing everything which eliminates this problem.
+
 ```bash
 npm run dev
 ```
@@ -74,7 +76,7 @@ npm run dev
 ### With Netlify functions
 
 ```bash
-netlify functions:serve
+netlify dev
 ```
 
 https://docs.netlify.com/functions/create/?fn-language=js#test-locally-2
