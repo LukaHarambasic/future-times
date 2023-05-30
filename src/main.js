@@ -12,7 +12,7 @@ import { Game, WEBGL, Scale } from 'phaser'
 // import { Style } from './utils/Style'
 import './style.css'
 import Consts from './core/utils/Consts'
-// TODO why the hell are named imports not working for objects?
+import AiService from './features/game/AiService'
 const { width, height } = Consts
 
 const canvasElement = document.getElementById('game')
@@ -30,4 +30,6 @@ const CONFIG = {
 
 new Game(CONFIG)
 
-console.log(import.meta.env)
+
+const ai = new AiService()
+console.log(await ai.chat("I'm the best worker in this factory."))
