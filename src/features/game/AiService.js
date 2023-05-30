@@ -6,7 +6,7 @@ export default class AiService {
   url = ''
   constructor() {
     this.url = import.meta.env.DEV
-      ? `http://localhost:9999${this.path}`
+      ? `http://localhost:8888${this.path}`
       : `https://future-times.netlify.app${this.path}`
     console.log(this.url)
   }
@@ -20,7 +20,7 @@ export default class AiService {
       },
     }
     try {
-      const result = await axios.post(`https://future-times.netlify.app${this.path}`, data, config)
+      const result = await axios.post(this.url, data, config)
       this.messages = result.data
       console.log(result.data)
       return this.messages
