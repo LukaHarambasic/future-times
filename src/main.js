@@ -30,3 +30,4 @@ const CONFIG = {
 
 new Game(CONFIG)
 
+console.log(import.meta.env)
