@@ -13,8 +13,13 @@ export default class AiService {
   async chat(text) {
     const playerMessage = { "role": "user", "content": text }
     const data = [...this.messages, playerMessage]
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
     try {
-      const result = await axios.post(this.url, data)
+      const result = await axios.post(`https://future-times.netlify.app${this.path}`, data, config)
       this.messages = result.data
       console.log(result.data)
       return this.messages
