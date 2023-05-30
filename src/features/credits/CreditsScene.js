@@ -17,10 +17,9 @@ export default class CreditsScene extends Scene {
     // TODO add everything
     const credits = [
       {
-        title: 'Gentle ocean waves birdsong and gull',
-        author: 'jackmichaelking',
-        link: 'https://pixabay.com/sound-effects/gentle-ocean-waves-birdsong-and-gull-7109/',
-        file: 'background.mp3',
+        title: 'Free Industrial Zone Tileset Pixel Art',
+        author: 'Craftpix.net',
+        link: 'https://craftpix.net/freebies/free-industrial-zone-tileset-pixel-art/',
       },
     ]
 
