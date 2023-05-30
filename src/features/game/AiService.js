@@ -1,24 +1,26 @@
-// handle API calls to OpenAI
+import axios from "axios"
 
-let instance
-class AiService {
+export default class AiService {
+
+  messages = []
+  path = '/.netlify/functions/ai'
+  url = ''
   constructor() {
-    if (instance) {
-      throw new Error('New instance cannot be created!!')
-    }
-
-    instance = this
+    this.url = import.meta.env.DEV ? `https://localhost:9999${this.path}` : `https://future-times.netlify.app${this.path}`
+    console.log(this.url)
   }
 
-  ask(prompt) {
-    // TODO implementation
-    // TODO as the key is private this should communicate with a serverless function to call the API
-    // https://platform.openai.com/docs/guides/chat
-    // Communication should at least use a bearer token
-    return 'This is a test response'
+  async chat(text) {
+    const playerMessage = { "role": "user", "content": text }
+    const data = [...this.messages, playerMessage]
+    try {
+      const result = await axios.post(this.url, data)
+      this.messages = result.data
+      console.log(result.data)
+      return this.messages
+    } catch (error) {
+      console.error(error)
+      return false
+    }
   }
 }
-
-const AiServiceInstance = Object.freeze(new AiService())
-
-export default AiServiceInstance

@@ -8,6 +8,9 @@ exports.handler = async function (event) {
   const assistentMessage = await askChatGPT(messages)
   return {
     statusCode: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*'
+    },
     body: JSON.stringify([...messages, assistentMessage]),
   }
 }
