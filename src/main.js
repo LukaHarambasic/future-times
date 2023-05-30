@@ -5,6 +5,7 @@
 import { Game, WEBGL, Scale } from 'phaser'
 import './style.css'
 import Consts from './core/utils/Consts'
+import LoadingScene from './features/loading/LoadingScene'
 
 const { width, height } = Consts
 
@@ -16,7 +17,7 @@ const CONFIG = {
   width: width,
   height: height,
   canvas: canvasElement,
-  scene: [],
+  scene: [LoadingScene],
 }
 
 new Game(CONFIG)

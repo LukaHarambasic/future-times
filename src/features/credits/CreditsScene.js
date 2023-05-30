@@ -8,12 +8,6 @@ export default class CreditsScene extends Scene {
   }
 
   create() {
-    this.water = this.add.tileSprite(0, 0, CONFIG.width, CONFIG.height, 'water').setOrigin(0, 0)
-
-    this.add.text(CONFIG.width / 2, 50, 'Credits', Style.title()).setOrigin(0.5, 0.5)
-
-    this.add.text(CONFIG.width / 2, CONFIG.height - 50, 'Press (M) for Menu.', Style.instruction()).setOrigin(0.5, 0.5)
-
     // TODO add everything
     const credits = [
       {
@@ -21,15 +15,17 @@ export default class CreditsScene extends Scene {
         author: 'Craftpix.net',
         link: 'https://craftpix.net/freebies/free-industrial-zone-tileset-pixel-art/',
       },
+      {
+        title: 'GPT 3.5 Turbo',
+        author: 'OpenAI',
+        link: 'https://platform.openai.com/docs/models/gpt-3-5',
+      },
     ]
 
     credits.forEach((credit, i) => {
       const y = 150 + i * 80
       this._addEntry(credit, y)
     })
-
-    // Input
-    this.keyM = this.input.keyboard.addKey(Input.Keyboard.KeyCodes.M)
   }
 
   update() {
@@ -44,6 +40,7 @@ export default class CreditsScene extends Scene {
   }
 
   _addEntry(credit, y) {
+    // Would be nice if this would be a group to determine the height per credit automatically
     const text1 = `${credit.title}`
     const text2 = `${credit.author} - ${credit.file}`
     this.add.text(CONFIG.width / 2, y, text1, Style.body()).setOrigin(0.5)

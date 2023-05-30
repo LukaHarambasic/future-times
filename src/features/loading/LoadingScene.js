@@ -1,6 +1,7 @@
-import { Scene, Input, Math as PMath } from 'phaser'
-import { Consts } from '../../core/utils/Consts'
-// import { Style } from '../utils/Style'
+import { Scene, Input } from 'phaser'
+import Consts from './../../core/utils/Consts'
+
+const { width, height } = Consts
 
 export default class LoadingScene extends Scene {
   constructor() {
@@ -9,7 +10,15 @@ export default class LoadingScene extends Scene {
 
   preload() {
     // Images
-    // this.load.image('water', './graphics/water.png')
+    this.load.image('background_bl', './graphics/background/bottom_left.png')
+    this.load.image('background_bm', './graphics/background/bottom_middle.png')
+    this.load.image('background_br', './graphics/background/bottom_right.png')
+    this.load.image('background_ml', './graphics/background/middle_left.png')
+    this.load.image('background_mm', './graphics/background/middle_middle.png')
+    this.load.image('background_mr', './graphics/background/middle_right.png')
+    this.load.image('background_tl', './graphics/background/top_left.png')
+    this.load.image('background_tm', './graphics/background/top_middle.png')
+    this.load.image('background_tr', './graphics/background/top_right.png')
     // this.load.atlas('raft', './graphics/spritesheet.png', './graphics/sprites.json')
     // Audio
     // this.load.audio('audio_background', './audio/background.mp3')
@@ -19,20 +28,20 @@ export default class LoadingScene extends Scene {
       loadingBar.clear()
       // TODO color
       loadingBar.fillStyle(0xffffff, 1)
-      loadingBar.fillRect(0, 0, Consts.width * value, 5)
+      loadingBar.fillRect(0, 0, width * value, 5)
     })
   }
 
   create() {
     // this.sound.add('audio_background', { volume: 0.2, loop: true }).play()
 
-    // this.add.tileSprite(0, 0, Consts.width, Consts.height, 'water').setOrigin(0, 0)
+    this._buildBackground()
 
     // TODO check if is mobile, persist in local storage
     // Maybe use this: https://browsergameshub.com/check-player-is-on-mobile-or-desktop/
-    this.add
-      .text(Consts.width / 2, Consts.height - 50, 'Press (Space) to continue.', Style.instruction())
-      .setOrigin(0.5, 0.5)
+    // this.add
+    //   .text(Consts.width / 2, Consts.height - 50, 'Press (Space) to continue.', Style.instruction())
+    //   .setOrigin(0.5, 0.5)
 
     // TODO ask user for name
     // https://github.com/photonstorm/phaser3-examples/blob/master/public/src/input/keyboard/text%20entry.js
@@ -59,10 +68,22 @@ export default class LoadingScene extends Scene {
 
   _handleInput() {
     if (Input.Keyboard.JustDown(this.keySpace)) {
-      const splashs = ['audio_splash1', 'audio_splash2', 'audio_splash3', 'audio_splash4']
-      const randomSplash = splashs[PMath.Between(0, splashs.length - 1)]
-      this.sound.add(randomSplash, { volume: 0.2 }).play()
       this.scene.start('menuScene')
     }
+  }
+
+  _buildBackground() {
+    // top
+    this.add.tileSprite(0, 0, 32, 32, 'background_tl').setOrigin(0, 0)
+    this.add.tileSprite(32, 0, width - 2 * 32, 32, 'background_tm').setOrigin(0, 0)
+    this.add.tileSprite(width - 32, 0, 32, 32, 'background_tr').setOrigin(0, 0)
+    // middle
+    this.add.tileSprite(0, 32, 32, height - 2 * 32, 'background_ml').setOrigin(0, 0)
+    this.add.tileSprite(32, 32, width - 2 * 32, height - 2 * 32, 'background_mm').setOrigin(0, 0)
+    this.add.tileSprite(width - 32, 32, 32, height - 2 * 32, 'background_mr').setOrigin(0, 0)
+    // bottom
+    this.add.tileSprite(0, height - 32, 32, 32, 'background_bl').setOrigin(0, 0)
+    this.add.tileSprite(32, height - 32, width - 2 * 32, 32, 'background_bm').setOrigin(0, 0)
+    this.add.tileSprite(width - 32, height - 32, 32, 32, 'background_br').setOrigin(0, 0)
   }
 }
