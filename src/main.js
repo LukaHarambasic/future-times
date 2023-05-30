@@ -28,7 +28,6 @@ const CONFIG = {
 
 new Game(CONFIG)
 
-
 async function main() {
   const ai = new AiService()
   console.log(await ai.chat("I'm the best worker in this factory."))

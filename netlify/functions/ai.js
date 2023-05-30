@@ -4,16 +4,25 @@ require('dotenv').config()
 
 const headers = {
   'Access-Control-Allow-Origin': '*',
-  'Content-Type': 'application/json',
   'Access-Control-Allow-Methods': '*',
   'Access-Control-Allow-Credentials': 'true',
 }
 
 exports.handler = async function (event) {
   logRequest(event)
-  // if (event.httpMethod !== 'POST' || event.httpMethod !== 'OPTIONS') {
-  //   return { statusCode: 405, body: `Method (${event.httpMethod})Not Allowed` }
-  // }
+  if (event.httpMethod === 'OPTIONS') {
+    return {
+      statusCode: 200,
+      headers,
+    }
+  }
+  if (event.httpMethod !== 'POST') {
+    return {
+      statusCode: 405,
+      headers,
+      body: `Method (${event.httpMethod}) - Not Allowed`,
+    }
+  }
   const messages = handleMessages(event)
   const assistentMessage = await askChatGPT(messages)
   return {
