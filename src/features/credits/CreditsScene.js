@@ -20,6 +20,11 @@ export default class CreditsScene extends Scene {
         author: 'OpenAI',
         link: 'https://platform.openai.com/docs/models/gpt-3-5',
       },
+      {
+        title: 'Cooper Bits',
+        author: 'Elli Sho',
+        link: 'https://www.dafont.com/cooperbits.font',
+      },
     ]
 
     credits.forEach((credit, i) => {

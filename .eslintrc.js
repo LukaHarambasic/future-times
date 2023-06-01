@@ -21,7 +21,7 @@ module.exports = {
   rules: {
     'import/default': 'error',
     'import/named': 'error',
-    'import/no-named-as-default': 'off'
+    'import/no-named-as-default': 'off',
   },
   globals: {
     window: true,
@@ -31,6 +31,7 @@ module.exports = {
     process: true,
     exports: true,
     require: true,
+    setTimeout: true,
   },
   parserOptions: {
     ecmaVersion: 2022,

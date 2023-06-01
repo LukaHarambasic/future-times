@@ -1,7 +1,8 @@
-import { Scene, Input } from 'phaser'
+import { Scene } from 'phaser'
 import Consts from './../../core/utils/Consts'
+import LocalStorageServiceInstance from '../../core/LocalStorageService'
 
-const { width, height } = Consts
+const { width, height, fontWhite, fontDark, fontSize } = Consts
 
 export default class LoadingScene extends Scene {
   constructor() {
@@ -9,7 +10,30 @@ export default class LoadingScene extends Scene {
   }
 
   preload() {
-    // Images
+    this._loadFont()
+    this._loadImages()
+    this._loadAtlas()
+    this._loadAudio()
+    this._createAnimations()
+  }
+
+  create() {
+    this._buildBackground()
+    this._dectectMobile()
+    this._handleInput()
+    this._buildLoadingBar()
+    this._handleSound()
+
+    // TODO
+    this.add.bitmapText(width / 2, 35, fontWhite, 'Future Times', fontSize.title).setOrigin(0.5, 0)
+  }
+
+  _loadFont() {
+    this.load.bitmapFont(fontDark, './fonts/CooperBitsBlack/bitmap.png', './fonts/CooperBitsBlack/bitmap.xml')
+    this.load.bitmapFont(fontWhite, './fonts/CooperBitsWhite/bitmap.png', './fonts/CooperBitsWhite/bitmap.xml')
+  }
+
+  _loadImages() {
     this.load.image('background_bl', './graphics/background/bottom_left.png')
     this.load.image('background_bm', './graphics/background/bottom_middle.png')
     this.load.image('background_br', './graphics/background/bottom_right.png')
@@ -19,34 +43,20 @@ export default class LoadingScene extends Scene {
     this.load.image('background_tl', './graphics/background/top_left.png')
     this.load.image('background_tm', './graphics/background/top_middle.png')
     this.load.image('background_tr', './graphics/background/top_right.png')
-    // this.load.atlas('raft', './graphics/spritesheet.png', './graphics/sprites.json')
-    // Audio
-    // this.load.audio('audio_background', './audio/background.mp3')
-
-    let loadingBar = this.add.graphics()
-    this.load.on('progress', (value) => {
-      loadingBar.clear()
-      // TODO color
-      loadingBar.fillStyle(0xffffff, 1)
-      loadingBar.fillRect(0, 0, width * value, 5)
-    })
   }
 
-  create() {
-    // this.sound.add('audio_background', { volume: 0.2, loop: true }).play()
+  _loadAtlas() {
+    // TODO
+    // this.load.atlas('raft', './graphics/spritesheet.png', './graphics/sprites.json')
+  }
 
-    this._buildBackground()
+  _loadAudio() {
+    // TODO
+    // this.load.audio('audio_background', './audio/background.mp3')
+  }
 
-    // TODO check if is mobile, persist in local storage
-    // Maybe use this: https://browsergameshub.com/check-player-is-on-mobile-or-desktop/
-    // this.add
-    //   .text(Consts.width / 2, Consts.height - 50, 'Press (Space) to continue.', Style.instruction())
-    //   .setOrigin(0.5, 0.5)
-
-    // TODO ask user for name
-    // https://github.com/photonstorm/phaser3-examples/blob/master/public/src/input/keyboard/text%20entry.js
-
-    // Animations
+  _createAnimations() {
+    // TODO
     // this.anims.create({
     //   key: 'raft_side',
     //   frames: this.anims.generateFrameNames('raft', {
@@ -57,19 +67,28 @@ export default class LoadingScene extends Scene {
     //   frameRate: 5,
     //   repeat: 0,
     // })
-
-    // Input
-    this.keySpace = this.input.keyboard.addKey(Input.Keyboard.KeyCodes.SPACE)
   }
 
-  update() {
-    this._handleInput()
+  _buildLoadingBar() {
+    // TODO
+    const loadingBar = this.add.graphics()
+    this.load.on('progress', (value) => {
+      loadingBar.clear()
+      // TODO color
+      loadingBar.fillStyle(0xffffff, 1)
+      loadingBar.fillRect(0, 0, width * value, 5)
+    })
+  }
+
+  _handleSound() {
+    // TODO
+    // this.sound.add('audio_background', { volume: 0.2, loop: true }).play()
   }
 
   _handleInput() {
-    if (Input.Keyboard.JustDown(this.keySpace)) {
-      this.scene.start('menuScene')
-    }
+    this.input.on('pointerdown', (_) => {
+      this.scene.start('nameScene')
+    })
   }
 
   _buildBackground() {
@@ -85,5 +104,12 @@ export default class LoadingScene extends Scene {
     this.add.tileSprite(0, height - 32, 32, 32, 'background_bl').setOrigin(0, 0)
     this.add.tileSprite(32, height - 32, width - 2 * 32, 32, 'background_bm').setOrigin(0, 0)
     this.add.tileSprite(width - 32, height - 32, 32, 32, 'background_br').setOrigin(0, 0)
+  }
+
+  _dectectMobile() {
+    // Inspired by: https://browsergameshub.com/check-player-is-on-mobile-or-desktop
+    // OPTIONAL: maybe abstract using a repository
+    LocalStorageServiceInstance.isMobile = false
+    window.addEventListener('touchstart', () => (LocalStorageServiceInstance.isMobile = true))
   }
 }

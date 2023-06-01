@@ -25,6 +25,14 @@ class LocalStorageService {
   get playerName() {
     return globalState['playerName'] || JSON.parse(localStorage.getItem('playerName')) || ''
   }
+
+  set isMobile(value) {
+    localStorage.setItem('isMobile', value)
+  }
+
+  get isMobile() {
+    return globalState['isMobile'] || JSON.parse(localStorage.getItem('isMobile')) || false
+  }
 }
 
 const LocalStorageServiceInstance = Object.freeze(new LocalStorageService())
