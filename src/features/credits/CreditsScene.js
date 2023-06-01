@@ -1,6 +1,6 @@
-import { Scene, Input, Math as PMath } from 'phaser'
-import { CONFIG } from '../../main'
-import { Style } from '../../utils/Texts'
+import { Scene } from 'phaser'
+import Consts from './../../core/utils/Consts'
+const { width, fontSize, fontWhite } = Consts
 
 export default class CreditsScene extends Scene {
   constructor() {
@@ -8,6 +8,7 @@ export default class CreditsScene extends Scene {
   }
 
   create() {
+    this.add.bitmapText(2, 2, fontWhite, 'Credits', fontSize.small).setOrigin(0.5, 0)
     // TODO add everything
     const credits = [
       {
@@ -27,34 +28,34 @@ export default class CreditsScene extends Scene {
       },
     ]
 
-    credits.forEach((credit, i) => {
-      const y = 150 + i * 80
-      this._addEntry(credit, y)
-    })
+    // credits.forEach((credit, i) => {
+    //   const y = 150 + i * 80
+    //   this._addEntry(credit, y)
+    // })
   }
 
-  update() {
-    this._handleInput()
-  }
+  // update() {
+  //   this._handleInput()
+  // }
 
-  _handleInput() {
-    if (Input.Keyboard.JustDown(this.keyM)) {
-      // this.sound.add(randomSplash, { volume: 0.2 }).play()
-      this.scene.start('menuScene')
-    }
-  }
+  // _handleInput() {
+  //   if (Input.Keyboard.JustDown(this.keyM)) {
+  //     // this.sound.add(randomSplash, { volume: 0.2 }).play()
+  //     this.scene.start('menuScene')
+  //   }
+  // }
 
-  _addEntry(credit, y) {
-    // Would be nice if this would be a group to determine the height per credit automatically
-    const text1 = `${credit.title}`
-    const text2 = `${credit.author} - ${credit.file}`
-    this.add.text(CONFIG.width / 2, y, text1, Style.body()).setOrigin(0.5)
-    this.add
-      .text(CONFIG.width / 2, y + 30, text2, Style.bodySmall())
-      .setOrigin(0.5)
-      .setInteractive({ useHandCursor: true })
-      .on('pointerup', function () {
-        window.open(credit.link, '_blank')
-      })
-  }
+  // _addEntry(credit, y) {
+  //   // Would be nice if this would be a group to determine the height per credit automatically
+  //   const text1 = `${credit.title}`
+  //   const text2 = `${credit.author} - ${credit.file}`
+  //   this.add.text(CONFIG.width / 2, y, text1, Style.body()).setOrigin(0.5)
+  //   this.add
+  //     .text(CONFIG.width / 2, y + 30, text2, Style.bodySmall())
+  //     .setOrigin(0.5)
+  //     .setInteractive({ useHandCursor: true })
+  //     .on('pointerup', function () {
+  //       window.open(credit.link, '_blank')
+  //     })
+  // }
 }

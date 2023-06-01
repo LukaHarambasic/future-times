@@ -8,6 +8,9 @@ import Consts from './core/utils/Consts'
 import LoadingScene from './features/loading/LoadingScene'
 import NameScene from './features/name/NameScene'
 import MenuScene from './features/menu/MenuScene'
+import GameScene from './features/game/GameScene'
+import SurvivorScene from './features/survivor/SurvivorScene'
+import CreditsScene from './features/credits/CreditsScene'
 
 const { width, height } = Consts
 
@@ -19,7 +22,7 @@ const CONFIG = {
   width: width,
   height: height,
   canvas: canvasElement,
-  scene: [LoadingScene, NameScene, MenuScene],
+  scene: [LoadingScene, NameScene, MenuScene, GameScene, SurvivorScene, CreditsScene],
 }
 
 new Game(CONFIG)
