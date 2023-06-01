@@ -18,12 +18,12 @@ class LocalStorageService {
     return globalState['difficultyLevel'] || JSON.parse(localStorage.getItem('difficultyLevel')) || 'easy'
   }
 
-  set playerName(value) {
-    localStorage.setItem('playerName', value)
+  set userName(value) {
+    localStorage.setItem('userName', value)
   }
 
-  get playerName() {
-    return globalState['playerName'] || JSON.parse(localStorage.getItem('playerName')) || ''
+  get userName() {
+    return globalState['userName'] || JSON.parse(localStorage.getItem('userName')) || ''
   }
 
   set isMobile(value) {

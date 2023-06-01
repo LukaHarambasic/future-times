@@ -50,6 +50,7 @@ export default class NameScene extends Scene {
       }
       // don't ask me anything about this calculation, it works and that's all that matters :D
       underscore.setX(userName.x - userName.width / 2 + userName.width + underscore.width / 2)
+      LocalStorageServiceInstance.userName = userName.text
     })
     this.time.addEvent({
       delay: 400,
@@ -67,7 +68,8 @@ export default class NameScene extends Scene {
   }
 
   _buildSaveButton() {
-    this.saveButton = this.add.text(width / 2, height - 20, 'Save', Texts.button).setOrigin(0.5, 0.5)
+    // TODO button class/component
+    this.saveButton = this.add.bitmapText(width / 2, height - 30, fontWhite, 'Save', fontSize.title).setOrigin(0.5, 0)
     this.saveButton.setInteractive()
   }
 
