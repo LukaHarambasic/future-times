@@ -17,7 +17,7 @@ export default {
     large: size.large,
   },
   fontSize: {
-    title: size.large,
+    title: 40,
     body: size.medium,
     small: size.small,
     input: size.large * 1.5,

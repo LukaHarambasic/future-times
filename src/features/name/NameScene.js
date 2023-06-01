@@ -39,7 +39,7 @@ export default class NameScene extends Scene {
       .bitmapText(width / 2 - underscore.width / 2, 220, fontWhite, '', fontSize.input)
       .setOrigin(0.5, 0)
     underscore.setY(this.userName.y)
-    underscore.setX(this.userName.x + this.userName.width)
+    underscore.setX(this.userName.x + this.userName.width + underscore.width / 2)
     // Inspired by
     // https://github.com/photonstorm/phaser3-examples/blob/master/public/src/input/keyboard/text%20entry.js
     this.input.keyboard.on('keydown', (event) => {
