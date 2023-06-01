@@ -31,9 +31,14 @@ export default class NameScene extends Scene {
   }
 
   _handlNameInput() {
-    const underscore = this.add.bitmapText(0, 0, fontWhite, '_', fontSize.input).setOrigin(0, 0)
-    const userName = this.add.bitmapText(0, 220, fontWhite, '', fontSize.input).setOrigin(0, 0)
+    // TODO fine tuning, e.g. max 12 chars
+    // TODO clean up, maybe split into multiple methods?
+    const underscore = this.add.bitmapText(0, 0, fontWhite, '_', fontSize.input).setOrigin(0.5, 0)
+    const userName = this.add
+      .bitmapText(width / 2 - underscore.width / 2, 220, fontWhite, '', fontSize.input)
+      .setOrigin(0.5, 0)
     underscore.setY(userName.y)
+    underscore.setX(userName.x + userName.width)
     // Inspired by
     // https://github.com/photonstorm/phaser3-examples/blob/master/public/src/input/keyboard/text%20entry.js
     this.input.keyboard.on('keydown', (event) => {
@@ -43,7 +48,8 @@ export default class NameScene extends Scene {
       } else if (event.keyCode === 32 || (event.keyCode >= 48 && event.keyCode < 90)) {
         userName.text += event.key
       }
-      underscore.setX(userName.x + userName.width)
+      // don't ask me anything about this calculation, it works and that's all that matters :D
+      underscore.setX(userName.x - userName.width / 2 + userName.width + underscore.width / 2)
     })
     this.time.addEvent({
       delay: 400,
