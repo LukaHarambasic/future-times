@@ -8,11 +8,6 @@ body {
   background: tomato;
 }
 
-/* @font-face {
-  font-family: "CooperBits";
-  src: url('fonts/CooperBits.ttf');
-} */
-
 canvas {
   display: block;
 }
@@ -21,9 +16,10 @@ canvas {
   position: absolute;
   left: 0px;
   top: 0px;
-  bottom: 50%;
+  bottom: 20%;
   right: 0px;
-  z-index: 100;
-  opacity: 0.1;
+  z-index: 1000;
+  opacity: 0;
   display: none;
+  color: transparent;
 }

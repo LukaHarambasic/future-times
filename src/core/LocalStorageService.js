@@ -11,6 +11,7 @@ class LocalStorageService {
   }
 
   set difficultyLevel(value) {
+    globalState['difficultyLevel'] = value
     localStorage.setItem('difficultyLevel', value)
   }
 
@@ -19,6 +20,7 @@ class LocalStorageService {
   }
 
   set userName(value) {
+    globalState['userName'] = value
     localStorage.setItem('userName', value)
   }
 
@@ -27,6 +29,7 @@ class LocalStorageService {
   }
 
   set isMobile(value) {
+    globalState['isMobile'] = value
     localStorage.setItem('isMobile', value)
   }
 

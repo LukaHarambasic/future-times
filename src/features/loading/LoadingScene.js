@@ -26,6 +26,20 @@ export default class LoadingScene extends Scene {
 
     // TODO
     this.add.bitmapText(width / 2, 35, fontWhite, 'Future Times', fontSize.title).setOrigin(0.5, 0)
+    const instructionsText = LocalStorageServiceInstance.isMobile ? 'Tap to continue' : 'Click to continue'
+    const instructions = this.add
+      .bitmapText(width / 2, height / 2, fontWhite, instructionsText, fontSize.body)
+      .setOrigin(0.5, 0)
+
+    this.time.addEvent({
+      // TODO 600 for final version
+      delay: 10000,
+      loop: true,
+      callback: () => {
+        instructions.visible = !instructions.visible
+      },
+      callbackScope: this,
+    })
   }
 
   _loadFont() {
@@ -106,10 +120,10 @@ export default class LoadingScene extends Scene {
     this.add.tileSprite(width - 32, height - 32, 32, 32, 'background_br').setOrigin(0, 0)
   }
 
+  // OPTIONAL: No pure function, but it's ok for now
   _dectectMobile() {
     // Inspired by: https://browsergameshub.com/check-player-is-on-mobile-or-desktop
     // OPTIONAL: maybe abstract using a repository
-    LocalStorageServiceInstance.isMobile = false
     window.addEventListener('touchstart', () => (LocalStorageServiceInstance.isMobile = true))
   }
 }

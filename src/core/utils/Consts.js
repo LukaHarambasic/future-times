@@ -1,7 +1,7 @@
 const windowWidth = window.innerWidth
 const windowHeight = window.innerHeight
 const size = {
-  small: 10,
+  small: 15,
   medium: 20,
   large: 30,
 }
