@@ -1,6 +1,6 @@
 import { Scene } from 'phaser'
 import Consts from './../../core/utils/Consts'
-const { width, fontSize, fontWhite } = Consts
+const { width, height, fontSize, fontWhite } = Consts
 
 export default class CreditsScene extends Scene {
   constructor() {
@@ -8,7 +8,10 @@ export default class CreditsScene extends Scene {
   }
 
   create() {
-    this.add.bitmapText(2, 2, fontWhite, 'Credits', fontSize.small).setOrigin(0.5, 0)
+    this._buildBackButton()
+    this._handleBackNavigation()
+
+    this.add.bitmapText(2, height - 17, fontWhite, 'Credits', fontSize.small).setOrigin(0, 0)
     // TODO add everything
     const credits = [
       {
@@ -32,6 +35,17 @@ export default class CreditsScene extends Scene {
     //   const y = 150 + i * 80
     //   this._addEntry(credit, y)
     // })
+  }
+
+  _buildBackButton() {
+    this.backButton = this.add.bitmapText(10, 10, fontWhite, 'BACK', fontSize.title).setOrigin(0, 0)
+    this.backButton.setInteractive()
+  }
+
+  _handleBackNavigation() {
+    this.backButton.on('pointerover', () => {
+      this.scene.start('menuScene')
+    })
   }
 
   // update() {

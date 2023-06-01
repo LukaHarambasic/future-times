@@ -1,5 +1,3 @@
-// extract all the logic for the highscore from the Localstorage
-
 import DbServiceInstance from './DbService'
 
 let instance
@@ -23,7 +21,11 @@ class SurvivorService {
   }
 
   async getSurvivors() {
-    const { data, error } = await DbServiceInstance.db.from('survivors').select('*')
+    const { data, error } = await DbServiceInstance.db
+      .from('survivors')
+      .select('*')
+      .order('created_at', { ascending: false })
+
     if (error) {
       throw error
     }
