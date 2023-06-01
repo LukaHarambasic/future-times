@@ -32,7 +32,7 @@ export default class LoadingScene extends Scene {
         width / 2,
         height * 0.4 + fontSize.title + 10,
         fontDark,
-        'Morbi porta diam eget\n\npurus malesuada vulputate. ',
+        'Morbi porta diam eget\n\npurus malesuada vulputate.',
         fontSize.body,
         1,
       )

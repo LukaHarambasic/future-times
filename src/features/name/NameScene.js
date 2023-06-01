@@ -1,8 +1,8 @@
-import { Scene, Input } from 'phaser'
+import { Scene } from 'phaser'
 import Consts from './../../core/utils/Consts'
 import LocalStorageServiceInstance from '../../core/LocalStorageService'
 
-const { width, height, fontSize, fontWhite } = Consts
+const { width, height, fontSize, fontWhite, fontDark } = Consts
 
 export default class NameScene extends Scene {
   constructor() {
@@ -11,11 +11,16 @@ export default class NameScene extends Scene {
 
   create() {
     this._enableNameInput()
+    this._buildBackground()
+    this._buildText()
     this._handlNameInput()
-    this._buildDecoration()
     this._buildSaveButton()
     this._buildInputValidation()
     this._handleSaveNavigation()
+  }
+
+  update() {
+    this._animateBackground()
   }
 
   _enableNameInput() {
@@ -34,9 +39,9 @@ export default class NameScene extends Scene {
   _handlNameInput() {
     // TODO fine tuning, e.g. max 12 chars
     // TODO clean up, maybe split into multiple methods?
-    const underscore = this.add.bitmapText(0, 0, fontWhite, '_', fontSize.input).setOrigin(0.5, 0)
+    const underscore = this.add.bitmapText(0, 0, fontDark, '_', fontSize.input).setOrigin(0.5, 0)
     this.userName = this.add
-      .bitmapText(width / 2 - underscore.width / 2, 220, fontWhite, '', fontSize.input)
+      .bitmapText(width / 2 - underscore.width / 2, 320, fontDark, '', fontSize.input)
       .setOrigin(0.5, 0)
     underscore.setY(this.userName.y)
     underscore.setX(this.userName.x + this.userName.width + underscore.width / 2)
@@ -64,9 +69,9 @@ export default class NameScene extends Scene {
     })
   }
 
-  _buildDecoration() {
-    this.add.bitmapText(width / 2, 35, fontWhite, 'Future Times', fontSize.title).setOrigin(0.5, 0)
-    this.add.bitmapText(width / 2, 160, fontWhite, 'Enter your name', fontSize.body).setOrigin(0.5, 0)
+  _buildText() {
+    this.add.bitmapText(width / 2, 40, fontDark, 'Future Times', fontSize.title).setOrigin(0.5, 0)
+    this.add.bitmapText(width / 2, 260, fontDark, 'Enter your name human', fontSize.body).setOrigin(0.5, 0)
   }
 
   _buildSaveButton() {
@@ -77,27 +82,47 @@ export default class NameScene extends Scene {
 
   _buildInputValidation() {
     this.inputValidationText = this.add
-      .bitmapText(width / 2, 280, fontWhite, 'Your name must be\n\n1 to 8 characters long.', fontSize.small, 1)
+      .bitmapText(width / 2, 380, fontDark, 'Your name must be\n\n1 to 8 characters long.', fontSize.small, 1)
       .setOrigin(0.5, 0)
     this.inputValidationText.visible = false
   }
 
   _isInputValid() {
-    if (this.userName.text.length === 0 || this.userName.text.length > 8) {
-      return true
-    }
-    return false
+    const text = this.userName.text.trim()
+    return text.length !== 0 && text.length <= 8
   }
 
   _handleSaveNavigation() {
     this.saveButton.on('pointerover', () => {
       if (this._isInputValid()) {
+        LocalStorageServiceInstance.userName = this.userName.text.trim()
+        this._disableNameInput()
+        this.scene.start('menuScene')
+      } else {
         this.inputValidationText.visible = true
-        return
       }
-      LocalStorageServiceInstance.userName = this.userName.text
-      this._disableNameInput()
-      this.scene.start('menuScene')
     })
+  }
+
+  _buildBackground() {
+    this.add.rectangle(0, 0, width, height, 0xb5acbc).setOrigin(0, 0)
+    this.make
+      .graphics()
+      .fillStyle(0xb5acbc)
+      .fillRect(0, 0, width, height)
+      .generateTexture('background_1', width, height)
+
+    this.add.tileSprite(0, 0, width, height, 'background_1')
+    this.smoke = this.add.tileSprite(0, 0, 0, 0, 'background_2').setOrigin(0, 0)
+    this.city1 = this.add.tileSprite(0, height, 0, 0, 'background_3').setOrigin(0, 1)
+    this.city2 = this.add.tileSprite(0, height, 0, 0, 'background_4').setOrigin(0, 1)
+    this.city3 = this.add.tileSprite(0, height, 0, 0, 'background_5').setOrigin(0, 1)
+  }
+
+  _animateBackground() {
+    this.smoke.tilePositionX += 0.2
+    this.city1.tilePositionX += 0.3
+    this.city2.tilePositionX += 0.4
+    this.city3.tilePositionX += 0.5
   }
 }

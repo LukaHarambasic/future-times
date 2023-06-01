@@ -5,8 +5,7 @@ body {
 }
 
 body {
-  /* TODO adjust to the main background color later */
-  background: tomato;
+  background: #b5acbc;
 }
 
 canvas {

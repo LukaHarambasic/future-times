@@ -16,6 +16,8 @@ const { width, height } = Consts
 
 const canvasElement = document.getElementById('game')
 
+// TODO handle size for desktops, e.g. use iphone size and center it
+
 const CONFIG = {
   type: WEBGL,
   mode: Scale.FIT,
