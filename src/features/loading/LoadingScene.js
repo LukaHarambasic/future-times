@@ -17,6 +17,7 @@ export default class LoadingScene extends Scene {
   }
 
   create() {
+    this._generateGraphics()
     this._createAnimations()
     this._buildBackground()
     this._dectectMobile()
@@ -100,13 +101,16 @@ export default class LoadingScene extends Scene {
     })
   }
 
-  _buildBackground() {
+  _generateGraphics() {
     this.make
       .graphics()
       .fillStyle(0xb5acbc)
       .fillRect(0, 0, width, height)
       .generateTexture('background_1', width, height)
+    this.make.graphics().fillStyle(0xff0000).fillRect(0, 0, 1, height).generateTexture('center', 1, height)
+  }
 
+  _buildBackground() {
     this.add.tileSprite(0, 0, width, height, 'background_1').setOrigin(0, 0)
     this.smoke = this.add.tileSprite(0, 0, 0, 0, 'background_2').setOrigin(0, 0)
     this.city1 = this.add.tileSprite(0, height, 0, 0, 'background_3').setOrigin(0, 1)

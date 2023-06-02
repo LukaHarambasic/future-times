@@ -15,9 +15,21 @@ export default class GameScene extends Scene {
     this.add.bitmapText(2, 2, fontWhite, 'Game', fontSize.small).setOrigin(0, 0)
 
     this._handleSpawning()
+    this._handleInput()
+
+    this.add.tileSprite(width / 2, 0, 0, height, 'center').setOrigin(0.5, 0)
   }
 
   update() {}
+
+  _handleInput() {
+    this.input.on('pointerdown', this._handlePointerDown, this)
+  }
+
+  _handlePointerDown(pointer) {
+    if (this.isGameFrozen) return
+    console.log('pointer down')
+  }
 
   _handleSpawning() {
     this.chestGroup = this.add.group()
