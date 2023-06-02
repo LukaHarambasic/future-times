@@ -14,43 +14,19 @@ export default class LoadingScene extends Scene {
     this._loadImages()
     this._loadAtlas()
     this._loadAudio()
-    this._createAnimations()
   }
 
   create() {
+    this._createAnimations()
     this._buildBackground()
-    // this._buildTiles()
     this._dectectMobile()
     this._handleInput()
     this._buildLoadingBar()
     this._handleSound()
+    this._buildText()
 
-    // TODO
-    this.add.bitmapText(width / 2, height * 0.4, fontDark, 'Future Times', fontSize.title).setOrigin(0.5, 0.5)
-    this.add
-      .bitmapText(
-        width / 2,
-        height * 0.4 + fontSize.title + 10,
-        fontDark,
-        'Morbi porta diam eget\n\npurus malesuada vulputate.',
-        fontSize.body,
-        1,
-      )
-      .setOrigin(0.5, 0)
-    const instructionsText = LocalStorageServiceInstance.isMobile ? 'Tap to continue' : 'Click to continue'
-    const instructions = this.add
-      .bitmapText(width / 2, height - 70, fontWhite, instructionsText, fontSize.body)
-      .setOrigin(0.5, 0)
-
-    this.time.addEvent({
-      // TODO 600 for final version
-      delay: 600,
-      loop: true,
-      callback: () => {
-        instructions.visible = !instructions.visible
-      },
-      callbackScope: this,
-    })
+    // TODO remove after testing
+    this.scene.start('gameScene')
   }
 
   update() {
@@ -81,8 +57,7 @@ export default class LoadingScene extends Scene {
   }
 
   _loadAtlas() {
-    // TODO
-    // this.load.atlas('raft', './graphics/spritesheet.png', './graphics/sprites.json')
+    this.load.atlas('chestAtlas', './graphics/animations/chest.png', './graphics/animations/chest.json')
   }
 
   _loadAudio() {
@@ -91,21 +66,20 @@ export default class LoadingScene extends Scene {
   }
 
   _createAnimations() {
-    // TODO
-    // this.anims.create({
-    //   key: 'raft_side',
-    //   frames: this.anims.generateFrameNames('raft', {
-    //     prefix: 'raft_',
-    //     start: 0,
-    //     end: 3,
-    //   }),
-    //   frameRate: 5,
-    //   repeat: 0,
-    // })
+    this.anims.create({
+      key: 'compactChest',
+      frames: this.anims.generateFrameNames('chestAtlas', {
+        prefix: 'chest_',
+        start: 1,
+        end: 8,
+      }),
+      frameRate: 12,
+      repeat: 0,
+    })
   }
 
   _buildLoadingBar() {
-    // TODO
+    // TODO I think it's not working
     const loadingBar = this.add.graphics()
     this.load.on('progress', (value) => {
       loadingBar.clear()
@@ -127,14 +101,13 @@ export default class LoadingScene extends Scene {
   }
 
   _buildBackground() {
-    this.add.rectangle(0, 0, width, height, 0xb5acbc).setOrigin(0, 0)
     this.make
       .graphics()
       .fillStyle(0xb5acbc)
       .fillRect(0, 0, width, height)
       .generateTexture('background_1', width, height)
 
-    this.add.tileSprite(0, 0, width, height, 'background_1')
+    this.add.tileSprite(0, 0, width, height, 'background_1').setOrigin(0, 0)
     this.smoke = this.add.tileSprite(0, 0, 0, 0, 'background_2').setOrigin(0, 0)
     this.city1 = this.add.tileSprite(0, height, 0, 0, 'background_3').setOrigin(0, 1)
     this.city2 = this.add.tileSprite(0, height, 0, 0, 'background_4').setOrigin(0, 1)
@@ -146,6 +119,35 @@ export default class LoadingScene extends Scene {
     this.city1.tilePositionX += 0.3
     this.city2.tilePositionX += 0.4
     this.city3.tilePositionX += 0.5
+  }
+
+  _buildText() {
+    this.add.bitmapText(width / 2, height * 0.4, fontDark, 'Future Times', fontSize.title).setOrigin(0.5, 0.5)
+    this.add
+      .bitmapText(
+        width / 2,
+        height * 0.4 + fontSize.title + 10,
+        fontDark,
+        'Morbi porta diam eget\n\npurus malesuada vulputate.',
+        fontSize.body,
+        1,
+      )
+      .setOrigin(0.5, 0)
+      .setAlpha(0.8)
+    const instructionsText = LocalStorageServiceInstance.isMobile ? 'Tap to continue' : 'Click to continue'
+    const instructions = this.add
+      .bitmapText(width / 2, height - 70, fontWhite, instructionsText, fontSize.body)
+      .setOrigin(0.5, 0)
+      .setAlpha(0.8)
+    this.time.addEvent({
+      // TODO 600 for final version
+      delay: 600,
+      loop: true,
+      callback: () => {
+        instructions.visible = !instructions.visible
+      },
+      callbackScope: this,
+    })
   }
 
   _buildTiles() {

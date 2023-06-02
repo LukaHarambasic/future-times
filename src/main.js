@@ -2,7 +2,7 @@
 // Author: Luka Harambasic
 // Hours:
 
-import { Game, WEBGL, Scale } from 'phaser'
+import { Game, CANVAS, Scale } from 'phaser'
 import './style.css'
 import Consts from './core/utils/Consts'
 import LoadingScene from './features/loading/LoadingScene'
@@ -19,7 +19,7 @@ const canvasElement = document.getElementById('game')
 // TODO handle size for desktops, e.g. use iphone size and center it
 
 const CONFIG = {
-  type: WEBGL,
+  type: CANVAS,
   mode: Scale.FIT,
   width: width,
   height: height,

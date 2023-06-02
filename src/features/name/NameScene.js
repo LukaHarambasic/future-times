@@ -71,20 +71,25 @@ export default class NameScene extends Scene {
 
   _buildText() {
     this.add.bitmapText(width / 2, 40, fontDark, 'Future Times', fontSize.title).setOrigin(0.5, 0)
-    this.add.bitmapText(width / 2, 260, fontDark, 'Enter your name human', fontSize.body).setOrigin(0.5, 0)
+    this.add
+      .bitmapText(width / 2, 260, fontDark, 'Enter your name. Human!', fontSize.body)
+      .setOrigin(0.5, 0)
+      .setAlpha(0.8)
   }
 
   _buildSaveButton() {
     // TODO button class/component or an image?
-    this.saveButton = this.add.bitmapText(width / 2, height - 70, fontWhite, 'Save', fontSize.title).setOrigin(0.5, 0)
-    this.saveButton.setInteractive()
+    this.saveButton = this.add
+      .bitmapText(width / 2, height - 70, fontWhite, 'Save', fontSize.title)
+      .setOrigin(0.5, 0)
+      .setInteractive()
   }
 
   _buildInputValidation() {
     this.inputValidationText = this.add
       .bitmapText(width / 2, 380, fontDark, 'Your name must be\n\n1 to 8 characters long.', fontSize.small, 1)
       .setOrigin(0.5, 0)
-    this.inputValidationText.visible = false
+      .setVisible(false)
   }
 
   _isInputValid() {
@@ -105,14 +110,8 @@ export default class NameScene extends Scene {
   }
 
   _buildBackground() {
-    this.add.rectangle(0, 0, width, height, 0xb5acbc).setOrigin(0, 0)
-    this.make
-      .graphics()
-      .fillStyle(0xb5acbc)
-      .fillRect(0, 0, width, height)
-      .generateTexture('background_1', width, height)
-
-    this.add.tileSprite(0, 0, width, height, 'background_1')
+    // OPTIONAL hand over poistions from previous scene
+    this.add.tileSprite(0, 0, width, height, 'background_1').setOrigin(0, 0)
     this.smoke = this.add.tileSprite(0, 0, 0, 0, 'background_2').setOrigin(0, 0)
     this.city1 = this.add.tileSprite(0, height, 0, 0, 'background_3').setOrigin(0, 1)
     this.city2 = this.add.tileSprite(0, height, 0, 0, 'background_4').setOrigin(0, 1)
