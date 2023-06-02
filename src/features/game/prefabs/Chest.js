@@ -19,6 +19,6 @@ export default class Chest extends GameObjects.Sprite {
       this.isDestroyed = true
       this.destroy()
     }
-    this.x += 1
+    this.x += 3
   }
 }

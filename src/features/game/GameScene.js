@@ -17,13 +17,7 @@ export default class GameScene extends Scene {
     this._handleSpawning()
   }
 
-  update() {
-    this.chestGroup.getChildren().forEach((chest) => {
-      if (!chest.isDestroyed) {
-        chest.update()
-      }
-    })
-  }
+  update() {}
 
   _handleSpawning() {
     this.chestGroup = this.add.group()
@@ -35,7 +29,7 @@ export default class GameScene extends Scene {
 
   _startSpawning() {
     if (this.isGameFrozen) return
-    const randomSpawnRate = PMath.Between(400, 1300)
+    const randomSpawnRate = PMath.Between(600, 1500)
     this.time.delayedCall(randomSpawnRate, this._spawnChest, [], this)
   }
 
