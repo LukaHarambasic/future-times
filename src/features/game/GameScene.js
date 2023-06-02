@@ -17,7 +17,9 @@ export default class GameScene extends Scene {
     this._handleSpawning()
     this._handleInput()
 
-    this.add.tileSprite(width / 2, 0, 0, height, 'center').setOrigin(0.5, 0)
+    this.add.tileSprite(width / 2, 0, 0, height, 'line-red').setOrigin(0.5, 0)
+    this.add.tileSprite(width / 2 - 32, 0, 0, height, 'line-green').setOrigin(0.5, 0)
+    this.add.tileSprite(width / 2 + 32, 0, 0, height, 'line-green').setOrigin(0.5, 0)
   }
 
   update() {}
@@ -26,9 +28,17 @@ export default class GameScene extends Scene {
     this.input.on('pointerdown', this._handlePointerDown, this)
   }
 
-  _handlePointerDown(pointer) {
+  _handlePointerDown() {
     if (this.isGameFrozen) return
-    console.log('pointer down')
+    // TODO also a cooldown is needed
+    const from = width / 2 - 32
+    const to = width / 2 + 32
+    // TODO distance has to be calculated for the scoring
+    this.chestGroup.getChildren().forEach((chest) => {
+      if ((chest.x >= from && chest.x <= to) || (chest.x + chest.width >= from && chest.x + chest.width <= to)) {
+        console.log('hit')
+      }
+    })
   }
 
   _handleSpawning() {

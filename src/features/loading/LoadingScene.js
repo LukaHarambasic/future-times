@@ -107,7 +107,8 @@ export default class LoadingScene extends Scene {
       .fillStyle(0xb5acbc)
       .fillRect(0, 0, width, height)
       .generateTexture('background_1', width, height)
-    this.make.graphics().fillStyle(0xff0000).fillRect(0, 0, 1, height).generateTexture('center', 1, height)
+    this.make.graphics().fillStyle(0xff0000).fillRect(0, 0, 1, height).generateTexture('line-red', 1, height)
+    this.make.graphics().fillStyle(0x00ff00).fillRect(0, 0, 1, height).generateTexture('line-green', 1, height)
   }
 
   _buildBackground() {
