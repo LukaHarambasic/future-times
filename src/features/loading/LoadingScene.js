@@ -20,14 +20,13 @@ export default class LoadingScene extends Scene {
     this._generateGraphics()
     this._createAnimations()
     this._buildBackground()
-    this._dectectMobile()
     this._handleInput()
     this._buildLoadingBar()
     this._handleSound()
     this._buildText()
 
     // TODO remove after testing
-    // this.scene.start('gameScene')
+    this.scene.start('gameScene')
   }
 
   update() {
@@ -60,6 +59,7 @@ export default class LoadingScene extends Scene {
   _loadAtlas() {
     this.load.atlas('chestAtlas', './graphics/animations/chest.png', './graphics/animations/chest.json')
     this.load.atlas('hammerAtlas', './graphics/animations/hammer.png', './graphics/animations/hammer.json')
+    this.load.atlas('aiAtlas', './graphics/animations/ai.jpeg', './graphics/animations/ai.json')
   }
 
   _loadAudio() {
@@ -87,6 +87,16 @@ export default class LoadingScene extends Scene {
       }),
       frameRate: frameRate,
       repeat: 0,
+    })
+    this.anims.create({
+      key: 'aiFlickering',
+      frames: this.anims.generateFrameNames('aiAtlas', {
+        prefix: 'ai_',
+        start: 1,
+        end: 4,
+      }),
+      frameRate: frameRate / 2,
+      repeat: -1,
     })
   }
 
@@ -118,10 +128,12 @@ export default class LoadingScene extends Scene {
       .fillStyle(0xb5acbc)
       .fillRect(0, 0, width, height)
       .generateTexture('background_1', width, height)
-    this.make.graphics().fillStyle(0xff0000).fillRect(0, 0, 1, height).generateTexture('line-red', 1, height)
-    this.make.graphics().fillStyle(0x00ff00).fillRect(0, 0, 1, height).generateTexture('line-green', 1, height)
-    this.make.graphics().fillStyle(0x00ff00).fillRect(0, 0, 32, 32).generateTexture('invisible', 32, 32)
-    this.make.graphics().fillStyle(0xff0000).fillRect(0, 0, 32, 64).generateTexture('todo_hammer', 32, 64)
+    this.make
+      .graphics()
+      .fillStyle(0x000000, 0.7)
+      .fillRect(0, 0, width, height)
+      .generateTexture('background_transparent', width, height)
+    this.make.graphics().fillStyle(0x00ff00, 0).fillRect(0, 0, 32, 32).generateTexture('invisible', 32, 32)
   }
 
   _buildBackground() {
@@ -181,11 +193,5 @@ export default class LoadingScene extends Scene {
     this.add.tileSprite(0, height - 32, 32, 32, 'tiles_bl').setOrigin(0, 0)
     this.add.tileSprite(32, height - 32, width - 2 * 32, 32, 'tiles_bm').setOrigin(0, 0)
     this.add.tileSprite(width - 32, height - 32, 32, 32, 'tiles_br').setOrigin(0, 0)
-  }
-
-  _dectectMobile() {
-    // Inspired by: https://browsergameshub.com/check-player-is-on-mobile-or-desktop
-    // OPTIONAL: maybe abstract using a repository
-    window.addEventListener('touchstart', () => (LocalStorageServiceInstance.isMobile = true))
   }
 }

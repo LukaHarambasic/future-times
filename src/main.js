@@ -9,8 +9,10 @@ import LoadingScene from './features/loading/LoadingScene'
 import NameScene from './features/name/NameScene'
 import MenuScene from './features/menu/MenuScene'
 import GameScene from './features/game/GameScene'
+import AiScene from './features/game/AiScene'
 import SurvivorScene from './features/survivor/SurvivorScene'
 import CreditsScene from './features/credits/CreditsScene'
+import LocalStorageServiceInstance from './core/LocalStorageService'
 
 const { width, height } = Consts
 
@@ -27,14 +29,17 @@ const CONFIG = {
   physics: {
     default: 'arcade',
     arcade: {
-      // debug: true,
+      debug: true,
       gravity: {
         x: 0,
         y: 0,
       },
     },
   },
-  scene: [LoadingScene, NameScene, MenuScene, GameScene, SurvivorScene, CreditsScene],
+  scene: [LoadingScene, NameScene, MenuScene, GameScene, AiScene, SurvivorScene, CreditsScene],
 }
 
 new Game(CONFIG)
+
+// Inspired by: https://browsergameshub.com/check-player-is-on-mobile-or-desktop
+window.addEventListener('touchstart', () => (LocalStorageServiceInstance.isMobile = true))

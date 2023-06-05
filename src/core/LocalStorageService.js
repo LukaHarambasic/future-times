@@ -10,15 +10,6 @@ class LocalStorageService {
     instance = this
   }
 
-  set difficultyLevel(value) {
-    globalState['difficultyLevel'] = value
-    localStorage.setItem('difficultyLevel', value)
-  }
-
-  get difficultyLevel() {
-    return globalState['difficultyLevel'] || JSON.parse(localStorage.getItem('difficultyLevel')) || 'easy'
-  }
-
   set userName(value) {
     globalState['userName'] = value
     localStorage.setItem('userName', value)

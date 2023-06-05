@@ -21,7 +21,6 @@ export default class Hammer extends GameObjects.Sprite {
     this.hitBox = scene.add
       .tileSprite(centerX, hammerY + 10 + 2, this.hitBoxHeight, this.hitBoxHeight, 'invisible')
       .setOrigin(0.5, 0)
-      .setAlpha(0)
     this.scene.physics.add.existing(this.hitBox)
 
     // needs to be at the bottom after 4 frames

@@ -1,19 +1,28 @@
 import axios from 'axios'
 
-export default class AiService {
-  messages = []
+let instance
+let globalState = {
+  messages: [],
+}
+
+class AiService {
   path = '/.netlify/functions/ai'
   url = ''
+
   constructor() {
+    if (instance) {
+      throw new Error('New instance cannot be created!!')
+    }
+
+    instance = this
     this.url = import.meta.env.DEV
       ? `http://localhost:8888${this.path}`
       : `https://future-times.netlify.app${this.path}`
-    console.log(this.url)
   }
 
   async chat(text) {
     const playerMessage = { role: 'user', content: text }
-    const data = [...this.messages, playerMessage]
+    const data = [...globalState['messages'], playerMessage]
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -21,12 +30,15 @@ export default class AiService {
     }
     try {
       const result = await axios.post(this.url, data, config)
-      this.messages = result.data
-      console.log(result.data)
-      return this.messages
+      globalState['messages'] = result.data
+      return result.data
     } catch (error) {
       console.error(error)
       return false
     }
   }
 }
+
+const AiServiceInstance = Object.freeze(new AiService())
+
+export default AiServiceInstance

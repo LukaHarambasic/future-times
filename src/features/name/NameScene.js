@@ -1,6 +1,7 @@
 import { Scene } from 'phaser'
 import Consts from './../../core/utils/Consts'
 import LocalStorageServiceInstance from '../../core/LocalStorageService'
+import UserInputHandlerInstance from './../../core/UserInputHandler'
 
 const { width, height, fontSize, fontWhite, fontDark } = Consts
 
@@ -10,7 +11,7 @@ export default class NameScene extends Scene {
   }
 
   create() {
-    this._enableNameInput()
+    UserInputHandlerInstance.enable()
     this._buildBackground()
     this._buildText()
     this._handlNameInput()
@@ -21,19 +22,6 @@ export default class NameScene extends Scene {
 
   update() {
     this._animateBackground()
-  }
-
-  _enableNameInput() {
-    if (!LocalStorageServiceInstance.isMobile) return
-    const inputElement = document.getElementById('input')
-    inputElement.style.display = 'block'
-    inputElement.focus()
-  }
-
-  _disableNameInput() {
-    if (!LocalStorageServiceInstance.isMobile) return
-    const inputElement = document.getElementById('input')
-    inputElement.style.display = 'none'
   }
 
   _handlNameInput() {
@@ -101,7 +89,7 @@ export default class NameScene extends Scene {
     this.saveButton.on('pointerover', () => {
       if (this._isInputValid()) {
         LocalStorageServiceInstance.userName = this.userName.text.trim()
-        this._disableNameInput()
+        UserInputHandlerInstance.disable()
         this.scene.start('menuScene')
       } else {
         this.inputValidationText.visible = true

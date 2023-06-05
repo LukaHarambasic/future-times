@@ -19,10 +19,8 @@ export default class GameScene extends Scene {
     this._handleInput()
 
     this.hammer = new Hammer(this)
-
-    // this.add.tileSprite(width / 2, 0, 0, height, 'line-red').setOrigin(0.5, 0)
-    // this.add.tileSprite(width / 2 - 16, 0, 0, height, 'line-green').setOrigin(0.5, 0)
-    // this.add.tileSprite(width / 2 + 16, 0, 0, height, 'line-green').setOrigin(0.5, 0)
+    this.scene.pause()
+    this.scene.launch('aiScene')
   }
 
   update() {
