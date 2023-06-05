@@ -3,18 +3,21 @@ import Consts from './../../../core/utils/Consts'
 
 const { width, height, fontWhite, fontDark, fontSize } = Consts
 
-const position = { x: width / 2, y: height - 300 }
+const positionY = height - 300
 const paddingTop = 8
 
 export default class Chest extends GameObjects.Sprite {
-  static position = position
+  static positionY = positionY
   static paddingTop = paddingTop
 
   constructor(scene) {
-    super(scene, position.y, position.x, 'chestAtlas', 0)
+    super(scene, 0, positionY, 'chestAtlas', 0)
     scene.add.existing(this)
+    this.scene = scene
     this.isDestroyed = false
     this.setOrigin(0.5, 0)
+
+    this.scene.physics.add.existing(this)
   }
 
   update() {
@@ -23,7 +26,8 @@ export default class Chest extends GameObjects.Sprite {
   }
 
   compactChest() {
-    this.play('compactChest')
+    console.log('compact')
+    this.play('chestCompact')
   }
 
   _move() {
@@ -31,6 +35,6 @@ export default class Chest extends GameObjects.Sprite {
       this.isDestroyed = true
       this.destroy()
     }
-    // this.x += 6
+    this.x += 6
   }
 }

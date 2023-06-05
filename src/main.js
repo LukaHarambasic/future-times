@@ -24,6 +24,16 @@ const CONFIG = {
   width: width,
   height: height,
   canvas: canvasElement,
+  physics: {
+    default: 'arcade',
+    arcade: {
+      // debug: true,
+      gravity: {
+        x: 0,
+        y: 0,
+      },
+    },
+  },
   scene: [LoadingScene, NameScene, MenuScene, GameScene, SurvivorScene, CreditsScene],
 }
 

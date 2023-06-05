@@ -69,7 +69,7 @@ export default class LoadingScene extends Scene {
 
   _createAnimations() {
     this.anims.create({
-      key: 'compactChest',
+      key: 'chestCompact',
       frames: this.anims.generateFrameNames('chestAtlas', {
         prefix: 'chest_',
         start: 1,
@@ -79,7 +79,7 @@ export default class LoadingScene extends Scene {
       repeat: 0,
     })
     this.anims.create({
-      key: 'hammering',
+      key: 'hammerDown',
       frames: this.anims.generateFrameNames('hammerAtlas', {
         prefix: 'hammer_',
         start: 1,

@@ -20,35 +20,36 @@ export default class GameScene extends Scene {
 
     this.hammer = new Hammer(this)
 
-    this.add.tileSprite(width / 2, 0, 0, height, 'line-red').setOrigin(0.5, 0)
-    this.add.tileSprite(width / 2 - 16, 0, 0, height, 'line-green').setOrigin(0.5, 0)
-    this.add.tileSprite(width / 2 + 16, 0, 0, height, 'line-green').setOrigin(0.5, 0)
+    // this.add.tileSprite(width / 2, 0, 0, height, 'line-red').setOrigin(0.5, 0)
+    // this.add.tileSprite(width / 2 - 16, 0, 0, height, 'line-green').setOrigin(0.5, 0)
+    // this.add.tileSprite(width / 2 + 16, 0, 0, height, 'line-green').setOrigin(0.5, 0)
   }
 
-  update() {}
-
-  _handleInput() {
-    this.input.on('pointerdown', this._handlePointerDown, this)
-  }
-
-  _handlePointerDown() {
-    if (this.isGameFrozen) return
-    // TODO also a cooldown is needed
-    const from = width / 2 - 16
-    const to = width / 2 + 16
-    this.hammer.hammer()
-    // TODO distance has to be calculated for the scoring
+  update() {
     this.chestGroup.getChildren().forEach((chest) => {
-      if ((chest.x >= from && chest.x <= to) || (chest.x + chest.width >= from && chest.x + chest.width <= to)) {
-        if (this.hammer.isCooldown) return
-        console.log('hit')
-        chest.compactChest()
-      }
+      this.physics.add.overlap(
+        this.hammer.hitBox,
+        chest,
+        () => {
+          chest.compactChest()
+        },
+        null,
+        this.scene,
+      )
     })
   }
 
+  _handleInput() {
+    this.input.on(
+      'pointerdown',
+      () => {
+        this.hammer.hammer()
+      },
+      this,
+    )
+  }
+
   _handleSpawning() {
-    this.chestGroup = this.add.group()
     this.chestGroup = this.add.group({
       runChildUpdate: true,
     })
