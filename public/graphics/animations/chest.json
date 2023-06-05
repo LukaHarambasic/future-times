@@ -60,7 +60,7 @@
   "meta": {
     "app": "https://www.leshylabs.com/apps/sstool/",
     "version": "Leshy SpriteSheet Tool v0.8.4",
-    "image": "spritesheet.png",
+    "image": "chest.png",
     "size": { "w": 96, "h": 96 },
     "scale": 1
   }

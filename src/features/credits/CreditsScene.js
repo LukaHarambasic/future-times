@@ -29,6 +29,11 @@ export default class CreditsScene extends Scene {
         author: 'Elli Sho',
         link: 'https://www.dafont.com/cooperbits.font',
       },
+      {
+        title: 'Leshy SpriteSheet Tool',
+        author: 'Leshy Labs',
+        link: 'https://www.leshylabs.com/apps/sstool/',
+      },
     ]
 
     // credits.forEach((credit, i) => {

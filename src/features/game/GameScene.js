@@ -1,6 +1,7 @@
 import { Scene, Math as PMath } from 'phaser'
 import Consts from './../../core/utils/Consts'
 import Chest from './prefabs/Chest'
+import Hammer from './prefabs/Hammer'
 const { width, height, fontSize, fontWhite } = Consts
 
 export default class GameScene extends Scene {
@@ -17,9 +18,11 @@ export default class GameScene extends Scene {
     this._handleSpawning()
     this._handleInput()
 
+    this.hammer = new Hammer(this)
+
     this.add.tileSprite(width / 2, 0, 0, height, 'line-red').setOrigin(0.5, 0)
-    this.add.tileSprite(width / 2 - 32, 0, 0, height, 'line-green').setOrigin(0.5, 0)
-    this.add.tileSprite(width / 2 + 32, 0, 0, height, 'line-green').setOrigin(0.5, 0)
+    this.add.tileSprite(width / 2 - 16, 0, 0, height, 'line-green').setOrigin(0.5, 0)
+    this.add.tileSprite(width / 2 + 16, 0, 0, height, 'line-green').setOrigin(0.5, 0)
   }
 
   update() {}
@@ -31,12 +34,15 @@ export default class GameScene extends Scene {
   _handlePointerDown() {
     if (this.isGameFrozen) return
     // TODO also a cooldown is needed
-    const from = width / 2 - 32
-    const to = width / 2 + 32
+    const from = width / 2 - 16
+    const to = width / 2 + 16
+    this.hammer.hammer()
     // TODO distance has to be calculated for the scoring
     this.chestGroup.getChildren().forEach((chest) => {
       if ((chest.x >= from && chest.x <= to) || (chest.x + chest.width >= from && chest.x + chest.width <= to)) {
+        if (this.hammer.isCooldown) return
         console.log('hit')
+        chest.compactChest()
       }
     })
   }
@@ -51,7 +57,7 @@ export default class GameScene extends Scene {
 
   _startSpawning() {
     if (this.isGameFrozen) return
-    const randomSpawnRate = PMath.Between(600, 1500)
+    const randomSpawnRate = PMath.Between(300, 800)
     this.time.delayedCall(randomSpawnRate, this._spawnChest, [], this)
   }
 

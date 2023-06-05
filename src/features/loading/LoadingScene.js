@@ -2,7 +2,7 @@ import { Scene } from 'phaser'
 import Consts from './../../core/utils/Consts'
 import LocalStorageServiceInstance from '../../core/LocalStorageService'
 
-const { width, height, fontWhite, fontDark, fontSize } = Consts
+const { width, height, fontWhite, fontDark, fontSize, frameRate } = Consts
 
 export default class LoadingScene extends Scene {
   constructor() {
@@ -59,6 +59,7 @@ export default class LoadingScene extends Scene {
 
   _loadAtlas() {
     this.load.atlas('chestAtlas', './graphics/animations/chest.png', './graphics/animations/chest.json')
+    this.load.atlas('hammerAtlas', './graphics/animations/hammer.png', './graphics/animations/hammer.json')
   }
 
   _loadAudio() {
@@ -74,7 +75,17 @@ export default class LoadingScene extends Scene {
         start: 1,
         end: 8,
       }),
-      frameRate: 12,
+      frameRate: frameRate,
+      repeat: 0,
+    })
+    this.anims.create({
+      key: 'hammering',
+      frames: this.anims.generateFrameNames('hammerAtlas', {
+        prefix: 'hammer_',
+        start: 1,
+        end: 8,
+      }),
+      frameRate: frameRate,
       repeat: 0,
     })
   }
@@ -109,6 +120,8 @@ export default class LoadingScene extends Scene {
       .generateTexture('background_1', width, height)
     this.make.graphics().fillStyle(0xff0000).fillRect(0, 0, 1, height).generateTexture('line-red', 1, height)
     this.make.graphics().fillStyle(0x00ff00).fillRect(0, 0, 1, height).generateTexture('line-green', 1, height)
+    this.make.graphics().fillStyle(0x00ff00).fillRect(0, 0, 32, 32).generateTexture('invisible', 32, 32)
+    this.make.graphics().fillStyle(0xff0000).fillRect(0, 0, 32, 64).generateTexture('todo_hammer', 32, 64)
   }
 
   _buildBackground() {
