@@ -21,6 +21,18 @@ class AiService {
   }
 
   async chat(text) {
+    if (import.meta.env.DEV) {
+      return [
+        {
+          role: 'system',
+          content:
+            'You play an evil AI that chats via very short messages with the player. The player has to convince you to be worth working in the factory to not get replaced by a robot. The player have three tries to convince you. Depending on your opinion you will include in the final message: CONVINCED or NOT_CONVINCED.',
+        },
+        { role: 'user', content: 'Im just the best human on earth' },
+        { role: 'assistant', content: "That's quite a bold claim! Care to explain why you think you're the best?" },
+        { role: 'user', content: 'Im way more sustainable!' },
+      ]
+    }
     const playerMessage = { role: 'user', content: text }
     const data = [...globalState['messages'], playerMessage]
     const config = {
