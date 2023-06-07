@@ -66,8 +66,9 @@ export default class AiScene extends Scene {
         mouseWheelScroller: true,
         createCellContainerCallback: function (cell, cellContainer) {
           const { width, item } = cell
+          const direction = item.role === 'user' ? 'right' : 'left'
           if (cellContainer === null) {
-            cellContainer = this._buildEmptyCellContainer(this).setOrigin(0)
+            cellContainer = this._buildEmptyCellContainer(direction).setOrigin(0)
           }
           cellContainer.setMinWidth(width)
           cellContainer.getElement('content').setText(item.content)
@@ -80,10 +81,9 @@ export default class AiScene extends Scene {
         items: [],
       })
       .layout()
-    // .drawBounds(this.add.graphics(), 0xff0000)
   }
 
-  _buildEmptyCellContainer() {
+  _buildEmptyCellContainer(direction) {
     return this.rexUI.add
       .sizer({
         orientation: 'x',
@@ -92,16 +92,16 @@ export default class AiScene extends Scene {
       .addBackground(this._buildSpeechBubbleShape(), 'bubble')
       .setAlpha(0.2)
       .add(
-        this._buildEmptyText(), // child
+        this._buildEmptyText(direction), // child
         1, // proportion
-        'center', // align vertically
+        direction, // align vertically
         0, // padding
         false, // expand vertically
         'content', // map-key
       )
   }
 
-  _buildBubble(side) {
+  _buildBubble(direction) {
     // TODO consts
     const radius = 20
     const indent = 15
@@ -113,7 +113,7 @@ export default class AiScene extends Scene {
     const top = 0
     const bottom = this.height
 
-    if (side === 'left') {
+    if (direction === 'left') {
       this.list
         .getShapes()[0]
         .lineStyle(2, 0x00ffff, 1)
@@ -153,8 +153,10 @@ export default class AiScene extends Scene {
     })
   }
 
-  _buildEmptyText() {
+  _buildEmptyText(direction) {
     // TODO bitmap text - or as contrast a modern font
-    return this.rexUI.wrapExpandText(this.add.text(0, 0, ''))
+    const alignment = direction === 'left' ? 0 : 2
+    const fontColor = direction === 'left' ? fontWhite : fontYellow
+    return this.rexUI.wrapExpandText(this.add.bitmapText(0, 0, fontColor, '', fontSize.body, alignment))
   }
 }
