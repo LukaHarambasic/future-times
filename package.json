@@ -21,6 +21,7 @@
     "date-fns": "^2.30.0",
     "dotenv": "^16.0.3",
     "openai": "^3.2.1",
-    "phaser": "^3.6.0"
+    "phaser": "^3.6.0",
+    "phaser3-rex-plugins": "^1.60.2"
   }
 }

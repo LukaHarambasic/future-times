@@ -1,4 +1,6 @@
 import { Scene } from 'phaser'
+import RexUIPlugin from 'phaser3-rex-plugins/templates/ui/ui-plugin.js'
+// import { GridTable } from 'phaser3-rex-plugins/templates/ui/ui-components.js'
 import Ai from './prefabs/Ai'
 import Consts from './../../core/utils/Consts'
 import AiServiceInstance from './AiService'
@@ -18,15 +20,6 @@ export default class AiScene extends Scene {
     this.ai = new Ai(this)
   }
 
-  preload() {
-    // TODO install via npm
-    this.load.scenePlugin({
-      key: 'rexuiplugin',
-      url: 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexuiplugin.min.js',
-      sceneKey: 'rexUI',
-    })
-  }
-
   _buildBackground() {
     this.add.tileSprite(0, 0, width, height, 'background_transparent').setOrigin(0, 0)
   }
@@ -38,6 +31,7 @@ export default class AiScene extends Scene {
     const filteredMessages = messages.filter(({ role }) => role !== 'system')
     const uiMessages = [{ role: 'assistant', content: 'You have three tries to convince me.' }, ...filteredMessages]
 
+    console.log(uiMessages)
     this.list.setItems(uiMessages)
     this.list.refresh()
   }
