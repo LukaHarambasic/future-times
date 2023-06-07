@@ -3,11 +3,12 @@ import Consts from './../../../core/utils/Consts'
 
 const { width, height, centerX, fontWhite, fontDark, fontSize, frameRate } = Consts
 
-export default class Hammer extends GameObjects.Sprite {
-  cooldown = 300
-  hitBoxHeight = 32
+const positionY = 30
+
+export default class Ai extends GameObjects.Sprite {
+  static positionY = positionY
   constructor(scene) {
-    super(scene, -16, 100, 'aiAtlas', 0)
+    super(scene, -16, positionY, 'aiAtlas', 0)
     scene.add.existing(this)
     this.flipX = true
     this.scene = scene

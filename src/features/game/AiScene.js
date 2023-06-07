@@ -27,28 +27,25 @@ export default class AiScene extends Scene {
     // TODO handle this case
     if (!messages) return
     const filteredMessages = messages.filter(({ role }) => role !== 'system')
-    const uiMessages = [{ role: 'assistant', content: 'Please try and convince me.' }, ...filteredMessages]
+    const uiMessages = [{ role: 'assistant', content: 'You have three tries to convince me.' }, ...filteredMessages]
     uiMessages.forEach(({ role, content }) => {
       const groupChildren = this.chatGroup.children.entries
       const groupSize = this.chatGroup.getLength()
       const lastChild = groupChildren[groupSize - 1]
+      const y = groupSize > 0 ? lastChild.y + lastChild.height + size.large : Ai.positionY + 128 + size.large
       if (role === 'user') {
         console.log('user')
         const text = this.add
-          .bitmapText(width - size.medium, 0, fontWhite, content, fontSize.body, 2)
+          .bitmapText(width - size.medium, y, fontWhite, content, fontSize.body, 2)
           .setMaxWidth(300)
-          .setOrigin(1, 1)
-        const y = groupSize > 0 ? lastChild.y - size.large : height - size.large
-        text.setY(y)
+          .setOrigin(1, 0)
         this.chatGroup.add(text)
       } else {
         console.log('ai')
         const text = this.add
-          .bitmapText(size.medium, 0, fontWhite, content, fontSize.body, 0)
+          .bitmapText(size.medium, y, fontWhite, content, fontSize.body, 0)
           .setMaxWidth(300)
           .setOrigin(0, 0)
-        const y = groupSize > 0 ? lastChild.y - lastChild.height - text.height - size.large : height - size.large
-        text.setY(y)
         this.chatGroup.add(text)
       }
     })
