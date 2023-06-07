@@ -2,6 +2,7 @@ import { Scene } from 'phaser'
 import Ai from './prefabs/Ai'
 import Consts from './../../core/utils/Consts'
 import AiServiceInstance from './AiService'
+import LocalStorageServiceInstance from '../../core/LocalStorageService'
 
 const { width, height, centerX, centerY, fontSize, fontWhite, fontYellow, size } = Consts
 
@@ -54,9 +55,12 @@ export default class AiScene extends Scene {
     // TODO handle this case
     if (!messages) return
     const filteredMessages = messages.filter(({ role }) => role !== 'system')
-    const uiMessages = [{ role: 'assistant', content: 'You have three tries to convince me.' }, ...filteredMessages]
+    // TODO filter out CONVINCED and NOT_CONVINCED
+    const userName = LocalStorageServiceInstance.userName
+    const uiMessages = [{ role: 'assistant', content: `${userName} convince me.` }, ...filteredMessages]
     this.list.setItems(uiMessages)
     this.list.refresh()
+    console.log(AiServiceInstance.isConvinced)
   }
 
   _buildList() {

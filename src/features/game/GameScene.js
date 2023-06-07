@@ -13,14 +13,11 @@ export default class GameScene extends Scene {
 
   create() {
     this._buildBackground()
-    this.add.bitmapText(2, 2, fontWhite, 'Game', fontSize.small).setOrigin(0, 0)
 
     this._handleSpawning()
     this._handleInput()
 
     this.hammer = new Hammer(this)
-    this.scene.pause()
-    this.scene.launch('aiScene')
   }
 
   update() {
@@ -34,6 +31,14 @@ export default class GameScene extends Scene {
         null,
         this.scene,
       )
+      if (!chest.isCompacted && chest.hasToBeDestroyed) {
+        chest.destroy()
+        this.scene.pause()
+        this.scene.launch('aiScene')
+      }
+      if (chest.hasToBeDestroyed) {
+        chest.destroy()
+      }
     })
   }
 

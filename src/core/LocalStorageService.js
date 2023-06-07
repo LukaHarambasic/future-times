@@ -16,7 +16,7 @@ class LocalStorageService {
   }
 
   get userName() {
-    return globalState['userName'] || JSON.parse(localStorage.getItem('userName')) || ''
+    return globalState['userName'] || localStorage.getItem('userName') || ''
   }
 
   set isMobile(value) {

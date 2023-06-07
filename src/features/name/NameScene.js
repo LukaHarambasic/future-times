@@ -57,14 +57,6 @@ export default class NameScene extends Scene {
     })
   }
 
-  _buildText() {
-    this.add.bitmapText(width / 2, 40, fontDark, 'Future Times', fontSize.title).setOrigin(0.5, 0)
-    this.add
-      .bitmapText(width / 2, 260, fontDark, 'Enter your name. Human!', fontSize.body)
-      .setOrigin(0.5, 0)
-      .setAlpha(0.8)
-  }
-
   _buildSaveButton() {
     // TODO button class/component or an image?
     this.saveButton = this.add
@@ -95,6 +87,14 @@ export default class NameScene extends Scene {
         this.inputValidationText.visible = true
       }
     })
+  }
+
+  _buildText() {
+    this.add.bitmapText(width / 2, 40, fontDark, 'Future Times', fontSize.title).setOrigin(0.5, 0)
+    this.add
+      .bitmapText(width / 2, 260, fontDark, 'Enter your name. Human!', fontSize.body)
+      .setOrigin(0.5, 0)
+      .setAlpha(0.8)
   }
 
   _buildBackground() {

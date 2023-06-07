@@ -57,6 +57,17 @@ class AiService {
   get messages() {
     return globalState['messages']
   }
+
+  get isConvinced() {
+    if (globalState['messages'].length === 0) return false
+    // TODO based on testing make it more loose
+    const index = globalState['messages'].findIndex(({ role, content }) => {
+      const writtenByAssistant = role === 'assistant'
+      const containsConvinced = content.includes('CONVINCED')
+      return writtenByAssistant && containsConvinced
+    })
+    return index !== -1
+  }
 }
 
 const AiServiceInstance = Object.freeze(new AiService())

@@ -14,26 +14,26 @@ export default class Chest extends GameObjects.Sprite {
     super(scene, 0, positionY, 'chestAtlas', 0)
     scene.add.existing(this)
     this.scene = scene
-    this.isDestroyed = false
+    this.hasToBeDestroyed = false
+    this.isCompacted = false
     this.setOrigin(0.5, 0)
 
     this.scene.physics.add.existing(this)
   }
 
   update() {
-    if (this.isDestroyed) return
+    if (this.hasToBeDestroyed) return
     this._move()
   }
 
   compactChest() {
-    console.log('compact')
     this.play('chestCompact')
+    this.isCompacted = true
   }
 
   _move() {
     if (this.x >= width) {
-      this.isDestroyed = true
-      this.destroy()
+      this.hasToBeDestroyed = true
     }
     this.x += 6
   }

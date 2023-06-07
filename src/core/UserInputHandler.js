@@ -16,15 +16,15 @@ class UserInputFieldHandler {
 
   enable() {
     console.log('enable')
-    // if (!LocalStorageServiceInstance.isMobile) return
+    if (!LocalStorageServiceInstance.isMobile) return
     this.inputElement.style.display = 'block'
     this.inputElement.focus()
   }
-
   disable() {
     console.log('disable')
-    // if (!LocalStorageServiceInstance.isMobile) return
+    if (!LocalStorageServiceInstance.isMobile) return
     this.inputElement.style.display = 'none'
+    this.inputElement.value = ''
   }
 }
 

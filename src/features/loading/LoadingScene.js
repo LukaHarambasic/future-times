@@ -26,7 +26,7 @@ export default class LoadingScene extends Scene {
     this._buildText()
 
     // TODO remove after testing
-    this.scene.start('gameScene')
+    // this.scene.start('gameScene')
   }
 
   update() {
