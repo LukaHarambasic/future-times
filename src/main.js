@@ -10,6 +10,7 @@ import NameScene from './features/name/NameScene'
 import MenuScene from './features/menu/MenuScene'
 import GameScene from './features/game/GameScene'
 import AiScene from './features/game/AiScene'
+import InputScene from './features/game/InputScene'
 import SurvivorScene from './features/survivor/SurvivorScene'
 import CreditsScene from './features/credits/CreditsScene'
 import LocalStorageServiceInstance from './core/LocalStorageService'
@@ -36,7 +37,7 @@ const CONFIG = {
       },
     },
   },
-  scene: [LoadingScene, NameScene, MenuScene, GameScene, AiScene, SurvivorScene, CreditsScene],
+  scene: [LoadingScene, NameScene, MenuScene, GameScene, AiScene, InputScene, SurvivorScene, CreditsScene],
 }
 
 new Game(CONFIG)

@@ -1,44 +1,24 @@
 import { Scene } from 'phaser'
-import { subscribe, isSupported } from 'on-screen-keyboard-detector'
 import Ai from './prefabs/Ai'
 import Consts from './../../core/utils/Consts'
 import AiServiceInstance from './AiService'
-import UserInputHandlerInstance from './../../core/UserInputHandler'
 
 const { width, height, centerX, centerY, fontSize, fontWhite, fontYellow, size } = Consts
 
+// OPTIONAL rename to chatScene
 export default class AiScene extends Scene {
   constructor() {
     super('aiScene')
-    this.userInput = 'Im just the best human on earth'
   }
 
-  // TODO input
-  // Dialog on top of the available space with send button
-  // on send, show loading animation
-  // hide dialog to show scene
-
   create() {
-    UserInputHandlerInstance.enable()
+    console.log('ai scene')
     this._buildBackground()
     this._buildList()
-    this._fetchChat()
+    this._fetchChatAndRefreshList()
     this.ai = new Ai(this)
-
-    if (isSupported()) {
-      const unsubscribe = subscribe((visibility) => {
-        if (visibility === 'hidden') {
-          alert('Keyboard is hidden')
-        } else {
-          alert('Keyboard is visible')
-          // visibility === "visible"
-          // ...
-        }
-      })
-
-      // After calling unsubscribe() the callback will no longer be invoked.
-      //unsubscribe()
-    }
+    this._buildChatButton()
+    this._handleChatNavigation()
   }
 
   preload() {
@@ -54,13 +34,27 @@ export default class AiScene extends Scene {
     this.add.tileSprite(0, 0, width, height, 'background_transparent').setOrigin(0, 0)
   }
 
-  async _fetchChat() {
-    const messages = await AiServiceInstance.chat(this.userInput)
+  _buildChatButton() {
+    // TODO button class/component or an image?
+    this.chatButton = this.add
+      .bitmapText(width / 2, height - 100, fontWhite, 'Chat', fontSize.title)
+      .setOrigin(0.5, 0)
+      .setInteractive()
+  }
+
+  _handleChatNavigation() {
+    this.chatButton.on('pointerover', () => {
+      // this.scene.pause()
+      this.scene.launch('inputScene')
+    })
+  }
+
+  async _fetchChatAndRefreshList() {
+    const messages = AiServiceInstance.messages
     // TODO handle this case
     if (!messages) return
     const filteredMessages = messages.filter(({ role }) => role !== 'system')
     const uiMessages = [{ role: 'assistant', content: 'You have three tries to convince me.' }, ...filteredMessages]
-
     this.list.setItems(uiMessages)
     this.list.refresh()
   }
@@ -83,8 +77,8 @@ export default class AiScene extends Scene {
         space: {
           left: 20,
           right: 20,
-          top: 110,
-          bottom: 20,
+          top: 120,
+          bottom: 200,
         },
         mouseWheelScroller: true,
         createCellContainerCallback: function (cell, cellContainer) {
@@ -114,14 +108,7 @@ export default class AiScene extends Scene {
       })
       .addBackground(this._buildSpeechBubbleShape(), 'bubble')
       .setAlpha(0.2)
-      .add(
-        this._buildEmptyText(direction), // child
-        1, // proportion
-        direction, // align vertically
-        0, // padding
-        false, // expand vertically
-        'content', // map-key
-      )
+      .add(this._buildEmptyText(direction), 1, direction, 0, false, 'content')
   }
 
   _buildBubble(direction) {

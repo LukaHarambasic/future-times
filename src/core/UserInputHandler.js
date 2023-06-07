@@ -22,6 +22,7 @@ class UserInputFieldHandler {
   }
 
   disable() {
+    console.log('disable')
     // if (!LocalStorageServiceInstance.isMobile) return
     this.inputElement.style.display = 'none'
   }

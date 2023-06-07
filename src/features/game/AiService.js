@@ -30,13 +30,13 @@ class AiService {
   // }
 
   async chat(text) {
-    if (import.meta.env.DEV) {
-      return [
-        { role: 'user', content: 'Im just the best human on earth' },
-        { role: 'assistant', content: "That's quite a bold claim! Care to explain why you think you're the best?" },
-        { role: 'user', content: 'Im way more sustainable!' },
-      ]
-    }
+    // if (import.meta.env.DEV) {
+    //   return [
+    //     { role: 'user', content: 'Im just the best human on earth' },
+    //     { role: 'assistant', content: "That's quite a bold claim! Care to explain why you think you're the best?" },
+    //     { role: 'user', content: 'Im way more sustainable!' },
+    //   ]
+    // }
     const playerMessage = { role: 'user', content: text }
     const data = [...globalState['messages'], playerMessage]
     const config = {
