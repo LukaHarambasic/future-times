@@ -3,6 +3,7 @@
 // Hours:
 
 import { Game, CANVAS, Scale } from 'phaser'
+import UIPlugin from 'phaser3-rex-plugins/templates/ui/ui-plugin.js'
 import './style.css'
 import Consts from './core/utils/Consts'
 import LoadingScene from './features/loading/LoadingScene'
@@ -35,6 +36,15 @@ const CONFIG = {
         y: 0,
       },
     },
+  },
+  plugins: {
+    scene: [
+      {
+        key: 'rexUI',
+        plugin: UIPlugin,
+        mapping: 'rexUI',
+      },
+    ],
   },
   scene: [LoadingScene, NameScene, MenuScene, GameScene, AiScene, SurvivorScene, CreditsScene],
 }
