@@ -13,6 +13,8 @@ export default class CreditsScene extends Scene {
 
     this.add.bitmapText(2, height - 17, fontWhite, 'Credits', fontSize.small).setOrigin(0, 0)
     // TODO add everything
+    // https://www.chosic.com/download-audio/45381/
+    // https://www.chosic.com/download-audio/39324/
     const credits = [
       {
         title: 'Free Industrial Zone Tileset Pixel Art',

@@ -12,6 +12,9 @@ export default class GameScene extends Scene {
   }
 
   create() {
+    this.sound.removeByKey('background')
+    this.sound.add('game', { volume: 0.2, loop: true }).play()
+
     this._buildBackground()
 
     this._handleSpawning()

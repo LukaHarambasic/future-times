@@ -14,6 +14,8 @@ export default class AiScene extends Scene {
 
   create() {
     console.log('ai scene')
+    this.sound.removeByKey('game')
+    this.sound.add('background', { volume: 0.2, loop: true }).play()
     this._buildBackground()
     this._buildList()
     this._fetchChatAndRefreshList()
@@ -55,11 +57,12 @@ export default class AiScene extends Scene {
     // TODO handle this case
     if (!messages) return
     const filteredMessages = messages.filter(({ role }) => role !== 'system')
-    // TODO filter out CONVINCED and NOT_CONVINCED
+    // TODO filter out CONVINCED
     const userName = LocalStorageServiceInstance.userName
     const uiMessages = [{ role: 'assistant', content: `${userName} convince me.` }, ...filteredMessages]
     this.list.setItems(uiMessages)
     this.list.refresh()
+    this.list.scrollToBottom()
     console.log(AiServiceInstance.isConvinced)
   }
 
@@ -87,9 +90,8 @@ export default class AiScene extends Scene {
         mouseWheelScroller: true,
         createCellContainerCallback: function (cell, cellContainer) {
           const { width, item } = cell
-          const direction = item.role === 'user' ? 'right' : 'left'
           if (cellContainer === null) {
-            cellContainer = this._buildEmptyCellContainer(direction).setOrigin(0)
+            cellContainer = this._buildEmptyCellContainer(item.role).setOrigin(0)
           }
           cellContainer.setMinWidth(width)
           cellContainer.getElement('content').setText(item.content)
@@ -104,7 +106,8 @@ export default class AiScene extends Scene {
       .layout()
   }
 
-  _buildEmptyCellContainer(direction) {
+  _buildEmptyCellContainer(role) {
+    const direction = role === 'user' ? 'right' : 'left'
     return this.rexUI.add
       .sizer({
         orientation: 'x',
@@ -112,10 +115,10 @@ export default class AiScene extends Scene {
       })
       .addBackground(this._buildSpeechBubbleShape(), 'bubble')
       .setAlpha(0.2)
-      .add(this._buildEmptyText(direction), 1, direction, 0, false, 'content')
+      .add(this._buildEmptyText(role), 1, direction, 0, false, 'content')
   }
 
-  _buildBubble(direction) {
+  _buildBubble(role) {
     // TODO consts
     const radius = 20
     const indent = 15
@@ -127,22 +130,7 @@ export default class AiScene extends Scene {
     const top = 0
     const bottom = this.height
 
-    if (direction === 'left') {
-      this.list
-        .getShapes()[0]
-        .lineStyle(2, 0x00ffff, 1)
-        .fillStyle(0xff0000, 1)
-        .startAt(left + radius, top)
-        .lineTo(right - radius, top)
-        .arc(right - radius, top + radius, radius, 270, 360)
-        .lineTo(right, bottom - radius)
-        .arc(right - radius, bottom - radius, radius, 0, 90)
-        .lineTo(0, bottom)
-        .lineTo(left, bottom - radius)
-        .lineTo(left, top + radius)
-        .arc(left + radius, top + radius, radius, 180, 270)
-        .close()
-    } else {
+    if (role === 'user') {
       this.list
         .getShapes()[0]
         .lineStyle(2, strokeColor, 1)
@@ -157,6 +145,21 @@ export default class AiScene extends Scene {
         .lineTo(left, top + radius)
         .arc(left + radius, top + radius, radius, 180, 270)
         .close()
+    } else {
+      this.list
+        .getShapes()[0]
+        .lineStyle(2, 0x00ffff, 1)
+        .fillStyle(0xff0000, 1)
+        .startAt(left + radius, top)
+        .lineTo(right - radius, top)
+        .arc(right - radius, top + radius, radius, 270, 360)
+        .lineTo(right, bottom - radius)
+        .arc(right - radius, bottom - radius, radius, 0, 90)
+        .lineTo(0, bottom)
+        .lineTo(left, bottom - radius)
+        .lineTo(left, top + radius)
+        .arc(left + radius, top + radius, radius, 180, 270)
+        .close()
     }
   }
 
@@ -167,10 +170,10 @@ export default class AiScene extends Scene {
     })
   }
 
-  _buildEmptyText(direction) {
+  _buildEmptyText(role) {
     // TODO bitmap text - or as contrast a modern font
-    const alignment = direction === 'left' ? 0 : 2
-    const fontColor = direction === 'left' ? fontWhite : fontYellow
+    const alignment = role === 'user' ? 2 : 0
+    const fontColor = role === 'user' ? fontWhite : fontYellow
     return this.rexUI.wrapExpandText(this.add.bitmapText(0, 0, fontColor, '', fontSize.body, alignment))
   }
 }

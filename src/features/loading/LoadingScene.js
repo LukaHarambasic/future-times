@@ -64,8 +64,8 @@ export default class LoadingScene extends Scene {
   }
 
   _loadAudio() {
-    // TODO
-    // this.load.audio('audio_tiles', './audio/tiles.mp3')
+    this.load.audio('background', './audio/background.mp3')
+    this.load.audio('game', './audio/game.mp3')
   }
 
   _createAnimations() {
@@ -114,7 +114,7 @@ export default class LoadingScene extends Scene {
 
   _handleSound() {
     // TODO
-    // this.sound.add('audio_tiles', { volume: 0.2, loop: true }).play()
+    this.sound.add('background', { volume: 0.2, loop: true }).play()
   }
 
   _handleInput() {
