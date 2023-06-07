@@ -27,9 +27,9 @@ export default class InputScene extends Scene {
     if (isSupported()) {
       const unsubscribe = subscribe((visibility) => {
         if (visibility === 'hidden') {
-          alert('Keyboard is hidden')
+          // alert('Keyboard is hidden')
         } else {
-          alert('Keyboard is visible')
+          // alert('Keyboard is visible')
           // TODO repaint list
           // visibility === "visible"
           // ...
