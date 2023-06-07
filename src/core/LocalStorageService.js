@@ -27,15 +27,6 @@ class LocalStorageService {
   get isMobile() {
     return globalState['isMobile'] || JSON.parse(localStorage.getItem('isMobile')) || false
   }
-
-  set chatMessage(value) {
-    globalState['chatMessage'] = value
-    localStorage.setItem('chatMessage', value)
-  }
-
-  get chatMessage() {
-    return globalState['chatMessage'] || JSON.parse(localStorage.getItem('chatMessage')) || ''
-  }
 }
 
 const LocalStorageServiceInstance = Object.freeze(new LocalStorageService())
