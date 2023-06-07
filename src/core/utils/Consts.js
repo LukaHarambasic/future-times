@@ -24,5 +24,6 @@ export default {
   },
   fontDark: 'CooperBitsBlack',
   fontWhite: 'CooperBitsWhite',
+  fontYellow: 'CooperBitsYellow',
   frameRate: 24,
 }

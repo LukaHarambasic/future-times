@@ -3,7 +3,7 @@ import Consts from './../../../core/utils/Consts'
 
 const { width, height, centerX, fontWhite, fontDark, fontSize, frameRate } = Consts
 
-const positionY = 30
+const positionY = 20
 
 export default class Ai extends GameObjects.Sprite {
   static positionY = positionY

@@ -2,7 +2,7 @@ import { Scene } from 'phaser'
 import Consts from './../../core/utils/Consts'
 import LocalStorageServiceInstance from '../../core/LocalStorageService'
 
-const { width, height, fontWhite, fontDark, fontSize, frameRate } = Consts
+const { width, height, fontWhite, fontDark, fontSize, frameRate, fontYellow } = Consts
 
 export default class LoadingScene extends Scene {
   constructor() {
@@ -36,6 +36,7 @@ export default class LoadingScene extends Scene {
   _loadFont() {
     this.load.bitmapFont(fontDark, './fonts/CooperBitsBlack/bitmap.png', './fonts/CooperBitsBlack/bitmap.xml')
     this.load.bitmapFont(fontWhite, './fonts/CooperBitsWhite/bitmap.png', './fonts/CooperBitsWhite/bitmap.xml')
+    this.load.bitmapFont(fontYellow, './fonts/CooperBitsYellow/bitmap.png', './fonts/CooperBitsYellow/bitmap.xml')
   }
 
   _loadImages() {

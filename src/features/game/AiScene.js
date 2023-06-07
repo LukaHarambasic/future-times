@@ -3,7 +3,7 @@ import Ai from './prefabs/Ai'
 import Consts from './../../core/utils/Consts'
 import AiServiceInstance from './AiService'
 
-const { width, height, fontSize, fontWhite, size } = Consts
+const { width, height, fontSize, fontWhite, fontYellow, size } = Consts
 
 export default class AiScene extends Scene {
   constructor() {
@@ -43,7 +43,7 @@ export default class AiScene extends Scene {
       } else {
         console.log('ai')
         const text = this.add
-          .bitmapText(size.medium, y, fontWhite, content, fontSize.body, 0)
+          .bitmapText(size.medium, y, fontYellow, content, fontSize.body, 0)
           .setMaxWidth(300)
           .setOrigin(0, 0)
         this.chatGroup.add(text)
