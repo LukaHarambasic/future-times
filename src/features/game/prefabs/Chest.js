@@ -35,6 +35,6 @@ export default class Chest extends GameObjects.Sprite {
     if (this.x >= width) {
       this.hasToBeDestroyed = true
     }
-    this.x += 6
+    this.x += 4
   }
 }
