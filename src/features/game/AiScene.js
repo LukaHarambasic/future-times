@@ -13,7 +13,6 @@ export default class AiScene extends Scene {
   }
 
   create() {
-    console.log('ai scene')
     this.sound.removeByKey('game')
     this.sound.add('background', { volume: 0.2, loop: true }).play()
     this._buildBackground()
