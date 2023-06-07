@@ -24,18 +24,17 @@ export default class InputScene extends Scene {
     this._buildSendButton()
     this._handleSendNavigation()
     this._handlNameInput()
-
     if (isSupported()) {
       const unsubscribe = subscribe((visibility) => {
         if (visibility === 'hidden') {
           alert('Keyboard is hidden')
         } else {
           alert('Keyboard is visible')
+          // TODO repaint list
           // visibility === "visible"
           // ...
         }
       })
-
       // After calling unsubscribe() the callback will no longer be invoked.
       //unsubscribe()
     }
@@ -57,7 +56,7 @@ export default class InputScene extends Scene {
     this.sendButton.on('pointerover', async () => {
       UserInputHandlerInstance.disable()
       // TODO start loading animation
-      await AiServiceInstance.chat(this.userInput.text)
+      await AiServiceInstance.chat(this.chatInput.text)
       this.scene.start('aiScene')
       this.scene.stop('inputScene')
       //   this.scene.remove('inputScene')
@@ -65,24 +64,22 @@ export default class InputScene extends Scene {
   }
 
   _handlNameInput() {
-    // TODO fine tuning, e.g. max chars
     // TODO clean up, maybe split into multiple methods?
-    this.userInput = this.add
-      .bitmapText(width / 2, 320, fontDark, '', fontSize.body)
+    this.chatInput = this.add
+      .bitmapText(width / 2, 320, fontWhite, '', fontSize.body)
       .setMaxWidth(width * 0.8)
-      .setDepth(100)
       .setOrigin(0.5, 0)
     // Inspired by
     // https://github.com/photonstorm/phaser3-examples/blob/master/public/src/input/keyboard/text%20entry.js
     this.input.keyboard.on('keydown', (event) => {
-      if (event.keyCode === 8 && this.userInput.text.length > 0) {
-        this.userInput.text = this.userInput.text.substring(0, this.userInput.text.length - 1)
-      } else if (this.userInput.text.length === 140) {
+      if (event.keyCode === 8 && this.chatInput.text.length > 0) {
+        this.chatInput.text = this.chatInput.text.substring(0, this.chatInput.text.length - 1)
+      } else if (this.chatInput.text.length === 140) {
         // TODO input validation
         // this.inputValidationText.visible = true
         return
       } else if (event.keyCode === 32 || (event.keyCode >= 48 && event.keyCode < 90)) {
-        this.userInput.text += event.key
+        this.chatInput.text += event.key
       }
     })
   }
