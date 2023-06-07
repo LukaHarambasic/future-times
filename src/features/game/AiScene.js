@@ -60,14 +60,14 @@ export default class AiScene extends Scene {
         space: {
           left: 20,
           right: 20,
-          top: 20,
+          top: 110,
           bottom: 20,
         },
         mouseWheelScroller: true,
         createCellContainerCallback: function (cell, cellContainer) {
-          const { scene, width, item } = cell
+          const { width, item } = cell
           if (cellContainer === null) {
-            cellContainer = this._buildEmptyCellContainer(scene).setOrigin(0)
+            cellContainer = this._buildEmptyCellContainer(this).setOrigin(0)
           }
           cellContainer.setMinWidth(width)
           cellContainer.getElement('content').setText(item.content)
@@ -80,19 +80,19 @@ export default class AiScene extends Scene {
         items: [],
       })
       .layout()
-      .drawBounds(this.add.graphics(), 0xff0000)
+    // .drawBounds(this.add.graphics(), 0xff0000)
   }
 
-  _buildEmptyCellContainer(scene) {
-    return scene.rexUI.add
+  _buildEmptyCellContainer() {
+    return this.rexUI.add
       .sizer({
         orientation: 'x',
         space: { left: 25, right: 25, top: 10, bottom: 10, item: 10 },
       })
-      .addBackground(this._buildSpeechBubbleShape(scene), 'bubble')
+      .addBackground(this._buildSpeechBubbleShape(), 'bubble')
       .setAlpha(0.2)
       .add(
-        this._buildEmptyText(scene), // child
+        this._buildEmptyText(), // child
         1, // proportion
         'center', // align vertically
         0, // padding
@@ -146,15 +146,15 @@ export default class AiScene extends Scene {
     }
   }
 
-  _buildSpeechBubbleShape(scene) {
+  _buildSpeechBubbleShape() {
     // TODO Figure out if this is still needed
-    return scene.rexUI.add.customShapes({
+    return this.rexUI.add.customShapes({
       create: { lines: 1 },
     })
   }
 
-  _buildEmptyText(scene) {
+  _buildEmptyText() {
     // TODO bitmap text - or as contrast a modern font
-    return scene.rexUI.wrapExpandText(scene.add.text(0, 0, ''))
+    return this.rexUI.wrapExpandText(this.add.text(0, 0, ''))
   }
 }
