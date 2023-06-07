@@ -11,6 +11,7 @@ export default class InputScene extends Scene {
   constructor() {
     super('inputScene')
     console.log('input scene')
+    this.isLoading = false
   }
 
   // TODO input
@@ -53,10 +54,15 @@ export default class InputScene extends Scene {
   }
 
   _handleSendNavigation() {
+    if (this.isLoading) return
     this.sendButton.on('pointerover', async () => {
+      if (this.isLoading) return
       UserInputHandlerInstance.disable()
       // TODO start loading animation
+      console.log('waiting for the ai')
+      this.isLoading = true
       await AiServiceInstance.chat(this.chatInput.text)
+      this.isLoading = false
       this.scene.start('aiScene')
       this.scene.stop('inputScene')
       //   this.scene.remove('inputScene')

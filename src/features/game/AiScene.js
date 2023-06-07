@@ -59,7 +59,10 @@ export default class AiScene extends Scene {
     const filteredMessages = messages.filter(({ role }) => role !== 'system')
     // TODO filter out CONVINCED
     const userName = LocalStorageServiceInstance.userName
-    const uiMessages = [{ role: 'assistant', content: `${userName} convince me.` }, ...filteredMessages]
+    const uiMessages = [
+      { role: 'assistant', content: `${userName} convince me that you are worth working in the factory.` },
+      ...filteredMessages,
+    ]
     this.list.setItems(uiMessages)
     this.list.refresh()
     this.list.scrollToBottom()
