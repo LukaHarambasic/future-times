@@ -72,8 +72,8 @@ export default class AiScene extends Scene {
           }
           cellContainer.setMinWidth(width)
           cellContainer.getElement('content').setText(item.content)
-          // FIX scope isn't working
-          //   cellContainer.getElement('bubble').setUpdateShapesCallback(this._buildBubble(item.direction))
+          // FIX assumption: scope isn't working
+          // cellContainer.getElement('bubble').setUpdateShapesCallback(this._buildBubble(item.direction))
           cellContainer.setDirty(true).layout().setDirty(false)
           cell.height = cellContainer.height + 10
           return cellContainer
