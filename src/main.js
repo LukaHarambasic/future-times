@@ -12,6 +12,7 @@ import GameScene from './features/game/GameScene'
 import AiScene from './features/game/AiScene'
 import SurvivorScene from './features/survivor/SurvivorScene'
 import CreditsScene from './features/credits/CreditsScene'
+import ScrollingScene from './features/ScrollingScene'
 import LocalStorageServiceInstance from './core/LocalStorageService'
 
 const { width, height } = Consts
@@ -36,7 +37,7 @@ const CONFIG = {
       },
     },
   },
-  scene: [LoadingScene, NameScene, MenuScene, GameScene, AiScene, SurvivorScene, CreditsScene],
+  scene: [LoadingScene, NameScene, MenuScene, GameScene, AiScene, SurvivorScene, CreditsScene, ScrollingScene],
 }
 
 new Game(CONFIG)

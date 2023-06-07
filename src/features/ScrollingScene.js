@@ -1,21 +1,14 @@
 import { Scene } from 'phaser'
-import Ai from './prefabs/Ai'
-import Consts from './../../core/utils/Consts'
-import AiServiceInstance from './AiService'
+import Consts from './../core/utils/Consts'
+import AiServiceInstance from './game/AiService'
 
-const { width, height, centerX, centerY, fontSize, fontWhite, fontYellow, size } = Consts
+const { width, height, centerX, centerY } = Consts
 
-export default class AiScene extends Scene {
+// Implementation by https://codepen.io/rexrainbow/pen/bGgKbmv
+export default class ScrollingScene extends Scene {
   constructor() {
-    super('aiScene')
-    this.userInput = 'Im just the best human on earth'
-  }
-
-  create() {
-    this._buildBackground()
-    this._buildList()
-    this._fetchChat()
-    this.ai = new Ai(this)
+    super('scrollingScene')
+    console.log('scrollingScene')
   }
 
   preload() {
@@ -27,18 +20,11 @@ export default class AiScene extends Scene {
     })
   }
 
-  _buildBackground() {
-    this.add.tileSprite(0, 0, width, height, 'background_transparent').setOrigin(0, 0)
-  }
-
-  async _fetchChat() {
-    const messages = await AiServiceInstance.chat(this.userInput)
-    // TODO handle this case
-    if (!messages) return
-    const filteredMessages = messages.filter(({ role }) => role !== 'system')
-    const uiMessages = [{ role: 'assistant', content: 'You have three tries to convince me.' }, ...filteredMessages]
-
-    this.list.setItems(uiMessages)
+  async create() {
+    console.log('create')
+    this._buildList()
+    // User input
+    this.list.setItems(await AiServiceInstance.chat())
     this.list.refresh()
   }
 
@@ -65,13 +51,15 @@ export default class AiScene extends Scene {
         },
         mouseWheelScroller: true,
         createCellContainerCallback: function (cell, cellContainer) {
+          console.log('createCellContainerCallback')
+          console.log(this)
           const { scene, width, item } = cell
+          console.log(item)
           if (cellContainer === null) {
             cellContainer = this._buildEmptyCellContainer(scene).setOrigin(0)
           }
           cellContainer.setMinWidth(width)
           cellContainer.getElement('content').setText(item.content)
-          // FIX scope isn't working
           //   cellContainer.getElement('bubble').setUpdateShapesCallback(this._buildBubble(item.direction))
           cellContainer.setDirty(true).layout().setDirty(false)
           cell.height = cellContainer.height + 10
@@ -84,6 +72,7 @@ export default class AiScene extends Scene {
   }
 
   _buildEmptyCellContainer(scene) {
+    console.log('_buildEmptyCellContainer')
     return scene.rexUI.add
       .sizer({
         orientation: 'x',
@@ -102,6 +91,8 @@ export default class AiScene extends Scene {
   }
 
   _buildBubble(side) {
+    console.log('_buildBubble')
+    console.log(this.list)
     // TODO consts
     const radius = 20
     const indent = 15
@@ -147,14 +138,14 @@ export default class AiScene extends Scene {
   }
 
   _buildSpeechBubbleShape(scene) {
-    // TODO Figure out if this is still needed
+    console.log('_buildSpeechBubbleShape')
     return scene.rexUI.add.customShapes({
       create: { lines: 1 },
     })
   }
 
   _buildEmptyText(scene) {
-    // TODO bitmap text - or as contrast a modern font
+    console.log('_buildEmptyText')
     return scene.rexUI.wrapExpandText(scene.add.text(0, 0, ''))
   }
 }
