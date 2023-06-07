@@ -20,6 +20,7 @@
     "axios": "^1.4.0",
     "date-fns": "^2.30.0",
     "dotenv": "^16.0.3",
+    "on-screen-keyboard-detector": "^2.3.0",
     "openai": "^3.2.1",
     "phaser": "^3.6.0"
   }

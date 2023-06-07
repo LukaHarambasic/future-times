@@ -19,7 +19,8 @@ canvas {
   bottom: 20%;
   right: 0px;
   z-index: 1000;
-  opacity: 0;
+  opacity: 0.4;
   display: none;
+  background: tomato;
   color: transparent;
 }

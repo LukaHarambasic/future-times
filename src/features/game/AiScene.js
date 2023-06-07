@@ -1,7 +1,9 @@
 import { Scene } from 'phaser'
+import { subscribe, isSupported } from 'on-screen-keyboard-detector'
 import Ai from './prefabs/Ai'
 import Consts from './../../core/utils/Consts'
 import AiServiceInstance from './AiService'
+import UserInputHandlerInstance from './../../core/UserInputHandler'
 
 const { width, height, centerX, centerY, fontSize, fontWhite, fontYellow, size } = Consts
 
@@ -11,11 +13,32 @@ export default class AiScene extends Scene {
     this.userInput = 'Im just the best human on earth'
   }
 
+  // TODO input
+  // Dialog on top of the available space with send button
+  // on send, show loading animation
+  // hide dialog to show scene
+
   create() {
+    UserInputHandlerInstance.enable()
     this._buildBackground()
     this._buildList()
     this._fetchChat()
     this.ai = new Ai(this)
+
+    if (isSupported()) {
+      const unsubscribe = subscribe((visibility) => {
+        if (visibility === 'hidden') {
+          alert('Keyboard is hidden')
+        } else {
+          alert('Keyboard is visible')
+          // visibility === "visible"
+          // ...
+        }
+      })
+
+      // After calling unsubscribe() the callback will no longer be invoked.
+      //unsubscribe()
+    }
   }
 
   preload() {

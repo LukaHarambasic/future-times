@@ -2,6 +2,8 @@ import LocalStorageServiceInstance from './LocalStorageService'
 
 let instance
 
+// TODO check this experimental feature
+// https://developer.mozilla.org/en-US/docs/Web/API/VirtualKeyboard_API#control_the_virtual_keyboard_on_contenteditable_elements
 class UserInputFieldHandler {
   constructor() {
     if (instance) {
@@ -13,13 +15,14 @@ class UserInputFieldHandler {
   }
 
   enable() {
-    if (!LocalStorageServiceInstance.isMobile) return
+    console.log('enable')
+    // if (!LocalStorageServiceInstance.isMobile) return
     this.inputElement.style.display = 'block'
     this.inputElement.focus()
   }
 
   disable() {
-    if (!LocalStorageServiceInstance.isMobile) return
+    // if (!LocalStorageServiceInstance.isMobile) return
     this.inputElement.style.display = 'none'
   }
 }
