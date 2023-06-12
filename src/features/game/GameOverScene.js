@@ -44,26 +44,28 @@ export default class GameOverScene extends Scene {
 
   _buildNavigationButtons() {
     // TODO button class/component or an image?
-    this.startButton = this.add.bitmapText(width / 2, 250, fontWhite, 'Restart', fontSize.title).setOrigin(0.5, 0)
+    this.startButton = this.add.bitmapText(width / 2, 300, fontWhite, 'Restart', fontSize.title).setOrigin(0.5, 0)
     this.startButton.setInteractive()
 
-    this.survivorButton = this.add.bitmapText(width / 2, 350, fontWhite, 'Highscore', fontSize.title).setOrigin(0.5, 0)
+    this.survivorButton = this.add.bitmapText(width / 2, 400, fontWhite, 'Highscore', fontSize.title).setOrigin(0.5, 0)
     this.survivorButton.setInteractive()
 
-    this.menuButton = this.add.bitmapText(width / 2, 450, fontWhite, 'Menu', fontSize.title).setOrigin(0.5, 0)
+    this.menuButton = this.add.bitmapText(width / 2, 500, fontWhite, 'Menu', fontSize.title).setOrigin(0.5, 0)
     this.menuButton.setInteractive()
   }
 
   _handleNavigations() {
-    GameScene.clear(this)
-    GameScene.prepare(this)
     this.startButton.on('pointerover', () => {
+      GameScene.clear(this)
+      GameScene.prepare(this)
       this.scene.start('gameScene')
     })
     this.survivorButton.on('pointerover', () => {
+      GameScene.clear(this)
       this.scene.start('survivorScene')
     })
     this.menuButton.on('pointerover', () => {
+      GameScene.clear(this)
       this.scene.start('menuScene')
     })
   }

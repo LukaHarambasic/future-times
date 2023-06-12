@@ -55,8 +55,9 @@ The game will visualize the factory with the assembly line. The player has to ti
 - [ ] Menu
   - [ ] ?? Animate something
 - [ ] Highscore
-  - [ ] Visuals
-  - [ ] (2) Rename to highscore
+  - [ ] (1) Visuals
+  - [ ] (1) Scrollable
+  - [ ] (3) Rename to highscore
   - [ ] (3) Back icon
 - [ ] Credits
   - [ ] Visuals

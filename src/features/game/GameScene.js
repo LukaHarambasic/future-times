@@ -12,7 +12,6 @@ const { width, height, fontSize, fontWhite, fontDark } = Consts
 export default class GameScene extends Scene {
   constructor() {
     super('gameScene')
-    console.log('game scene constructor')
 
     this.hasGameStarted = false
     this.isGameFrozen = false
@@ -20,10 +19,7 @@ export default class GameScene extends Scene {
   }
 
   async create() {
-    console.log('game scene create')
-    this.sound.removeByKey('background')
-    this.sound.add('game', { volume: 0.2, loop: true }).play()
-
+    this._handleAudio()
     this._buildBackground()
     this._buildText()
     this._handleInput()
@@ -47,6 +43,11 @@ export default class GameScene extends Scene {
     callingScene.scene.remove('inputScene')
   }
 
+  _handleAudio() {
+    this.sound.removeByKey('background')
+    this.sound.add('game', { volume: 0.2, loop: true }).play()
+  }
+
   _handleInput() {
     this.input.on(
       'pointerdown',
@@ -62,7 +63,6 @@ export default class GameScene extends Scene {
     this._handleSpawning()
     this.hasGameStarted = true
     if (this.hasGameStarted) {
-      console.log('game started')
       if (this.instructionsTimer !== null) {
         this.instructionsTimer.remove()
       }
