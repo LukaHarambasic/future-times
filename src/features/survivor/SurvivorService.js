@@ -15,7 +15,7 @@ class SurvivorService {
   }
 
   async addSurvivor(name) {
-    const { data, error } = await DbServiceInstance.db.from('survivors').insert([{ name }])
+    const { _, error } = await DbServiceInstance.db.from('survivors').insert([{ name }])
     if (error) {
       throw error
     }
@@ -38,8 +38,8 @@ class SurvivorService {
     return globalState['score']
   }
 
-  set score(value) {
-    globalState['score'] = value
+  addScore() {
+    globalState['score'] += 1
   }
 }
 

@@ -1,5 +1,6 @@
 import { GameObjects } from 'phaser'
 import Consts from './../../../core/utils/Consts'
+import SurvivorServiceInstance from './../../survivor/SurvivorService'
 
 const { width, height, fontWhite, fontDark, fontSize } = Consts
 
@@ -29,6 +30,7 @@ export default class Chest extends GameObjects.Sprite {
   compactChest() {
     this.play('chestCompact')
     this.isCompacted = true
+    SurvivorServiceInstance.addScore()
   }
 
   _move() {
