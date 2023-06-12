@@ -1,7 +1,10 @@
 import DbServiceInstance from './DbService'
 
 let instance
-let globalState = {}
+let globalState = {
+  score: 0,
+  currentScoreId: null,
+}
 
 class SurvivorService {
   constructor() {
@@ -10,23 +13,24 @@ class SurvivorService {
     }
 
     instance = this
-
-    globalState['score'] = 0
   }
 
-  async addSurvivor(name) {
-    const { _, error } = await DbServiceInstance.db.from('survivors').insert([{ name }])
+  async saveHighscore(name) {
+    const content = { name, score: globalState['score'] }
+    const { data, error } = await DbServiceInstance.db.from('highscores').insert([content]).select()
     if (error) {
-      throw error
+      console.log(error)
+      return false
     }
-    return true
+    globalState['currentScoreId'] = data[0].id
+    return data[0].id
   }
 
   async getSurvivors() {
     const { data, error } = await DbServiceInstance.db
-      .from('survivors')
+      .from('highscores')
       .select('*')
-      .order('created_at', { ascending: false })
+      .order('score', { ascending: false })
     if (error) {
       throw error
     }

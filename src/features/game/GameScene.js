@@ -3,6 +3,7 @@ import Consts from './../../core/utils/Consts'
 import Chest from './prefabs/Chest'
 import Hammer from './prefabs/Hammer'
 import LocalStorageServiceInstance from './../../core/LocalStorageService'
+import SurvivorServiceInstance from './../survivor/SurvivorService'
 
 const { width, height, fontSize, fontWhite, fontDark } = Consts
 
@@ -10,12 +11,12 @@ export default class GameScene extends Scene {
   constructor() {
     super('gameScene')
 
-    this.isGameFrozen = false
-    this.hasAlreadyTakledToAi = false
     this.hasGameStarted = false
+    this.isGameFrozen = false
+    this.hasAlreadyTakledToAi = true // TODO change back after testing - false
   }
 
-  create() {
+  async create() {
     this.sound.removeByKey('background')
     this.sound.add('game', { volume: 0.2, loop: true }).play()
 
@@ -77,7 +78,7 @@ export default class GameScene extends Scene {
 
   _handleCollision() {
     if (!this.hasGameStarted) return
-    this.chestGroup.getChildren().forEach((chest) => {
+    this.chestGroup.getChildren().forEach(async (chest) => {
       this.physics.add.overlap(
         this.hammer.hitBox,
         chest,
@@ -90,8 +91,10 @@ export default class GameScene extends Scene {
       if (!chest.isCompacted && chest.hasToBeDestroyed) {
         chest.destroy()
         if (this.hasAlreadyTakledToAi) {
-          // TODO game over screen
-          console.log('game over - show screen')
+          // TODO submit score and save id in localstorage - but something is wrong
+          this.scene.pause()
+          this.scene.launch('gameOverScene')
+          await SurvivorServiceInstance.saveHighscore(LocalStorageServiceInstance.userName)
         } else {
           this.scene.pause()
           this.scene.launch('chatScene')

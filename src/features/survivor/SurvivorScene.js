@@ -18,7 +18,7 @@ export default class SurvivorScene extends Scene {
     this._handleBackNavigation()
     this._buildSurvivorList()
 
-    this.add.bitmapText(2, height - 17, fontWhite, 'Survivor', fontSize.small).setOrigin(0, 0)
+    this.add.bitmapText(2, height - 17, fontWhite, 'Highscore', fontSize.small).setOrigin(0, 0)
   }
 
   _buildSurvivorList() {
@@ -29,10 +29,11 @@ export default class SurvivorScene extends Scene {
   }
 
   _buildSurvivorEntry(survivor, y) {
-    const { name, created_at: createdAt } = survivor
+    const { name, created_at: createdAt, score } = survivor
     this.add.bitmapText(width / 2, y, fontWhite, name, fontSize.body).setOrigin(0.5, 0)
     const formattedDate = format(new Date(createdAt), 'dd-MM-yyyy HH:mm')
     this.add.bitmapText(width / 2, y + 25, fontWhite, formattedDate, fontSize.small).setOrigin(0.5, 0)
+    this.add.bitmapText(width / 2, y + 25 + 25, fontWhite, score, fontSize.small).setOrigin(0.5, 0)
   }
 
   _buildBackButton() {

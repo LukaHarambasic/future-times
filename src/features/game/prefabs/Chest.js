@@ -28,6 +28,7 @@ export default class Chest extends GameObjects.Sprite {
   }
 
   compactChest() {
+    if (this.isCompacted) return
     this.play('chestCompact')
     this.isCompacted = true
     SurvivorServiceInstance.addScore()
