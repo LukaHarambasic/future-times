@@ -65,7 +65,6 @@ export default class ChatScene extends Scene {
     this.list.setItems(uiMessages)
     this.list.refresh()
     this.list.scrollToBottom()
-    console.log(AiServiceInstance.isConvinced)
   }
 
   _buildList() {

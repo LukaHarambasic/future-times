@@ -10,11 +10,11 @@ export default class GameScene extends Scene {
     super('gameScene')
 
     this.isGameFrozen = false
+    this.score = 0
+    this.hasAlreadyTakledToAi = false
   }
 
   create() {
-    this.score = 0
-
     this.sound.removeByKey('background')
     this.sound.add('game', { volume: 0.2, loop: true }).play()
 
@@ -75,8 +75,13 @@ export default class GameScene extends Scene {
       )
       if (!chest.isCompacted && chest.hasToBeDestroyed) {
         chest.destroy()
-        this.scene.pause()
-        this.scene.launch('aiScene')
+        if (this.hasAlreadyTakledToAi) {
+          // TODO game over screen
+          console.log('game over - show screen')
+        } else {
+          this.scene.pause()
+          this.scene.launch('chatScene')
+        }
       }
       if (chest.hasToBeDestroyed) {
         chest.destroy()

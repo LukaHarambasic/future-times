@@ -32,6 +32,7 @@ The game will visualize the factory with the assembly line. The player has to ti
     - [ ] (1) User has one try to convince the AI
     - [x] (1) Count compacted chests for highscore
   - [ ] (1) Add belt
+  - [ ] (2) Add game over screen
   - [ ] (2) Background decoration
   - [ ] (3) Add atmospheric sounds
   - [x] (1) Align hammer with box compression
