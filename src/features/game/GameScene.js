@@ -4,7 +4,7 @@ import Chest from './prefabs/Chest'
 import Hammer from './prefabs/Hammer'
 import LocalStorageServiceInstance from './../../core/LocalStorageService'
 
-const { width, height, fontSize, fontWhite } = Consts
+const { width, height, fontSize, fontWhite, fontDark } = Consts
 
 export default class GameScene extends Scene {
   constructor() {
@@ -35,14 +35,23 @@ export default class GameScene extends Scene {
       'pointerdown',
       () => {
         this.hammer.hammer()
-        this._handleSpawning()
-        this.hasGameStarted = true
-        if (this.hasGameStarted) {
-          this.instructions.visible = false
-        }
+        this._startGame()
       },
       this,
     )
+  }
+
+  _startGame() {
+    this._handleSpawning()
+    this.hasGameStarted = true
+    if (this.hasGameStarted) {
+      console.log('game started')
+      if (this.instructionsTimer !== null) {
+        this.instructionsTimer.remove()
+      }
+      this.instructions.visible = false
+      this.story.visible = false
+    }
   }
 
   _handleSpawning() {
@@ -106,7 +115,7 @@ export default class GameScene extends Scene {
       .bitmapText(width / 2, height - 70, fontWhite, instructionsText, fontSize.body)
       .setOrigin(0.5, 0)
       .setAlpha(0.8)
-    this.time.addEvent({
+    this.instructionsTimer = this.time.addEvent({
       delay: 600,
       loop: true,
       callback: () => {
@@ -114,5 +123,16 @@ export default class GameScene extends Scene {
       },
       callbackScope: this,
     })
+    this.story = this.add
+      .bitmapText(
+        width / 2,
+        70,
+        fontDark,
+        'Compact as many chests as you can, if you fail once you get to talk to the AI owner of the factory. You convince it you get one more try.',
+        fontSize.body,
+        1,
+      )
+      .setOrigin(0.5, 0)
+      .setMaxWidth(width * 0.8)
   }
 }
