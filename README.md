@@ -24,44 +24,46 @@ The game will visualize the factory with the assembly line. The player has to ti
 ## Tasks
 
 - [ ] Generic
+  - [ ] (3) Go over open TODO & OPTIONAL
+  - [ ] (3) Remove console.log()
   - [x] Font
 - [ ] Game
-  - [ ] Winning mechanics
-    - [ ] User has one try to convince the AI
-    - [ ] Count compacted chests for highscore
-  - [ ] Add belt
-  - [ ] Background decoration
-  - [ ] Add atmospheric sounds
-  - [ ] Align hammer with box compression
-  - [ ] Add explanation until user follows them
+  - [ ] (1) Winning mechanics
+    - [ ] (1) User has one try to convince the AI
+    - [x] (1) Count compacted chests for highscore
+  - [ ] (1) Add belt
+  - [ ] (2) Background decoration
+  - [ ] (3) Add atmospheric sounds
+  - [ ] (1) Align hammer with box compression
+  - [ ] (1) Add explanation until user follows them
   - [ ] Chat
-    - [ ] Fix bug about styling texts accordingly
-    - [ ] Add speech bubels
-    - [ ] Gradient background?
-    - [ ] Limit the AI responses
+    - [ ] (3) Fix bug about styling texts accordingly
+    - [ ] (3) Add speech bubbels
+    - [ ] (3) Gradient background?
+    - [ ] (1) Limit the AI responses
     - [x] Integrate API
   - [ ] Chat Input
-    - [ ] Add cursor like for name?
-    - [ ] Add border for input box
+    - [ ] (1) Add cursor like for name?
+    - [ ] (1) Add border for input box
 - [ ] Loading
-  - [ ] Slogan instead of lorem ipsum
-  - [ ] Check for testing left overs
+  - [ ] (2) Slogan instead of lorem ipsum
+  - [ ] (2) Check for testing left overs
   - [x] Main game input touch/ press space (text shown until user presses it)
 - [ ] Menu
-  - [ ] Animate something?
+  - [ ] ?? Animate something
 - [ ] Highscore
   - [ ] Visuals
-  - [ ] Rename to highscore
-  - [ ] Back icon
+  - [ ] (2) Rename to highscore
+  - [ ] (3) Back icon
 - [ ] Credits
   - [ ] Visuals
-  - [ ] Explain movie adaption
-  - [ ] Add story about AI discussion
-  - [ ] Back icon
+  - [ ] (2) Explain movie adaption
+  - [ ] (2) Add story about AI discussion
+  - [ ] (3) Back icon
 - [ ] Misc
-  - [ ] Analytics
-  - [ ] PWA
-  - [ ] "Mobile mode" for desktop - screen height (90%) : 1/2 ratio
+  - [ ] ?? Analytics
+  - [ ] ?? PWA
+  - [ ] ?? "Mobile mode" for desktop - screen height (90%) : 1/2 ratio
   - [x] Global highscore on Supabase
 - [x] Name
   - [x] Ask for player name in the beginning
