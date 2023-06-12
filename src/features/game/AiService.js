@@ -3,7 +3,10 @@ import axios from 'axios'
 let instance
 let globalState = {
   messages: [],
+  attempts: 0,
 }
+
+const MAX_ATTEMPTS = 10
 
 class AiService {
   path = '/.netlify/functions/ai'
@@ -15,6 +18,7 @@ class AiService {
     }
 
     instance = this
+
     this.url = import.meta.env.DEV
       ? `http://localhost:8888${this.path}`
       : `https://future-times.netlify.app${this.path}`
@@ -47,6 +51,7 @@ class AiService {
     try {
       const result = await axios.post(this.url, data, config)
       globalState['messages'] = result.data
+      globalState['attempts'] += 1
       return true
     } catch (error) {
       console.error(error)
@@ -67,6 +72,10 @@ class AiService {
       return writtenByAssistant && containsConvinced
     })
     return index !== -1
+  }
+
+  get areAttempsAreExceeded() {
+    return globalState['attempts'] >= MAX_ATTEMPTS
   }
 }
 

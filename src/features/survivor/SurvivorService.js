@@ -10,6 +10,8 @@ class SurvivorService {
     }
 
     instance = this
+
+    globalState['score'] = 0
   }
 
   async addSurvivor(name) {
@@ -25,12 +27,19 @@ class SurvivorService {
       .from('survivors')
       .select('*')
       .order('created_at', { ascending: false })
-
     if (error) {
       throw error
     }
-    globalState.survivors = data
+    globalState['survivors'] = data
     return data
+  }
+
+  get score() {
+    return globalState['score']
+  }
+
+  set score(value) {
+    globalState['score'] = value
   }
 }
 

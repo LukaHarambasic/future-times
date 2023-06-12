@@ -2,7 +2,6 @@ import { Scene } from 'phaser'
 import { subscribe, isSupported } from 'on-screen-keyboard-detector'
 import Consts from './../../core/utils/Consts'
 import UserInputHandlerInstance from './../../core/UserInputHandler'
-import LocalStorageServiceInstance from '../../core/LocalStorageService'
 import AiServiceInstance from './AiService'
 
 const { width, height, centerX, centerY, fontSize, fontWhite, fontDark, fontYellow, size } = Consts

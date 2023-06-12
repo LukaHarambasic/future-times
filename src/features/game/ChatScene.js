@@ -10,6 +10,8 @@ const { width, height, centerX, centerY, fontSize, fontWhite, fontYellow, size }
 export default class ChatScene extends Scene {
   constructor() {
     super('chatScene')
+
+    this.attempts = 0
   }
 
   create() {
