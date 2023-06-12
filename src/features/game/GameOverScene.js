@@ -1,6 +1,7 @@
 import { Scene } from 'phaser'
 import Consts from './../../core/utils/Consts'
 import SurvivorServiceInstance from '../survivor/SurvivorService'
+import GameScene from './GameScene'
 
 const { width, height, centerX, centerY, fontSize, fontWhite, fontDark, fontYellow, size } = Consts
 
@@ -54,9 +55,10 @@ export default class GameOverScene extends Scene {
   }
 
   _handleNavigations() {
+    GameScene.clear(this)
+    GameScene.prepare(this)
     this.startButton.on('pointerover', () => {
-      // TODO check out how this works
-      this.scene.restart('gameScene')
+      this.scene.start('gameScene')
     })
     this.survivorButton.on('pointerover', () => {
       this.scene.start('survivorScene')

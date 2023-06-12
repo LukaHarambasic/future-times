@@ -4,6 +4,8 @@ import Chest from './prefabs/Chest'
 import Hammer from './prefabs/Hammer'
 import LocalStorageServiceInstance from './../../core/LocalStorageService'
 import SurvivorServiceInstance from './../survivor/SurvivorService'
+import ChatScene from './ChatScene'
+import InputScene from './InputScene'
 
 const { width, height, fontSize, fontWhite, fontDark } = Consts
 
@@ -31,6 +33,18 @@ export default class GameScene extends Scene {
 
   update() {
     this._handleCollision()
+  }
+
+  static prepare(callingScene) {
+    callingScene.scene.add('gameScene', GameScene)
+    callingScene.scene.add('chatScene', ChatScene)
+    callingScene.scene.add('inputScene', InputScene)
+  }
+
+  static clear(callingScene) {
+    callingScene.scene.remove('gameScene')
+    callingScene.scene.remove('chatScene')
+    callingScene.scene.remove('inputScene')
   }
 
   _handleInput() {
