@@ -41,11 +41,12 @@ The game will visualize the factory with the assembly line. The player has to ti
     - [ ] (3) Fix bug about styling texts accordingly
     - [ ] (3) Add speech bubbels
     - [ ] (3) Gradient background?
-    - [ ] (1) Limit the AI responses
+    - [x] (1) Limit the AI responses
     - [x] Integrate API
   - [ ] Chat Input
     - [ ] (1) Add cursor like for name?
     - [ ] (1) Add border for input box
+    - [ ] (2) Loading indicator until Chat is shown again
 - [ ] Loading
   - [ ] (2) Slogan instead of lorem ipsum
   - [ ] (2) Check for testing left overs

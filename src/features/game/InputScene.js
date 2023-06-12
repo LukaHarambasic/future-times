@@ -62,7 +62,7 @@ export default class InputScene extends Scene {
       this.isLoading = true
       await AiServiceInstance.chat(this.chatInput.text)
       this.isLoading = false
-      this.scene.start('aiScene')
+      this.scene.start('chatScene')
       this.scene.stop('inputScene')
       //   this.scene.remove('inputScene')
     })

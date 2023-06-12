@@ -6,7 +6,7 @@ let globalState = {
   attempts: 0,
 }
 
-const MAX_ATTEMPTS = 10
+const MAX_ATTEMPTS = 2
 
 class AiService {
   path = '/.netlify/functions/ai'
@@ -68,14 +68,18 @@ class AiService {
     // TODO based on testing make it more loose
     const index = globalState['messages'].findIndex(({ role, content }) => {
       const writtenByAssistant = role === 'assistant'
-      const containsConvinced = content.includes('CONVINCED')
+      const containsConvinced = content.toLowerCase().includes('convinced')
       return writtenByAssistant && containsConvinced
     })
     return index !== -1
   }
 
-  get areAttempsAreExceeded() {
+  get areAttempsExceeded() {
     return globalState['attempts'] >= MAX_ATTEMPTS
+  }
+
+  get attemptsLeft() {
+    return MAX_ATTEMPTS - globalState['attempts']
   }
 }
 

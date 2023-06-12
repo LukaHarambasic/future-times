@@ -6,12 +6,9 @@ import LocalStorageServiceInstance from '../../core/LocalStorageService'
 
 const { width, height, centerX, centerY, fontSize, fontWhite, fontYellow, size } = Consts
 
-// OPTIONAL rename to chatScene
 export default class ChatScene extends Scene {
   constructor() {
     super('chatScene')
-
-    this.attempts = 0
   }
 
   create() {
@@ -32,6 +29,10 @@ export default class ChatScene extends Scene {
       url: 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexuiplugin.min.js',
       sceneKey: 'rexUI',
     })
+  }
+
+  update() {
+    this._handleAttemptsExceeded()
   }
 
   _buildBackground() {
@@ -178,5 +179,15 @@ export default class ChatScene extends Scene {
     const alignment = role === 'user' ? 2 : 0
     const fontColor = role === 'user' ? fontWhite : fontYellow
     return this.rexUI.wrapExpandText(this.add.bitmapText(0, 0, fontColor, '', fontSize.body, alignment))
+  }
+
+  _handleAttemptsExceeded() {
+    if (AiServiceInstance.areAttempsExceeded) {
+      console.log('GAME OVER - attempts exceeded')
+      // TODO game over
+    } else {
+      // TODO do nothing
+      console.log('attempts left', AiServiceInstance.attemptsLeft)
+    }
   }
 }
