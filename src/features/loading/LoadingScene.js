@@ -26,7 +26,7 @@ export default class LoadingScene extends Scene {
     this._buildText()
 
     // TODO remove after testing
-    // this.scene.start('gameScene')
+    this.scene.start('gameScene')
   }
 
   update() {
@@ -76,7 +76,7 @@ export default class LoadingScene extends Scene {
         start: 1,
         end: 8,
       }),
-      frameRate: frameRate,
+      frameRate: frameRate * 1.5,
       repeat: 0,
     })
     this.anims.create({

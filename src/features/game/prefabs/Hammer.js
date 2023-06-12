@@ -4,7 +4,7 @@ import Chest from './Chest'
 
 const { width, height, centerX, fontWhite, fontDark, fontSize, frameRate } = Consts
 
-const hammerY = Chest.positionY + Chest.paddingTop - 64
+const hammerY = Chest.positionY + Chest.paddingTop - 64 + 2
 
 export default class Hammer extends GameObjects.Sprite {
   cooldown = 300
@@ -19,7 +19,7 @@ export default class Hammer extends GameObjects.Sprite {
     // shoutout to Jared for the idea of using an invisble sprite
     // as the hammer is sprite which is 64px high I can't detect the collision
     this.hitBox = scene.add
-      .tileSprite(centerX, hammerY + 10 + 2, this.hitBoxHeight, this.hitBoxHeight, 'invisible')
+      .tileSprite(centerX, hammerY + 22, this.hitBoxHeight, this.hitBoxHeight, 'invisible')
       .setOrigin(0.5, 0)
     this.scene.physics.add.existing(this.hitBox)
 

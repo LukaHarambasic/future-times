@@ -2,6 +2,7 @@ import { Scene, Math as PMath } from 'phaser'
 import Consts from './../../core/utils/Consts'
 import Chest from './prefabs/Chest'
 import Hammer from './prefabs/Hammer'
+
 const { width, height, fontSize, fontWhite } = Consts
 
 export default class GameScene extends Scene {
@@ -12,6 +13,8 @@ export default class GameScene extends Scene {
   }
 
   create() {
+    this.score = 0
+
     this.sound.removeByKey('background')
     this.sound.add('game', { volume: 0.2, loop: true }).play()
 
@@ -24,25 +27,7 @@ export default class GameScene extends Scene {
   }
 
   update() {
-    this.chestGroup.getChildren().forEach((chest) => {
-      this.physics.add.overlap(
-        this.hammer.hitBox,
-        chest,
-        () => {
-          chest.compactChest()
-        },
-        null,
-        this.scene,
-      )
-      if (!chest.isCompacted && chest.hasToBeDestroyed) {
-        chest.destroy()
-        this.scene.pause()
-        this.scene.launch('aiScene')
-      }
-      if (chest.hasToBeDestroyed) {
-        chest.destroy()
-      }
-    })
+    this._handleCollision()
   }
 
   _handleInput() {
@@ -73,6 +58,30 @@ export default class GameScene extends Scene {
     this.chestGroup.add(new Chest(this))
     this._startSpawning()
     this.chestGroup.setDepth(1)
+  }
+
+  _handleCollision() {
+    this.chestGroup.getChildren().forEach((chest) => {
+      this.physics.add.overlap(
+        this.hammer.hitBox,
+        chest,
+        () => {
+          chest.compactChest()
+          this.score += 1
+          console.log(this.score)
+        },
+        null,
+        this.scene,
+      )
+      if (!chest.isCompacted && chest.hasToBeDestroyed) {
+        chest.destroy()
+        this.scene.pause()
+        this.scene.launch('aiScene')
+      }
+      if (chest.hasToBeDestroyed) {
+        chest.destroy()
+      }
+    })
   }
 
   _buildBackground() {

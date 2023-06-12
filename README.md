@@ -34,7 +34,7 @@ The game will visualize the factory with the assembly line. The player has to ti
   - [ ] (1) Add belt
   - [ ] (2) Background decoration
   - [ ] (3) Add atmospheric sounds
-  - [ ] (1) Align hammer with box compression
+  - [x] (1) Align hammer with box compression
   - [ ] (1) Add explanation until user follows them
   - [ ] Chat
     - [ ] (3) Fix bug about styling texts accordingly
@@ -48,6 +48,7 @@ The game will visualize the factory with the assembly line. The player has to ti
 - [ ] Loading
   - [ ] (2) Slogan instead of lorem ipsum
   - [ ] (2) Check for testing left overs
+  - [ ] (3) Loading animation
   - [x] Main game input touch/ press space (text shown until user presses it)
 - [ ] Menu
   - [ ] ?? Animate something
