@@ -61,6 +61,7 @@ export default class LoadingScene extends Scene {
     this.load.atlas('chestAtlas', './graphics/animations/chest.png', './graphics/animations/chest.json')
     this.load.atlas('hammerAtlas', './graphics/animations/hammer.png', './graphics/animations/hammer.json')
     this.load.atlas('aiAtlas', './graphics/animations/ai.jpeg', './graphics/animations/ai.json')
+    this.load.atlas('beltAtlas', './graphics/animations/belt.png', './graphics/animations/belt.json')
   }
 
   _loadAudio() {
@@ -97,6 +98,16 @@ export default class LoadingScene extends Scene {
         end: 4,
       }),
       frameRate: frameRate / 2,
+      repeat: -1,
+    })
+    this.anims.create({
+      key: 'beltMoving',
+      frames: this.anims.generateFrameNames('beltAtlas', {
+        prefix: 'belt_',
+        start: 1,
+        end: 4,
+      }),
+      frameRate: frameRate,
       repeat: -1,
     })
   }

@@ -15,7 +15,7 @@ export default class GameScene extends Scene {
 
     this.hasGameStarted = false
     this.isGameFrozen = false
-    this.hasAlreadyTakledToAi = true // TODO change back after testing - false
+    this.hasAlreadyTakledToAi = false // TODO change back after testing - false
   }
 
   async create() {
@@ -23,6 +23,7 @@ export default class GameScene extends Scene {
     this._buildBackground()
     this._buildText()
     this._handleInput()
+    this._buildBelts()
 
     this.hammer = new Hammer(this)
   }
@@ -124,6 +125,27 @@ export default class GameScene extends Scene {
 
   _buildBackground() {
     this.add.tileSprite(0, 0, width, height, 'background_1').setOrigin(0, 0)
+  }
+
+  _buildBelts() {
+    const positionY = Chest.positionY + 32
+    this.add.sprite(-32, positionY, 'beltAtlas').setOrigin(0, 0).play('beltMoving')
+    this.add
+      .sprite(-32 + 96, positionY, 'beltAtlas')
+      .setOrigin(0, 0)
+      .play('beltMoving')
+    this.add
+      .sprite(-32 + 96 + 96, positionY, 'beltAtlas')
+      .setOrigin(0, 0)
+      .play('beltMoving')
+    this.add
+      .sprite(-32 + 96 + 96 + 96, positionY, 'beltAtlas')
+      .setOrigin(0, 0)
+      .play('beltMoving')
+    this.add
+      .sprite(-32 + 96 + 96 + 96 + 96, positionY, 'beltAtlas')
+      .setOrigin(0, 0)
+      .play('beltMoving')
   }
 
   _buildText() {
