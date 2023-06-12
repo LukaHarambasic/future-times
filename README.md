@@ -23,37 +23,48 @@ The game will visualize the factory with the assembly line. The player has to ti
 
 ## Tasks
 
-- [ ] Mechanics
-  - [ ] Ask for player name in the beginning
-  - [ ] Integrate supabase for survivor list
-  - [ ] Move and interact with belt
-- [ ] Input - focus on mobile
-  - [ ] Menu items are touchable
-  - [ ] Display key bindings on PC
-  - [ ] Main game input touch/ press space (text shown until user presses it)
-- [ ] Visuals
-  - [ ] Background
-  - [ ] Belt
-  - [ ] Parts
-  - [ ] Charlie
-  - [ ] Workers
-  - [ ] Robots
-  - [ ] AI
-  - [ ] Font
-- [ ] Sound/Music
-  - [ ] Background music
-  - [ ] Atmospheric sounds
-  - [ ] Sound effects TBD
-- [ ] AI integration
-  - [ ] Design prompts for the different questions
-  - [ ] Define when the AI is satisified with the users answer
-  - [ ] Inteegrate API
+- [ ] Generic
+  - [x] Font
+- [ ] Game
+  - [ ] Winning mechanics
+    - [ ] User has one try to convince the AI
+    - [ ] Count compacted chests for highscore
+  - [ ] Add belt
+  - [ ] Background decoration
+  - [ ] Add atmospheric sounds
+  - [ ] Align hammer with box compression
+  - [ ] Add explanation until user follows them
+  - [ ] Chat
+    - [ ] Fix bug about styling texts accordingly
+    - [ ] Add speech bubels
+    - [ ] Gradient background?
+    - [ ] Limit the AI responses
+    - [x] Integrate API
+  - [ ] Chat Input
+    - [ ] Add cursor like for name?
+    - [ ] Add border for input box
+- [ ] Loading
+  - [ ] Slogan instead of lorem ipsum
+  - [ ] Check for testing left overs
+  - [x] Main game input touch/ press space (text shown until user presses it)
+- [ ] Menu
+  - [ ] Animate something?
+- [ ] Highscore
+  - [ ] Visuals
+  - [ ] Rename to highscore
+  - [ ] Back icon
+- [ ] Credits
+  - [ ] Visuals
+  - [ ] Explain movie adaption
+  - [ ] Add story about AI discussion
+  - [ ] Back icon
 - [ ] Misc
-  - [ ] Refresh supabase and openai token
-- [ ] Bonus
-  - [ ] Global highscore on Supabase
-  - [ ] Take picture of user
+  - [ ] Analytics
   - [ ] PWA
+  - [ ] "Mobile mode" for desktop - screen height (90%) : 1/2 ratio
+  - [x] Global highscore on Supabase
+- [x] Name
+  - [x] Ask for player name in the beginning
 
 ## Checklist
 

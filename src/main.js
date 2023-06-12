@@ -9,7 +9,7 @@ import LoadingScene from './features/loading/LoadingScene'
 import NameScene from './features/name/NameScene'
 import MenuScene from './features/menu/MenuScene'
 import GameScene from './features/game/GameScene'
-import AiScene from './features/game/AiScene'
+import ChatScene from './features/game/ChatScene'
 import InputScene from './features/game/InputScene'
 import SurvivorScene from './features/survivor/SurvivorScene'
 import CreditsScene from './features/credits/CreditsScene'
@@ -37,7 +37,7 @@ const CONFIG = {
       },
     },
   },
-  scene: [LoadingScene, NameScene, MenuScene, GameScene, AiScene, InputScene, SurvivorScene, CreditsScene],
+  scene: [LoadingScene, NameScene, MenuScene, GameScene, ChatScene, InputScene, SurvivorScene, CreditsScene],
 }
 
 new Game(CONFIG)

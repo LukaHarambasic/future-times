@@ -1,19 +1,18 @@
 import { Scene } from 'phaser'
 import Ai from './prefabs/Ai'
-import Consts from './../../core/utils/Consts'
+import Consts from '../../core/utils/Consts'
 import AiServiceInstance from './AiService'
 import LocalStorageServiceInstance from '../../core/LocalStorageService'
 
 const { width, height, centerX, centerY, fontSize, fontWhite, fontYellow, size } = Consts
 
 // OPTIONAL rename to chatScene
-export default class AiScene extends Scene {
+export default class ChatScene extends Scene {
   constructor() {
-    super('aiScene')
+    super('chatScene')
   }
 
   create() {
-    console.log('ai scene')
     this.sound.removeByKey('game')
     this.sound.add('background', { volume: 0.2, loop: true }).play()
     this._buildBackground()
