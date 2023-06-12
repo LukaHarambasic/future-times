@@ -10,6 +10,7 @@ const { width, height, fontSize, fontWhite, fontDark } = Consts
 export default class GameScene extends Scene {
   constructor() {
     super('gameScene')
+    console.log('game scene constructor')
 
     this.hasGameStarted = false
     this.isGameFrozen = false
@@ -17,6 +18,7 @@ export default class GameScene extends Scene {
   }
 
   async create() {
+    console.log('game scene create')
     this.sound.removeByKey('background')
     this.sound.add('game', { volume: 0.2, loop: true }).play()
 

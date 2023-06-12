@@ -12,7 +12,9 @@ export default class GameOverScene extends Scene {
 
   create() {
     this._buildBackground()
-    console.log(SurvivorServiceInstance.score)
+    this._buildText()
+    this._buildNavigationButtons()
+    this._handleNavigations()
   }
 
   _buildBackground() {
@@ -20,8 +22,47 @@ export default class GameOverScene extends Scene {
   }
 
   _buildText() {
-    // headline
+    this.add
+      .bitmapText(width / 2, 70, fontWhite, 'You are fired', fontSize.title, 1)
+      .setOrigin(0.5, 0)
+      .setMaxWidth(width * 0.8)
+    this.add
+      .bitmapText(
+        width / 2,
+        80 + 50,
+        fontWhite,
+        `The owners would like to thank you for your work. You were at least able to compact ${SurvivorServiceInstance.score} chests.`,
+        fontSize.body,
+        1,
+      )
+      .setOrigin(0.5, 0)
+      .setMaxWidth(width * 0.8)
     // score
-    // position
+    // ?? position
+  }
+
+  _buildNavigationButtons() {
+    // TODO button class/component or an image?
+    this.startButton = this.add.bitmapText(width / 2, 250, fontWhite, 'Restart', fontSize.title).setOrigin(0.5, 0)
+    this.startButton.setInteractive()
+
+    this.survivorButton = this.add.bitmapText(width / 2, 350, fontWhite, 'Highscore', fontSize.title).setOrigin(0.5, 0)
+    this.survivorButton.setInteractive()
+
+    this.menuButton = this.add.bitmapText(width / 2, 450, fontWhite, 'Menu', fontSize.title).setOrigin(0.5, 0)
+    this.menuButton.setInteractive()
+  }
+
+  _handleNavigations() {
+    this.startButton.on('pointerover', () => {
+      // TODO check out how this works
+      this.scene.restart('gameScene')
+    })
+    this.survivorButton.on('pointerover', () => {
+      this.scene.start('survivorScene')
+    })
+    this.menuButton.on('pointerover', () => {
+      this.scene.start('menuScene')
+    })
   }
 }
