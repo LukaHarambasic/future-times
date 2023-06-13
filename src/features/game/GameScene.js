@@ -15,7 +15,7 @@ export default class GameScene extends Scene {
 
     this.hasGameStarted = false
     this.isGameFrozen = false
-    this.hasAlreadyTakledToAi = false // TODO change back after testing - false
+    this.hasAlreadyTakledToAi = true // TODO change back after testing - false
   }
 
   async create() {
@@ -23,6 +23,7 @@ export default class GameScene extends Scene {
     this._buildBackground()
     this._buildText()
     this._handleInput()
+    this._buildTiles()
     this._buildBelts()
 
     this.hammer = new Hammer(this)
@@ -129,23 +130,27 @@ export default class GameScene extends Scene {
 
   _buildBelts() {
     const positionY = Chest.positionY + 32
-    this.add.sprite(-32, positionY, 'beltAtlas').setOrigin(0, 0).play('beltMoving')
-    this.add
-      .sprite(-32 + 96, positionY, 'beltAtlas')
-      .setOrigin(0, 0)
-      .play('beltMoving')
-    this.add
-      .sprite(-32 + 96 + 96, positionY, 'beltAtlas')
-      .setOrigin(0, 0)
-      .play('beltMoving')
-    this.add
-      .sprite(-32 + 96 + 96 + 96, positionY, 'beltAtlas')
-      .setOrigin(0, 0)
-      .play('beltMoving')
-    this.add
-      .sprite(-32 + 96 + 96 + 96 + 96, positionY, 'beltAtlas')
-      .setOrigin(0, 0)
-      .play('beltMoving')
+    const startX = -32
+    const beltWidth = 96
+    const beltsNeededX = Math.ceil(width + Math.abs(startX) / beltWidth)
+    for (let i = 0; i < beltsNeededX; i++) {
+      this.add
+        .sprite(startX + i * beltWidth, positionY, 'beltAtlas')
+        .setOrigin(0, 0)
+        .play('beltMoving')
+    }
+  }
+
+  _buildTiles() {
+    const positionY = Chest.positionY + 32 + 16 - 1
+    const startX = -16
+    const tileWidth = 32
+    const tilesNeededX = Math.ceil(width + Math.abs(startX) / tileWidth)
+    const startY = positionY + tileWidth
+    const tilesNeededY = 
+    for (let i = 0; i < tilesNeededX; i++) {
+      this.add.sprite(startX + i * tileWidth, positionY, 'tiles_tm').setOrigin(0, 0)
+    }
   }
 
   _buildText() {
