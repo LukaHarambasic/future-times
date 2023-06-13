@@ -15,22 +15,23 @@ export default class GameScene extends Scene {
 
     this.hasGameStarted = false
     this.isGameFrozen = false
-    this.hasAlreadyTakledToAi = true // TODO change back after testing - false
+    this.hasAlreadyTakledToAi = false // TODO change back after testing - false
   }
 
   async create() {
     this._handleAudio()
     this._buildBackground()
-    this._buildText()
     this._handleInput()
     this._buildTiles()
     this._buildBelts()
+    this._buildText()
 
     this.hammer = new Hammer(this)
   }
 
   update() {
     this._handleCollision()
+    this._animateBackground()
   }
 
   static prepare(callingScene) {
@@ -124,8 +125,24 @@ export default class GameScene extends Scene {
     })
   }
 
+  _animateBackground() {
+    this.smoke.tilePositionX -= 0.2
+    // this.city1.tilePositionX += 0.3
+    // this.city2.tilePositionX += 0.15
+    // this.city3.tilePositionX += 0.25
+  }
+
   _buildBackground() {
     this.add.tileSprite(0, 0, width, height, 'background_1').setOrigin(0, 0)
+    const positionFactoryY = height * 0.4
+    this.smoke = this.add.tileSprite(0, 0, 0, 0, 'background_2').setOrigin(0, 0)
+    // this.city1 = this.add.tileSprite(0, positionFactoryY, 0, 0, 'background_3').setOrigin(0, 1)
+    this.city2 = this.add.tileSprite(0, positionFactoryY, 0, 0, 'background_4').setOrigin(0, 1)
+    this.city3 = this.add.tileSprite(0, positionFactoryY, 0, 0, 'background_5').setOrigin(0, 1)
+    this.add
+      .tileSprite(0, positionFactoryY, width, height - positionFactoryY, 'tiles_bg')
+      .setOrigin(0, 0)
+      .setAlpha(0.7)
   }
 
   _buildBelts() {
@@ -144,13 +161,9 @@ export default class GameScene extends Scene {
   _buildTiles() {
     const positionY = Chest.positionY + 32 + 16 - 1
     const startX = -16
-    const tileWidth = 32
-    const tilesNeededX = Math.ceil(width + Math.abs(startX) / tileWidth)
-    const startY = positionY + tileWidth
-    const tilesNeededY = 
-    for (let i = 0; i < tilesNeededX; i++) {
-      this.add.sprite(startX + i * tileWidth, positionY, 'tiles_tm').setOrigin(0, 0)
-    }
+    const tileSize = 32
+    this.add.tileSprite(startX, positionY, width + 64, tileSize, 'tiles_tm').setOrigin(0, 0)
+    this.add.tileSprite(startX, positionY + tileSize, width + 64, height - positionY, 'tiles_mm').setOrigin(0, 0)
   }
 
   _buildText() {

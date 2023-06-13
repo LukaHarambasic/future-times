@@ -11,8 +11,8 @@ export default class Chest extends GameObjects.Sprite {
   static positionY = positionY
   static paddingTop = paddingTop
 
-  constructor(scene) {
-    super(scene, 0, positionY, 'chestAtlas', 0)
+  constructor(scene, positionX = 0) {
+    super(scene, positionX, positionY, 'chestAtlas', 0)
     scene.add.existing(this)
     this.scene = scene
     this.hasToBeDestroyed = false

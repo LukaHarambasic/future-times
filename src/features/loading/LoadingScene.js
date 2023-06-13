@@ -46,6 +46,7 @@ export default class LoadingScene extends Scene {
     this.load.image('background_4', './graphics/background/4.png')
     this.load.image('background_5', './graphics/background/5.png')
     // tiles -> TODO atlas
+    this.load.image('tiles_bg', './graphics/tiles/background.png')
     this.load.image('tiles_bl', './graphics/tiles/bottom_left.png')
     this.load.image('tiles_bm', './graphics/tiles/bottom_middle.png')
     this.load.image('tiles_br', './graphics/tiles/bottom_right.png')
@@ -142,7 +143,7 @@ export default class LoadingScene extends Scene {
       .generateTexture('background_1', width, height)
     this.make
       .graphics()
-      .fillStyle(0x000000, 0.7)
+      .fillStyle(0x000000, 0.6)
       .fillRect(0, 0, width, height)
       .generateTexture('background_transparent', width, height)
     this.make.graphics().fillStyle(0x00ff00, 0).fillRect(0, 0, 32, 32).generateTexture('invisible', 32, 32)

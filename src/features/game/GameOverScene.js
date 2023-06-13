@@ -24,7 +24,7 @@ export default class GameOverScene extends Scene {
 
   _buildText() {
     this.add
-      .bitmapText(width / 2, 70, fontWhite, 'You are fired', fontSize.title, 1)
+      .bitmapText(width / 2, 70, fontWhite, 'You got fired', fontSize.title, 1)
       .setOrigin(0.5, 0)
       .setMaxWidth(width * 0.8)
     this.add

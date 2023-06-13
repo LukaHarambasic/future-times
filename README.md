@@ -26,6 +26,7 @@ The game will visualize the factory with the assembly line. The player has to ti
 - [ ] Generic
   - [ ] (3) Go over open TODO & OPTIONAL
   - [ ] (3) Remove console.log()
+  - [ ] Music
   - [x] Font
 - [ ] Game
   - [x] (1) Winning mechanics
@@ -33,8 +34,9 @@ The game will visualize the factory with the assembly line. The player has to ti
     - [x] (1) Count compacted chests for highscore
   - [x] (1) Add belt
   - [x] (1) Add game over screen
-  - [ ] (2) Background decoration
-  - [ ] (3) Add atmospheric sounds
+  - [x] (2) Background decoration
+  - [ ] (3) Decoration
+  - [ ] (3) Add sounds
   - [x] (1) Align hammer with box compression
   - [x] (1) Add explanation until user follows them
   - [ ] Chat
@@ -48,19 +50,20 @@ The game will visualize the factory with the assembly line. The player has to ti
     - [ ] (1) Add border for input box
     - [ ] (2) Loading indicator until Chat is shown again
 - [ ] Loading
-  - [ ] (2) Slogan instead of lorem ipsum
-  - [ ] (2) Check for testing left overs
+  - [ ] (3) Slogan instead of lorem ipsum
+  - [ ] (3) Check for testing left overs
   - [ ] (3) Loading animation
   - [x] Main game input touch/ press space (text shown until user presses it)
 - [ ] Menu
   - [ ] ?? Animate something
 - [ ] Highscore
-  - [ ] (1) Visuals
-  - [ ] (1) Scrollable
+  - [x] (1) Visuals
+  - [ ] (2) Scrollable
   - [ ] (3) Rename to highscore
   - [ ] (3) Back icon
 - [ ] Credits
-  - [ ] Visuals
+  - [ ] (2) Visuals
+  - [ ] (2) Scrollable
   - [ ] (2) Explain movie adaption
   - [ ] (2) Add story about AI discussion
   - [ ] (3) Back icon
