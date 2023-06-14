@@ -6,7 +6,7 @@ let globalState = {
   attempts: 0,
 }
 
-const MAX_ATTEMPTS = 2
+const MAX_ATTEMPTS = 1 // TODO 5
 
 class AiService {
   path = '/.netlify/functions/ai'

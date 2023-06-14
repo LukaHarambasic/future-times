@@ -85,6 +85,7 @@ export default class CreditsScene extends Scene {
 
   _buildText() {
     this.add.bitmapText(width / 2, 40, fontDark, 'Credits', fontSize.title).setOrigin(0.5, 0)
+    this.add.bitmapText(width / 2, 90, fontDark, 'by Luka Harambasic', fontSize.body).setOrigin(0.5, 0)
   }
 
   _buildEntries() {

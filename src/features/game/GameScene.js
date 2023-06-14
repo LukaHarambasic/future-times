@@ -15,7 +15,7 @@ export default class GameScene extends Scene {
 
     this.hasGameStarted = false
     this.isGameFrozen = false
-    this.hasAlreadyTakledToAi = true // TODO change back after testing - false
+    this.hasAlreadyTakledToAi = false // TODO change back after testing - false
   }
 
   async create() {
@@ -110,7 +110,6 @@ export default class GameScene extends Scene {
       if (!chest.isCompacted && chest.hasToBeDestroyed) {
         chest.destroy()
         if (this.hasAlreadyTakledToAi) {
-          this.scene.pause()
           this.scene.start('gameOverScene')
           await SurvivorServiceInstance.saveHighscore(
             LocalStorageServiceInstance.userName,

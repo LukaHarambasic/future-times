@@ -1,7 +1,3 @@
-// Title: Future Times
-// Author: Luka Harambasic
-// Hours:
-
 import { Game, CANVAS, Scale } from 'phaser'
 import './style.css'
 import Consts from './core/utils/Consts'
@@ -38,7 +34,17 @@ const CONFIG = {
       },
     },
   },
-  scene: [LoadingScene, NameScene, MenuScene, GameOverScene, SurvivorScene, CreditsScene],
+  scene: [
+    LoadingScene,
+    NameScene,
+    MenuScene,
+    GameScene,
+    ChatScene,
+    InputScene,
+    GameOverScene,
+    SurvivorScene,
+    CreditsScene,
+  ],
 }
 
 new Game(CONFIG)

@@ -3,6 +3,7 @@ import Ai from './prefabs/Ai'
 import Consts from '../../core/utils/Consts'
 import AiServiceInstance from './AiService'
 import LocalStorageServiceInstance from '../../core/LocalStorageService'
+import GameOverScene from './GameOverScene'
 
 const { width, height, centerX, centerY, fontSize, fontWhite, fontYellow, size } = Consts
 
@@ -168,14 +169,12 @@ export default class ChatScene extends Scene {
   }
 
   _buildSpeechBubbleShape() {
-    // TODO Figure out if this is still needed
     return this.rexUI.add.customShapes({
       create: { lines: 1 },
     })
   }
 
   _buildEmptyText(role) {
-    // TODO bitmap text - or as contrast a modern font
     const alignment = role === 'user' ? 2 : 0
     const fontColor = role === 'user' ? fontWhite : fontYellow
     return this.rexUI.wrapExpandText(this.add.bitmapText(0, 0, fontColor, '', fontSize.body, alignment))
@@ -183,7 +182,7 @@ export default class ChatScene extends Scene {
 
   _handleAttemptsExceeded() {
     if (AiServiceInstance.areAttempsExceeded) {
-      console.log('attempts exceeded - show game over scene')
+      console.log('attempts exceeded, game over')
       this.scene.start('gameOverScene')
     } else {
       // TODO do nothing
