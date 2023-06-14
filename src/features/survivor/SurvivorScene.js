@@ -15,6 +15,7 @@ export default class SurvivorScene extends Scene {
     this._buildBackground()
     this._buildBackButton()
     this._handleBackNavigation()
+    this._buildText()
     await this._buildSurvivorList()
   }
 
@@ -39,7 +40,7 @@ export default class SurvivorScene extends Scene {
   }
 
   _buildBackButton() {
-    this.backButton = this.add.bitmapText(10, 10, fontWhite, 'BACK', fontSize.title).setOrigin(0, 0)
+    this.backButton = this.add.bitmapText(width / 2, height - 70, fontWhite, 'Menu', fontSize.title).setOrigin(0.5, 0)
     this.backButton.setInteractive()
   }
 
@@ -47,6 +48,10 @@ export default class SurvivorScene extends Scene {
     this.backButton.on('pointerover', () => {
       this.scene.start('menuScene')
     })
+  }
+
+  _buildText() {
+    this.add.bitmapText(width / 2, 40, fontDark, 'Credits', fontSize.title).setOrigin(0.5, 0)
   }
 
   // _buildText() {
