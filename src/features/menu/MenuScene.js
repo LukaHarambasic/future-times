@@ -40,9 +40,6 @@ export default class MenuScene extends Scene {
   _handleNavigations() {
     this.startButton.on('pointerover', () => {
       GameScene.prepare(this)
-      // this.scene.add('gameScene', GameScene)
-      // this.scene.add('chatScene', ChatScene)
-      // this.scene.add('inputScene', InputScene)
       this.scene.start('gameScene')
     })
     this.survivorButton.on('pointerover', () => {

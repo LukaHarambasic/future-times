@@ -1,8 +1,6 @@
 import { Scene } from 'phaser'
-import { subscribe, isSupported } from 'on-screen-keyboard-detector'
 import Consts from './../../core/utils/Consts'
 import UserInputHandlerInstance from './../../core/UserInputHandler'
-import AiServiceInstance from './AiService'
 
 const { width, height, centerX, centerY, fontSize, fontWhite, fontDark, fontYellow, size } = Consts
 
@@ -11,6 +9,11 @@ export default class InputScene extends Scene {
     super('inputScene')
     console.log('input scene')
     this.isLoading = false
+  }
+
+  init(aiService) {
+    console.log('input scene init')
+    this.aiService = aiService
   }
 
   // TODO input
@@ -24,20 +27,6 @@ export default class InputScene extends Scene {
     this._buildSendButton()
     this._handleSendNavigation()
     this._handlNameInput()
-    if (isSupported()) {
-      const unsubscribe = subscribe((visibility) => {
-        if (visibility === 'hidden') {
-          // alert('Keyboard is hidden')
-        } else {
-          // alert('Keyboard is visible')
-          // TODO repaint list
-          // visibility === "visible"
-          // ...
-        }
-      })
-      // After calling unsubscribe() the callback will no longer be invoked.
-      //unsubscribe()
-    }
   }
 
   _buildBackground() {
@@ -60,9 +49,9 @@ export default class InputScene extends Scene {
       // TODO start loading animation
       console.log('waiting for the ai')
       this.isLoading = true
-      await AiServiceInstance.chat(this.chatInput.text)
+      await this.aiService.chat(this.chatInput.text)
       this.isLoading = false
-      this.scene.start('chatScene')
+      this.scene.resume('chatScene')
       this.scene.stop('inputScene')
       //   this.scene.remove('inputScene')
     })

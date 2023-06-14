@@ -12,13 +12,13 @@ const { width, height, fontSize, fontWhite, fontDark } = Consts
 export default class GameScene extends Scene {
   constructor() {
     super('gameScene')
-
-    this.hasGameStarted = false
-    this.isGameFrozen = false
-    this.hasAlreadyTakledToAi = false // TODO change back after testing - false
   }
 
   async create() {
+    this.hasGameStarted = false
+    this.isGameFrozen = false
+    this.hasAlreadyTakledToAi = false // TODO change back after testing - false
+    console.log('create', this.hasAlreadyTakledToAi)
     this._handleAudio()
     this._buildBackground()
     this._handleInput()
@@ -38,6 +38,7 @@ export default class GameScene extends Scene {
     callingScene.scene.add('gameScene', GameScene)
     callingScene.scene.add('chatScene', ChatScene)
     callingScene.scene.add('inputScene', InputScene)
+    callingScene.scene.bringToTop('gameOverScene')
   }
 
   static clear(callingScene) {
@@ -109,6 +110,7 @@ export default class GameScene extends Scene {
       )
       if (!chest.isCompacted && chest.hasToBeDestroyed) {
         chest.destroy()
+        console.log(this.hasAlreadyTakledToAi)
         if (this.hasAlreadyTakledToAi) {
           this.scene.start('gameOverScene')
           await SurvivorServiceInstance.saveHighscore(

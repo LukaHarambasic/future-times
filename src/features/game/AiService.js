@@ -1,48 +1,24 @@
 import axios from 'axios'
 
-let instance
-let globalState = {
-  messages: [],
-  attempts: 0,
-}
+const MAX_ATTEMPTS = 5 // TODO 5
 
-const MAX_ATTEMPTS = 1 // TODO 5
-
-class AiService {
+export default class AiService {
   path = '/.netlify/functions/ai'
   url = ''
 
   constructor() {
-    if (instance) {
-      throw new Error('New instance cannot be created!!')
-    }
-
-    instance = this
+    console.log('ai service constructor')
+    this.messages = []
+    this.attempts = 0
 
     this.url = import.meta.env.DEV
       ? `http://localhost:8888${this.path}`
       : `https://future-times.netlify.app${this.path}`
   }
 
-  // test() {
-  //   return [
-  //     { role: 'assistant', content: 'Try to convince me!' },
-  //     { role: 'user', content: 'Im just the best human on earth' },
-  //     { role: 'assistant', content: "That's quite a bold claim! Care to explain why you think you're the best?" },
-  //     { role: 'user', content: 'Im way more sustainable!' },
-  //   ]
-  // }
-
   async chat(text) {
-    // if (import.meta.env.DEV) {
-    //   return [
-    //     { role: 'user', content: 'Im just the best human on earth' },
-    //     { role: 'assistant', content: "That's quite a bold claim! Care to explain why you think you're the best?" },
-    //     { role: 'user', content: 'Im way more sustainable!' },
-    //   ]
-    // }
     const playerMessage = { role: 'user', content: text }
-    const data = [...globalState['messages'], playerMessage]
+    const data = [...this.messages, playerMessage]
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -50,8 +26,8 @@ class AiService {
     }
     try {
       const result = await axios.post(this.url, data, config)
-      globalState['messages'] = result.data
-      globalState['attempts'] += 1
+      this.messages = result.data
+      this.attempts += 1
       return true
     } catch (error) {
       console.error(error)
@@ -59,14 +35,10 @@ class AiService {
     }
   }
 
-  get messages() {
-    return globalState['messages']
-  }
-
   get isConvinced() {
-    if (globalState['messages'].length === 0) return false
+    if (this.messages.length === 0) return false
     // TODO based on testing make it more loose
-    const index = globalState['messages'].findIndex(({ role, content }) => {
+    const index = this.messages.findIndex(({ role, content }) => {
       const writtenByAssistant = role === 'assistant'
       const containsConvinced = content.toLowerCase().includes('convinced')
       return writtenByAssistant && containsConvinced
@@ -75,14 +47,10 @@ class AiService {
   }
 
   get areAttempsExceeded() {
-    return globalState['attempts'] >= MAX_ATTEMPTS
+    return this.attempts >= MAX_ATTEMPTS
   }
 
   get attemptsLeft() {
-    return MAX_ATTEMPTS - globalState['attempts']
+    return MAX_ATTEMPTS - this.attempts
   }
 }
-
-const AiServiceInstance = Object.freeze(new AiService())
-
-export default AiServiceInstance

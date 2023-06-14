@@ -1,9 +1,8 @@
 import { Scene } from 'phaser'
 import Ai from './prefabs/Ai'
 import Consts from '../../core/utils/Consts'
-import AiServiceInstance from './AiService'
+import AiService from './AiService'
 import LocalStorageServiceInstance from '../../core/LocalStorageService'
-import GameOverScene from './GameOverScene'
 
 const { width, height, centerX, centerY, fontSize, fontWhite, fontYellow, size } = Consts
 
@@ -13,6 +12,7 @@ export default class ChatScene extends Scene {
   }
 
   create() {
+    this.aiService = new AiService()
     this.sound.removeByKey('game')
     this.sound.add('background', { volume: 0.2, loop: true }).play()
     this._buildBackground()
@@ -51,12 +51,12 @@ export default class ChatScene extends Scene {
   _handleChatNavigation() {
     this.chatButton.on('pointerover', () => {
       // this.scene.pause()
-      this.scene.launch('inputScene')
+      this.scene.launch('inputScene', this.aiService)
     })
   }
 
   async _fetchChatAndRefreshList() {
-    const messages = AiServiceInstance.messages
+    const messages = this.aiService.messages
     // TODO handle this case
     if (!messages) return
     const filteredMessages = messages.filter(({ role }) => role !== 'system')
@@ -181,12 +181,16 @@ export default class ChatScene extends Scene {
   }
 
   _handleAttemptsExceeded() {
-    if (AiServiceInstance.areAttempsExceeded) {
+    if (this.aiService.isConvinced) {
+      console.log('convinced')
+      this.scene.resume('gameScene')
+    }
+    if (this.aiService.areAttempsExceeded) {
       console.log('attempts exceeded, game over')
       this.scene.start('gameOverScene')
     } else {
       // TODO do nothing
-      console.log('attempts left', AiServiceInstance.attemptsLeft)
+      console.log('attempts left', this.aiService.attemptsLeft)
     }
   }
 }
