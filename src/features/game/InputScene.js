@@ -14,8 +14,7 @@ export default class InputScene extends Scene {
 
   init(aiService) {
     console.log('input scene init')
-    console.log(aiService)
-    this.aiService = aiService ?? new AiService()
+    this.aiService = aiService
   }
 
   // TODO input

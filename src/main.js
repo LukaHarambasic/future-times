@@ -1,5 +1,5 @@
 // Author: Luka Harambasic
-// Movie: Modern Times (1936)
+// Movie adaption: Modern Times (1936)
 // Phaser components:
 // - Tweens
 // - Timer
@@ -10,6 +10,7 @@
 // Tilt:
 // - Adapting an movie from 1930s to the current discussion around AI
 // - Serverless function communicating with OpenAI (netlify/functions/ai.js)
+// - Integrating the scroll plugin (src/features/game/ChatScene.js)
 // - Highscore via Supabase (src/survivor/DbService.js) Survivor = Highscore -> didn't had the time to refactor it
 // - Mobile first, everything adapts to every screen size
 // - Using services incl. Singletons to decouple logic from the scenes

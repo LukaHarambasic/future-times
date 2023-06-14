@@ -22,14 +22,16 @@ export default class ChatScene extends Scene {
 
   init(aiService) {
     console.log('chat scene init')
-    console.log(aiService)
-    this.aiService = aiService ?? new AiService()
+    console.log('input', aiService.id)
+    const isInitiated = !aiService
+    console.log('isInitiated', isInitiated)
+    this.aiService = isInitiated ? new AiService() : aiService
+    console.log('local', this.aiService.id)
+    console.log('----------------------------------')
   }
 
   create() {
-    this.events.on('resume', this._handleSceneWake)
     console.log('chat scene create')
-    this.aiService = new AiService()
     this.sound.removeByKey('game')
     this.sound.add('background', { volume: 0.2, loop: true }).play()
     this._buildBackground()
@@ -42,10 +44,6 @@ export default class ChatScene extends Scene {
 
   update() {
     this._handleAttemptsExceeded()
-  }
-
-  _handleSceneWake() {
-    console.log('Scene resumed!')
   }
 
   _buildBackground() {
@@ -63,6 +61,8 @@ export default class ChatScene extends Scene {
   _handleChatNavigation() {
     this.chatButton.on('pointerover', () => {
       // this.scene.pause()
+      console.log('chat')
+      console.log(this.aiService)
       this.scene.launch('inputScene', this.aiService)
     })
   }
