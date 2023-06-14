@@ -1,6 +1,7 @@
 import { Scene } from 'phaser'
 import Consts from './../../core/utils/Consts'
 import UserInputHandlerInstance from './../../core/UserInputHandler'
+import AiService from './AiService'
 
 const { width, height, centerX, centerY, fontSize, fontWhite, fontDark, fontYellow, size } = Consts
 
@@ -13,7 +14,8 @@ export default class InputScene extends Scene {
 
   init(aiService) {
     console.log('input scene init')
-    this.aiService = aiService
+    console.log(aiService)
+    this.aiService = aiService ?? new AiService()
   }
 
   // TODO input
@@ -51,9 +53,7 @@ export default class InputScene extends Scene {
       this.isLoading = true
       await this.aiService.chat(this.chatInput.text)
       this.isLoading = false
-      this.scene.resume('chatScene')
-      this.scene.stop('inputScene')
-      //   this.scene.remove('inputScene')
+      this.scene.launch('chatScene', this.aiService)
     })
   }
 

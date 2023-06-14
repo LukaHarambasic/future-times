@@ -17,6 +17,7 @@ export default class AiService {
   }
 
   async chat(text) {
+    console.log('ai service chat')
     const playerMessage = { role: 'user', content: text }
     const data = [...this.messages, playerMessage]
     const config = {
@@ -44,6 +45,11 @@ export default class AiService {
       return writtenByAssistant && containsConvinced
     })
     return index !== -1
+  }
+
+  get allMessages() {
+    console.log(this.messages)
+    return this.messages
   }
 
   get areAttempsExceeded() {

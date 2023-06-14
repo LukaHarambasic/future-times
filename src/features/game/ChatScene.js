@@ -4,23 +4,11 @@ import Consts from '../../core/utils/Consts'
 import AiService from './AiService'
 import LocalStorageServiceInstance from '../../core/LocalStorageService'
 
-const { width, height, centerX, centerY, fontSize, fontWhite, fontYellow, size } = Consts
+const { width, height, centerX, centerY, fontSize, fontWhite, fontYellow } = Consts
 
 export default class ChatScene extends Scene {
   constructor() {
     super('chatScene')
-  }
-
-  create() {
-    this.aiService = new AiService()
-    this.sound.removeByKey('game')
-    this.sound.add('background', { volume: 0.2, loop: true }).play()
-    this._buildBackground()
-    this._buildList()
-    this._fetchChatAndRefreshList()
-    this.ai = new Ai(this)
-    this._buildChatButton()
-    this._handleChatNavigation()
   }
 
   preload() {
@@ -32,8 +20,32 @@ export default class ChatScene extends Scene {
     })
   }
 
+  init(aiService) {
+    console.log('chat scene init')
+    console.log(aiService)
+    this.aiService = aiService ?? new AiService()
+  }
+
+  create() {
+    this.events.on('resume', this._handleSceneWake)
+    console.log('chat scene create')
+    this.aiService = new AiService()
+    this.sound.removeByKey('game')
+    this.sound.add('background', { volume: 0.2, loop: true }).play()
+    this._buildBackground()
+    this._buildList()
+    this._fetchChatAndRefreshList()
+    this.ai = new Ai(this)
+    this._buildChatButton()
+    this._handleChatNavigation()
+  }
+
   update() {
     this._handleAttemptsExceeded()
+  }
+
+  _handleSceneWake() {
+    console.log('Scene resumed!')
   }
 
   _buildBackground() {
@@ -56,7 +68,8 @@ export default class ChatScene extends Scene {
   }
 
   async _fetchChatAndRefreshList() {
-    const messages = this.aiService.messages
+    console.log('fetching chat')
+    const messages = this.aiService.allMessages
     // TODO handle this case
     if (!messages) return
     const filteredMessages = messages.filter(({ role }) => role !== 'system')
