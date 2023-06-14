@@ -1,6 +1,7 @@
 import { Scene } from 'phaser'
 import Consts from './../../core/utils/Consts'
 import LocalStorageServiceInstance from '../../core/LocalStorageService'
+import GameScene from '../game/GameScene'
 
 const { width, height, fontWhite, fontDark, fontSize, frameRate, fontYellow } = Consts
 
@@ -26,7 +27,8 @@ export default class LoadingScene extends Scene {
     this._buildText()
 
     // TODO remove after testing
-    this.scene.start('survivorScene')
+    GameScene.prepare(this)
+    this.scene.start('gameScene')
   }
 
   update() {

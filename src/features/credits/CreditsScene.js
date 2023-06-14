@@ -76,15 +76,15 @@ export default class CreditsScene extends Scene {
     this.city3 = this.add.tileSprite(0, height, width, 324, 'background_5').setOrigin(0, 1)
   }
 
-  _buildText() {
-    this.add.bitmapText(width / 2, 40, fontDark, 'Credits', fontSize.title).setOrigin(0.5, 0)
-  }
-
   _animateBackground() {
     this.smoke.tilePositionX += 0.2
     this.city1.tilePositionX += 0.3
     this.city2.tilePositionX += 0.4
     this.city3.tilePositionX += 0.5
+  }
+
+  _buildText() {
+    this.add.bitmapText(width / 2, 40, fontDark, 'Credits', fontSize.title).setOrigin(0.5, 0)
   }
 
   _buildEntries() {

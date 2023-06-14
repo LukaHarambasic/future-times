@@ -38,17 +38,7 @@ const CONFIG = {
       },
     },
   },
-  scene: [
-    LoadingScene,
-    NameScene,
-    MenuScene,
-    GameScene,
-    ChatScene,
-    InputScene,
-    GameOverScene,
-    SurvivorScene,
-    CreditsScene,
-  ],
+  scene: [LoadingScene, NameScene, MenuScene, GameOverScene, SurvivorScene, CreditsScene],
 }
 
 new Game(CONFIG)

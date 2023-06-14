@@ -183,7 +183,8 @@ export default class ChatScene extends Scene {
 
   _handleAttemptsExceeded() {
     if (AiServiceInstance.areAttempsExceeded) {
-      this.scene.launch('gameOverScene')
+      console.log('attempts exceeded - show game over scene')
+      this.scene.start('gameOverScene')
     } else {
       // TODO do nothing
       console.log('attempts left', AiServiceInstance.attemptsLeft)

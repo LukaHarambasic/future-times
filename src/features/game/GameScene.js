@@ -15,7 +15,7 @@ export default class GameScene extends Scene {
 
     this.hasGameStarted = false
     this.isGameFrozen = false
-    this.hasAlreadyTakledToAi = false // TODO change back after testing - false
+    this.hasAlreadyTakledToAi = true // TODO change back after testing - false
   }
 
   async create() {
@@ -110,9 +110,8 @@ export default class GameScene extends Scene {
       if (!chest.isCompacted && chest.hasToBeDestroyed) {
         chest.destroy()
         if (this.hasAlreadyTakledToAi) {
-          // TODO submit score and save id in localstorage - but something is wrong
           this.scene.pause()
-          this.scene.launch('gameOverScene')
+          this.scene.start('gameOverScene')
           await SurvivorServiceInstance.saveHighscore(
             LocalStorageServiceInstance.userName,
             SurvivorServiceInstance.score,
@@ -188,13 +187,13 @@ export default class GameScene extends Scene {
     this.story = this.add
       .bitmapText(
         width / 2,
-        70,
-        fontDark,
+        height - 100,
+        fontWhite,
         'Compact as many chests as you can, if you fail once you get to talk to the AI owner of the factory. You convince it you get one more try.',
         fontSize.body,
         1,
       )
-      .setOrigin(0.5, 0)
+      .setOrigin(0.5, 1)
       .setMaxWidth(width * 0.8)
   }
 }
