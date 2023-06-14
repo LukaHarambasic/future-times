@@ -15,8 +15,8 @@ class SurvivorService {
     instance = this
   }
 
-  async saveHighscore(name) {
-    const content = { name, score: globalState['score'] }
+  async saveHighscore(name, score) {
+    const content = { name, score }
     const { data, error } = await DbServiceInstance.db.from('highscores').insert([content]).select()
     if (error) {
       console.log(error)
@@ -31,6 +31,7 @@ class SurvivorService {
       .from('highscores')
       .select('*')
       .order('score', { ascending: false })
+      .limit(5)
     if (error) {
       throw error
     }

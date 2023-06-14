@@ -113,7 +113,10 @@ export default class GameScene extends Scene {
           // TODO submit score and save id in localstorage - but something is wrong
           this.scene.pause()
           this.scene.launch('gameOverScene')
-          await SurvivorServiceInstance.saveHighscore(LocalStorageServiceInstance.userName)
+          await SurvivorServiceInstance.saveHighscore(
+            LocalStorageServiceInstance.userName,
+            SurvivorServiceInstance.score,
+          )
         } else {
           this.scene.pause()
           this.scene.launch('chatScene')
