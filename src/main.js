@@ -1,3 +1,20 @@
+// Author: Luka Harambasic
+// Movie: Modern Times (1936)
+// Phaser components:
+// - Tweens
+// - Timer
+// - Atlas
+// - Bitmaptext
+// - Input
+// - Animations
+// Tilt:
+// - Adapting an movie from 1930s to the current discussion around AI
+// - Serverless function communicating with OpenAI (netlify/functions/ai.js)
+// - Highscore via Supabase (src/survivor/DbService.js) Survivor = Highscore -> didn't had the time to refactor it
+// - Mobile first, everything adapts to every screen size
+// - Using services incl. Singletons to decouple logic from the scenes
+// - Text input that works on mobile and desktop
+
 import { Game, CANVAS, Scale } from 'phaser'
 import './style.css'
 import Consts from './core/utils/Consts'
