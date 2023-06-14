@@ -68,10 +68,10 @@ export default class SurvivorScene extends Scene {
   _buildBackground() {
     // OPTIONAL hand over poistions from previous scene
     this.add.tileSprite(0, 0, width, height, 'background_1').setOrigin(0, 0)
-    this.smoke = this.add.tileSprite(0, 0, 0, 0, 'background_2').setOrigin(0, 0)
-    this.city1 = this.add.tileSprite(0, height, 0, 0, 'background_3').setOrigin(0, 1)
-    this.city2 = this.add.tileSprite(0, height, 0, 0, 'background_4').setOrigin(0, 1)
-    this.city3 = this.add.tileSprite(0, height, 0, 0, 'background_5').setOrigin(0, 1)
+    this.smoke = this.add.tileSprite(0, 0, width, 324, 'background_2').setOrigin(0, 0)
+    this.city1 = this.add.tileSprite(0, height, width, 324, 'background_3').setOrigin(0, 1)
+    this.city2 = this.add.tileSprite(0, height, width, 324, 'background_4').setOrigin(0, 1)
+    this.city3 = this.add.tileSprite(0, height, width, 324, 'background_5').setOrigin(0, 1)
   }
 
   _animateBackground() {

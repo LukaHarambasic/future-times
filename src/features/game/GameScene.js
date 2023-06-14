@@ -135,10 +135,10 @@ export default class GameScene extends Scene {
   _buildBackground() {
     this.add.tileSprite(0, 0, width, height, 'background_1').setOrigin(0, 0)
     const positionFactoryY = height * 0.4
-    this.smoke = this.add.tileSprite(0, 0, 0, 0, 'background_2').setOrigin(0, 0)
+    this.smoke = this.add.tileSprite(0, 0, width, 324, 'background_2').setOrigin(0, 0)
     // this.city1 = this.add.tileSprite(0, positionFactoryY, 0, 0, 'background_3').setOrigin(0, 1)
-    this.city2 = this.add.tileSprite(0, positionFactoryY, 0, 0, 'background_4').setOrigin(0, 1)
-    this.city3 = this.add.tileSprite(0, positionFactoryY, 0, 0, 'background_5').setOrigin(0, 1)
+    this.city2 = this.add.tileSprite(0, positionFactoryY, width, 324, 'background_4').setOrigin(0, 1)
+    this.city3 = this.add.tileSprite(0, positionFactoryY, width, 324, 'background_5').setOrigin(0, 1)
     this.add
       .tileSprite(0, positionFactoryY, width, height - positionFactoryY, 'tiles_bg')
       .setOrigin(0, 0)
