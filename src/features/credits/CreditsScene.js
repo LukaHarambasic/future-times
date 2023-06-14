@@ -98,10 +98,14 @@ export default class CreditsScene extends Scene {
     // Would be nice if this would be a group to determine the height per credit automatically
     const line1 = `${credit.title}`
     const line2 = `${credit.author}`
-    this.add.bitmapText(width / 2, y, fontDark, line1, fontSize.body).setOrigin(0.5, 0)
+    this.add
+      .bitmapText(width / 2, y, fontDark, line1, fontSize.body)
+      .setOrigin(0.5, 0)
+      .setAlpha(0.8)
     this.add
       .bitmapText(width / 2, y + 30, fontDark, line2, fontSize.body)
       .setOrigin(0.5, 0)
+      .setAlpha(0.8)
       .setInteractive({ useHandCursor: true })
       .on('pointerup', function () {
         window.open(credit.link, '_blank')

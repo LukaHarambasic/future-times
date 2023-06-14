@@ -25,17 +25,23 @@ export default class SurvivorScene extends Scene {
   async _buildSurvivorList() {
     const highscores = await SurvivorServiceInstance.getSurvivors()
     highscores.forEach((survivor, i) => {
-      const y = 150 + i * 80
+      const y = 200 + i * 80
       this._buildSurvivorEntry(survivor, y)
     })
   }
 
   _buildSurvivorEntry(survivor, y) {
     const { name, created_at: createdAt, score } = survivor
-    this.add.bitmapText(width / 2, y, fontWhite, name, fontSize.body).setOrigin(0.5, 0)
     const formattedDate = format(new Date(createdAt), 'dd-MM-yyyy HH:mm')
-    this.add.bitmapText(width / 2, y + 25, fontWhite, formattedDate, fontSize.small).setOrigin(0.5, 0)
-    this.add.bitmapText(width / 2, y + 25 + 25, fontWhite, score, fontSize.small).setOrigin(0.5, 0)
+    this.add
+      .bitmapText(width / 2, y, fontDark, score, fontSize.title)
+      .setOrigin(0.5, 0)
+      .setAlpha(0.8)
+    const line2 = `${name} - ${formattedDate}`
+    this.add
+      .bitmapText(width / 2, y + 40, fontDark, line2, fontSize.small)
+      .setOrigin(0.5, 0)
+      .setAlpha(0.8)
   }
 
   _buildBackButton() {
