@@ -2,7 +2,6 @@ import { Scene } from 'phaser'
 import { format } from 'date-fns'
 import Consts from './../../core/utils/Consts'
 import SurvivorServiceInstance from './SurvivorService'
-import LocalStorageServiceInstance from './../../core/LocalStorageService'
 
 const { height, width, fontSize, fontWhite, fontDark } = Consts
 
