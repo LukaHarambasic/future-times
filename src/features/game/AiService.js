@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const MAX_ATTEMPTS = 2 // TODO 5
+const MAX_ATTEMPTS = 5
 
 export default class AiService {
   path = '/.netlify/functions/ai'
@@ -36,16 +36,12 @@ export default class AiService {
   }
 
   get isConvinced() {
-    console.log('###############################################################################')
     if (this.messages.length === 0) return false
-    // TODO based on testing make it more loose
     const index = this.messages.findIndex(({ role, content }) => {
       const writtenByAssistant = role === 'assistant'
       if (!writtenByAssistant) return false
       const cleanContent = content.replace('\n', ' ').replace('\n\n', ' ')
-      console.log(cleanContent)
       const containsConvinced = cleanContent.includes('CONVINCED') || cleanContent.includes('CONVINCED.')
-      console.log('containsConvinced', containsConvinced)
       return containsConvinced
     })
     return index !== -1

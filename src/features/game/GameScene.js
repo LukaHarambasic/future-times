@@ -21,7 +21,7 @@ export default class GameScene extends Scene {
     UserInputFieldHandlerInstance.disable()
     this.hasGameStarted = false
     this.isGameFrozen = false
-    this.hasAlreadyTakledToAi = false // TODO change back after testing - false
+    this.hasAlreadyTakledToAi = false
     this._handleAudio()
     this._buildBackground()
     this._handleInput()

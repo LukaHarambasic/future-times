@@ -16,7 +16,6 @@ export default class Hammer extends GameObjects.Sprite {
     this.scene = scene
     this.isCooldown = false
     this.setOrigin(0.5, 0)
-    console.log(hammerY)
 
     // shoutout to Jared for the idea of using an invisble sprite
     // as the hammer is sprite which is 64px high I can't detect the collision

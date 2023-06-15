@@ -25,8 +25,6 @@ export default class NameScene extends Scene {
   }
 
   _handlNameInput() {
-    // TODO fine tuning, e.g. max 12 chars
-    // TODO clean up, maybe split into multiple methods?
     const underscore = this.add.bitmapText(0, 0, fontDark, '_', fontSize.input).setOrigin(0.5, 0)
     this.userName = this.add
       .bitmapText(width / 2 - underscore.width / 2, 320, fontDark, '', fontSize.input)
@@ -58,7 +56,6 @@ export default class NameScene extends Scene {
   }
 
   _buildSaveButton() {
-    // TODO button class/component or an image?
     this.saveButton = this.add
       .bitmapText(width / 2, height - 70, fontWhite, 'Save', fontSize.title)
       .setOrigin(0.5, 0)

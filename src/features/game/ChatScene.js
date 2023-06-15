@@ -1,7 +1,6 @@
 import { Scene } from 'phaser'
 import Ai from './prefabs/Ai'
 import Consts from '../../core/utils/Consts'
-import AiService from './AiService'
 import LocalStorageServiceInstance from '../../core/LocalStorageService'
 
 const { width, height, centerX, centerY, fontSize, fontWhite, fontYellow } = Consts
@@ -35,6 +34,7 @@ export default class ChatScene extends Scene {
     this._handleChatNavigation()
     this._buildResumeButton()
     this._handleResumeNavigation()
+    this._buildAttemptsText()
   }
 
   update() {
@@ -46,7 +46,6 @@ export default class ChatScene extends Scene {
   }
 
   _buildChatButton() {
-    // TODO button class/component or an image?
     this.chatButton = this.add
       .bitmapText(width / 2, height - 100, fontWhite, 'Chat', fontSize.title)
       .setOrigin(0.5, 0)
@@ -61,10 +60,8 @@ export default class ChatScene extends Scene {
 
   async _fetchChatAndRefreshList() {
     const messages = this.aiService.allMessages
-    // TODO handle this case
     if (!messages) return
     const filteredMessages = messages.filter(({ role }) => role !== 'system')
-    // TODO filter out CONVINCED
     const userName = LocalStorageServiceInstance.userName
     const uiMessages = [
       { role: 'assistant', content: `${userName} convince me that you are worth working in the factory.` },
@@ -128,7 +125,6 @@ export default class ChatScene extends Scene {
   }
 
   _buildBubble(role) {
-    // TODO consts
     const radius = 20
     const indent = 15
     const strokeColor = 0x00ffff
@@ -214,5 +210,11 @@ export default class ChatScene extends Scene {
         this.scene.start('gameOverScene')
       }
     })
+  }
+
+  _buildAttemptsText() {
+    this.attemptsText = this.add
+      .bitmapText(width / 2, height - 60, fontWhite, `${this.aiService.attemptsLeft} attempts left`, fontSize.small)
+      .setOrigin(0.5, 0)
   }
 }

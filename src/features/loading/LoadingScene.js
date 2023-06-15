@@ -1,7 +1,6 @@
 import { Scene } from 'phaser'
 import Consts from './../../core/utils/Consts'
 import LocalStorageServiceInstance from '../../core/LocalStorageService'
-import GameScene from '../game/GameScene'
 
 const { width, height, fontWhite, fontDark, fontSize, frameRate, fontYellow } = Consts
 
@@ -25,10 +24,6 @@ export default class LoadingScene extends Scene {
     this._buildLoadingBar()
     this._handleSound()
     this._buildText()
-
-    // TODO remove after testing
-    GameScene.prepare(this)
-    this.scene.start('gameScene')
   }
 
   update() {
@@ -116,14 +111,12 @@ export default class LoadingScene extends Scene {
     const loadingBar = this.add.graphics()
     this.load.on('progress', (value) => {
       loadingBar.clear()
-      // TODO color
       loadingBar.fillStyle(0xffffff, 1)
       loadingBar.fillRect(0, 0, width * value, 5)
     })
   }
 
   _handleSound() {
-    // TODO
     this.sound.add('background', { volume: 0.2, loop: true }).play()
   }
 
@@ -169,7 +162,7 @@ export default class LoadingScene extends Scene {
         width / 2,
         height * 0.4 + fontSize.title + 10,
         fontDark,
-        'Morbi porta diam eget\n\npurus malesuada vulputate.',
+        'Will you do your job in the\n\nfactory and survive the AI?',
         fontSize.body,
         1,
       )
@@ -181,7 +174,6 @@ export default class LoadingScene extends Scene {
       .setOrigin(0.5, 0)
       .setAlpha(0.8)
     this.time.addEvent({
-      // TODO 600 for final version
       delay: 600,
       loop: true,
       callback: () => {

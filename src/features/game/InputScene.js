@@ -39,7 +39,6 @@ export default class InputScene extends Scene {
   }
 
   _buildSendButton() {
-    // TODO button class/component or an image?
     this.sendButton = this.add
       .bitmapText(width / 2, height - 100, fontWhite, 'Send', fontSize.title)
       .setOrigin(0.5, 0)

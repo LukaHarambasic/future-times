@@ -24,7 +24,6 @@ export default class MenuScene extends Scene {
   }
 
   _buildNavigationButtons() {
-    // TODO button class/component or an image?
     this.startButton = this.add.bitmapText(width / 2, 250, fontDark, 'Start', fontSize.title).setOrigin(0.5, 0)
     this.startButton.setInteractive()
 
