@@ -13,7 +13,6 @@ export default class InputScene extends Scene {
   }
 
   init(aiService) {
-    console.log('input scene init')
     this.aiService = aiService
   }
 
@@ -43,6 +42,7 @@ export default class InputScene extends Scene {
   }
 
   _handleSendNavigation() {
+    console.log('handleSendNavigation')
     if (this.isLoading) return
     this.sendButton.on('pointerover', async () => {
       if (this.isLoading) return
@@ -53,6 +53,7 @@ export default class InputScene extends Scene {
       await this.aiService.chat(this.chatInput.text)
       this.isLoading = false
       this.scene.launch('chatScene', this.aiService)
+      this.scene.stop('inputScene')
     })
   }
 

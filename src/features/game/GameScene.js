@@ -6,19 +6,20 @@ import LocalStorageServiceInstance from './../../core/LocalStorageService'
 import SurvivorServiceInstance from './../survivor/SurvivorService'
 import ChatScene from './ChatScene'
 import InputScene from './InputScene'
+import AiService from './AiService'
 
 const { width, height, fontSize, fontWhite, fontDark } = Consts
 
 export default class GameScene extends Scene {
   constructor() {
     super('gameScene')
+    this.aiService = new AiService()
   }
 
   async create() {
     this.hasGameStarted = false
     this.isGameFrozen = false
     this.hasAlreadyTakledToAi = false // TODO change back after testing - false
-    console.log('create', this.hasAlreadyTakledToAi)
     this._handleAudio()
     this._buildBackground()
     this._handleInput()
@@ -27,6 +28,20 @@ export default class GameScene extends Scene {
     this._buildText()
 
     this.hammer = new Hammer(this)
+
+    this._handleResume()
+    console.log('1hasAlreadyTakledToAi', this.data.get('hasAlreadyTakledToAi'), this.hasAlreadyTakledToAi)
+  }
+
+  _handleResume() {
+    this.events.on(
+      'resume',
+      () => {
+        this.hasAlreadyTakledToAi = this.data.get('hasAlreadyTakledToAi')
+        console.log('2hasAlreadyTakledToAi', this.data.get('hasAlreadyTakledToAi'), this.hasAlreadyTakledToAi)
+      },
+      this,
+    )
   }
 
   update() {
@@ -109,6 +124,7 @@ export default class GameScene extends Scene {
         this.scene,
       )
       if (!chest.isCompacted && chest.hasToBeDestroyed) {
+        console.log('compacted and has to be destroyed')
         chest.destroy()
         console.log(this.hasAlreadyTakledToAi)
         if (this.hasAlreadyTakledToAi) {
@@ -118,8 +134,9 @@ export default class GameScene extends Scene {
             SurvivorServiceInstance.score,
           )
         } else {
+          console.log('else')
           this.scene.pause()
-          this.scene.launch('chatScene')
+          this.scene.launch('chatScene', this.aiService)
         }
       }
       if (chest.hasToBeDestroyed) {

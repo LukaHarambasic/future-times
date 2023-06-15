@@ -21,13 +21,7 @@ export default class ChatScene extends Scene {
   }
 
   init(aiService) {
-    console.log('chat scene init')
-    console.log('input', aiService.id)
-    const isInitiated = !aiService
-    console.log('isInitiated', isInitiated)
-    this.aiService = isInitiated ? new AiService() : aiService
-    console.log('local', this.aiService.id)
-    console.log('----------------------------------')
+    this.aiService = aiService
   }
 
   create() {
@@ -40,6 +34,8 @@ export default class ChatScene extends Scene {
     this.ai = new Ai(this)
     this._buildChatButton()
     this._handleChatNavigation()
+    this._buildResumeButton()
+    this._handleResumeNavigation()
   }
 
   update() {
@@ -60,9 +56,6 @@ export default class ChatScene extends Scene {
 
   _handleChatNavigation() {
     this.chatButton.on('pointerover', () => {
-      // this.scene.pause()
-      console.log('chat')
-      console.log(this.aiService)
       this.scene.launch('inputScene', this.aiService)
     })
   }
@@ -195,15 +188,32 @@ export default class ChatScene extends Scene {
 
   _handleAttemptsExceeded() {
     if (this.aiService.isConvinced) {
-      console.log('convinced')
-      this.scene.resume('gameScene')
+      this.resumeButton.setVisible(true)
+      this.chatButton.setVisible(false)
+    } else if (this.aiService.areAttempsExceeded) {
+      this.resumeButton.setVisible(true)
+      this.chatButton.setVisible(false)
     }
-    if (this.aiService.areAttempsExceeded) {
-      console.log('attempts exceeded, game over')
-      this.scene.start('gameOverScene')
-    } else {
-      // TODO do nothing
-      console.log('attempts left', this.aiService.attemptsLeft)
-    }
+  }
+
+  _buildResumeButton() {
+    this.resumeButton = this.add
+      .bitmapText(width / 2, height - 100, fontWhite, 'Resume', fontSize.title)
+      .setOrigin(0.5, 0)
+      .setInteractive()
+      .setVisible(false)
+  }
+
+  _handleResumeNavigation() {
+    this.resumeButton.on('pointerover', () => {
+      this.scene.launch('inputScene', this.aiService)
+      if (this.aiService.isConvinced) {
+        this.scene.get('gameScene').data.set('hasAlreadyTakledToAi', true)
+        this.scene.resume('gameScene')
+        this.scene.stop('chatScene')
+      } else if (this.aiService.areAttempsExceeded) {
+        this.scene.start('gameOverScene')
+      }
+    })
   }
 }

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const MAX_ATTEMPTS = 5 // TODO 5
+const MAX_ATTEMPTS = 2 // TODO 5
 
 export default class AiService {
   path = '/.netlify/functions/ai'
