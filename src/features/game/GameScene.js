@@ -7,6 +7,7 @@ import SurvivorServiceInstance from './../survivor/SurvivorService'
 import ChatScene from './ChatScene'
 import InputScene from './InputScene'
 import AiService from './AiService'
+import UserInputFieldHandlerInstance from '../../core/UserInputHandler'
 
 const { width, height, fontSize, fontWhite, fontDark } = Consts
 
@@ -17,6 +18,7 @@ export default class GameScene extends Scene {
   }
 
   async create() {
+    UserInputFieldHandlerInstance.disable()
     this.hasGameStarted = false
     this.isGameFrozen = false
     this.hasAlreadyTakledToAi = false // TODO change back after testing - false
@@ -34,6 +36,7 @@ export default class GameScene extends Scene {
     this.events.on(
       'resume',
       () => {
+        UserInputFieldHandlerInstance.disable()
         this.hasAlreadyTakledToAi = this.data.get('hasAlreadyTakledToAi')
       },
       this,

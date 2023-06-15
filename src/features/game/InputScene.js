@@ -27,6 +27,7 @@ export default class InputScene extends Scene {
     if (this.isLoading) {
       this.sendButton.visible = false
       this.loadingText.visible = true
+      UserInputHandlerInstance.disable()
     } else {
       this.loadingText.visible = false
       this.sendButton.visible = true
@@ -64,8 +65,6 @@ export default class InputScene extends Scene {
     this.sendButton.on('pointerover', async () => {
       if (this.isLoading) return
       UserInputHandlerInstance.disable()
-      // TODO start loading animation
-      console.log('waiting for the ai')
       this.isLoading = true
       await this.aiService.chat(this.chatInput.text)
       this.isLoading = false
@@ -75,7 +74,6 @@ export default class InputScene extends Scene {
   }
 
   _handlNameInput() {
-    // TODO clean up, maybe split into multiple methods?
     this.chatInput = this.add
       .bitmapText(width / 2, 320, fontWhite, '', fontSize.body)
       .setMaxWidth(width * 0.8)

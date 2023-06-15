@@ -21,6 +21,5 @@ canvas {
   z-index: 1000;
   opacity: 0;
   display: none;
-  /* background: tomato; */
   color: transparent;
 }

@@ -36,18 +36,35 @@ export default class AiService {
   }
 
   get isConvinced() {
+    console.log('###############################################################################')
     if (this.messages.length === 0) return false
     // TODO based on testing make it more loose
     const index = this.messages.findIndex(({ role, content }) => {
       const writtenByAssistant = role === 'assistant'
-      const containsConvinced = content.toLowerCase().includes('convinced')
-      return writtenByAssistant && containsConvinced
+      if (!writtenByAssistant) return false
+      const cleanContent = content.replace('\n', ' ').replace('\n\n', ' ')
+      console.log(cleanContent)
+      const containsConvinced = cleanContent.includes('CONVINCED') || cleanContent.includes('CONVINCED.')
+      console.log('containsConvinced', containsConvinced)
+      return containsConvinced
     })
     return index !== -1
   }
 
   get allMessages() {
-    return this.messages
+    // clean output with regex
+    return this.messages.map(({ role, content }) => {
+      const cleanContent = content
+        .replaceAll('NOT_CONVINCED.', '')
+        .replaceAll('NOT_CONVINCED', '')
+        .replaceAll('CONVINCED.', '')
+        .replaceAll('CONVINCED', '')
+        .trim()
+      return {
+        role,
+        content: cleanContent,
+      }
+    })
   }
 
   get areAttempsExceeded() {
