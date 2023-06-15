@@ -17,6 +17,7 @@ export default class Chest extends GameObjects.Sprite {
     this.scene = scene
     this.hasToBeDestroyed = false
     this.isCompacted = false
+    this.isGhost = false
     this.setOrigin(0.5, 0)
 
     this.scene.physics.add.existing(this)
@@ -25,6 +26,9 @@ export default class Chest extends GameObjects.Sprite {
   update() {
     if (this.hasToBeDestroyed) return
     this._move()
+    if (this.isGhost) {
+      this.setAlpha(0.5)
+    }
   }
 
   compactChest() {

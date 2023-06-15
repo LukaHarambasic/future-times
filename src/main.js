@@ -15,6 +15,7 @@
 // - Mobile first, everything adapts to every screen size
 // - Using services incl. Singletons to decouple logic from the scenes
 // - Text input that works on mobile and desktop
+// - Not to forget the multiple sence stacked over each other... even worth than making this responsive :D
 
 import { Game, CANVAS, Scale } from 'phaser'
 import './style.css'

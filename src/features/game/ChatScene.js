@@ -210,6 +210,7 @@ export default class ChatScene extends Scene {
       if (this.aiService.isConvinced) {
         this.scene.get('gameScene').data.set('hasAlreadyTakledToAi', true)
         this.scene.resume('gameScene')
+        this.scene.stop('inputScene')
         this.scene.stop('chatScene')
       } else if (this.aiService.areAttempsExceeded) {
         this.scene.start('gameOverScene')

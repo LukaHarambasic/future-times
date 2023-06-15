@@ -26,11 +26,8 @@ export default class GameScene extends Scene {
     this._buildTiles()
     this._buildBelts()
     this._buildText()
-
-    this.hammer = new Hammer(this)
-
     this._handleResume()
-    console.log('1hasAlreadyTakledToAi', this.data.get('hasAlreadyTakledToAi'), this.hasAlreadyTakledToAi)
+    this.hammer = new Hammer(this)
   }
 
   _handleResume() {
@@ -38,7 +35,6 @@ export default class GameScene extends Scene {
       'resume',
       () => {
         this.hasAlreadyTakledToAi = this.data.get('hasAlreadyTakledToAi')
-        console.log('2hasAlreadyTakledToAi', this.data.get('hasAlreadyTakledToAi'), this.hasAlreadyTakledToAi)
       },
       this,
     )
@@ -123,8 +119,12 @@ export default class GameScene extends Scene {
         null,
         this.scene,
       )
+      // A restart is otherwise to hard
+      if (chest.isGhost && chest.hasToBeDestroyed) {
+        chest.destroy()
+        return
+      }
       if (!chest.isCompacted && chest.hasToBeDestroyed) {
-        console.log('compacted and has to be destroyed')
         chest.destroy()
         console.log(this.hasAlreadyTakledToAi)
         if (this.hasAlreadyTakledToAi) {
@@ -135,11 +135,15 @@ export default class GameScene extends Scene {
           )
         } else {
           console.log('else')
+          this.chestGroup.getChildren().forEach(async (chest) => {
+            chest.isGhost = true
+          })
           this.scene.pause()
           this.scene.launch('chatScene', this.aiService)
         }
       }
       if (chest.hasToBeDestroyed) {
+        console.log('DOES THIS EVER GETS CALLED?')
         chest.destroy()
       }
     })
