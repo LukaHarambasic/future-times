@@ -24,20 +24,25 @@ const credits = [
     link: 'https://www.leshylabs.com/apps/sstool/',
   },
   {
-    title: 'My Dark Passenger',
-    author: 'Darren Curtis',
-    link: 'https://www.chosic.com/download-audio/45381/',
+    title: 'Industrial Parallax Background',
+    author: 'Luis Zuno',
+    link: 'https://ansimuz.itch.io/industrial-parallax-background',
   },
   {
-    title: 'Run Amok',
-    author: 'Kevin MacLeod',
-    link: 'https://www.chosic.com/download-audio/39324/',
+    title: 'steam_burst',
+    author: 'Pixabay',
+    link: 'https://pixabay.com/sound-effects/steam-burst-6822/',
   },
-  // {
-  //   title: '',
-  //   author: '',
-  //   link: '',
-  // },
+  {
+    title: 'Metal Hit Cartoon',
+    author: 'Pixabay',
+    link: 'https://pixabay.com/sound-effects/metal-hit-cartoon-7118/',
+  },
+  {
+    title: 'Light woosh',
+    author: 'Pixabay',
+    link: 'https://pixabay.com/sound-effects/light-woosh-7119/',
+  },
 ]
 
 export default class CreditsScene extends Scene {

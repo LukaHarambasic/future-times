@@ -33,6 +33,7 @@ export default class Chest extends GameObjects.Sprite {
 
   compactChest() {
     if (this.isCompacted || this.isGhost) return
+    this.scene.sound.add('compress', { volume: 0.2 }).play()
     this.play('chestCompact')
     this.isCompacted = true
     SurvivorServiceInstance.addScore()

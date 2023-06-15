@@ -59,8 +59,10 @@ export default class LoadingScene extends Scene {
   }
 
   _loadAudio() {
-    this.load.audio('background', './audio/background.mp3')
-    this.load.audio('game', './audio/game.mp3')
+    this.load.audio('background', './audio/industrial.mp3')
+    this.load.audio('steam', './audio/steam.mp3')
+    this.load.audio('compress', './audio/compress.mp3')
+    this.load.audio('woosh', './audio/woosh.mp3')
   }
 
   _createAnimations() {

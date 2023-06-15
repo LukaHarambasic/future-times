@@ -43,6 +43,7 @@ export default class Hammer extends GameObjects.Sprite {
 
   hammer() {
     if (this.isCooldown) return
+    this.scene.sound.add('woosh', { volume: 0.6 }).play()
     this._startCooldown()
     this.play('hammerDown')
     this.hitBoxTween.play()

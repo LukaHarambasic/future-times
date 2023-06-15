@@ -22,7 +22,6 @@ export default class GameScene extends Scene {
     this.hasGameStarted = false
     this.isGameFrozen = false
     this.hasAlreadyTakledToAi = false
-    this._handleAudio()
     this._buildBackground()
     this._handleInput()
     this._buildTiles()
@@ -60,11 +59,6 @@ export default class GameScene extends Scene {
     callingScene.scene.remove('gameScene')
     callingScene.scene.remove('chatScene')
     callingScene.scene.remove('inputScene')
-  }
-
-  _handleAudio() {
-    this.sound.removeByKey('background')
-    this.sound.add('game', { volume: 0.2, loop: true }).play()
   }
 
   _handleInput() {

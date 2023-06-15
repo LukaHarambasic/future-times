@@ -24,8 +24,6 @@ export default class ChatScene extends Scene {
   }
 
   create() {
-    this.sound.removeByKey('game')
-    this.sound.add('background', { volume: 0.2, loop: true }).play()
     this._buildBackground()
     this._buildList()
     this._fetchChatAndRefreshList()
