@@ -25,7 +25,6 @@ export default class ChatScene extends Scene {
   }
 
   create() {
-    console.log('chat scene create')
     this.sound.removeByKey('game')
     this.sound.add('background', { volume: 0.2, loop: true }).play()
     this._buildBackground()
@@ -61,7 +60,6 @@ export default class ChatScene extends Scene {
   }
 
   async _fetchChatAndRefreshList() {
-    console.log('fetching chat')
     const messages = this.aiService.allMessages
     // TODO handle this case
     if (!messages) return

@@ -13,7 +13,6 @@ export default class Ai extends GameObjects.Sprite {
     this.flipX = true
     this.scene = scene
     this.setOrigin(0, 0)
-    // console.log('Brunhild is now here.')
     this.play('aiFlickering')
   }
 }

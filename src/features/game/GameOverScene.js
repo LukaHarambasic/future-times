@@ -8,11 +8,9 @@ const { width, height, centerX, centerY, fontSize, fontWhite, fontDark, fontYell
 export default class GameOverScene extends Scene {
   constructor() {
     super('gameOverScene')
-    console.log('game over scene')
   }
 
   create() {
-    console.log('game over scene created')
     this._buildBackground()
     this._buildText()
     this._buildNavigationButtons()

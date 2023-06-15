@@ -16,11 +16,9 @@ class SurvivorService {
   }
 
   async saveHighscore(name, score) {
-    console.log('saveHighscore', name, score)
     const content = { name, score }
     const { data, error } = await DbServiceInstance.db.from('highscores').insert([content]).select()
     if (error) {
-      console.log(error)
       return false
     }
     globalState['currentScoreId'] = data[0].id

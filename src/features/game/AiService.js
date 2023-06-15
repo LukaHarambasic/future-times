@@ -7,7 +7,6 @@ export default class AiService {
   url = ''
 
   constructor() {
-    console.log('ai service constructor')
     this.id = Math.round(Date.now() * Math.random())
     this.messages = []
     this.attempts = 0
@@ -18,7 +17,6 @@ export default class AiService {
   }
 
   async chat(text) {
-    console.log('ai service chat', this.id)
     const playerMessage = { role: 'user', content: text }
     const data = [...this.messages, playerMessage]
     const config = {
@@ -49,8 +47,6 @@ export default class AiService {
   }
 
   get allMessages() {
-    console.log(this.id)
-    console.log(this.messages)
     return this.messages
   }
 

@@ -1,14 +1,12 @@
 import { Scene } from 'phaser'
 import Consts from './../../core/utils/Consts'
 import UserInputHandlerInstance from './../../core/UserInputHandler'
-import AiService from './AiService'
 
 const { width, height, centerX, centerY, fontSize, fontWhite, fontDark, fontYellow, size } = Consts
 
 export default class InputScene extends Scene {
   constructor() {
     super('inputScene')
-    console.log('input scene')
     this.isLoading = false
   }
 
@@ -16,17 +14,23 @@ export default class InputScene extends Scene {
     this.aiService = aiService
   }
 
-  // TODO input
-  // Dialog on top of the available space with send button
-  // on send, show loading animation
-  // hide dialog to show scene
-
   create() {
     UserInputHandlerInstance.enable()
     this._buildBackground()
     this._buildSendButton()
     this._handleSendNavigation()
     this._handlNameInput()
+    this._buildLoadingText()
+  }
+
+  update() {
+    if (this.isLoading) {
+      this.sendButton.visible = false
+      this.loadingText.visible = true
+    } else {
+      this.loadingText.visible = false
+      this.sendButton.visible = true
+    }
   }
 
   _buildBackground() {
@@ -41,8 +45,21 @@ export default class InputScene extends Scene {
       .setInteractive()
   }
 
+  _buildLoadingText() {
+    this.loadingText = this.add
+      .bitmapText(width / 2, height - 100, fontWhite, 'Loading...', fontSize.title)
+      .setOrigin(0.5, 0)
+    this.time.addEvent({
+      delay: 600,
+      loop: true,
+      callback: () => {
+        this.loadingText.visible = !this.loadingText.visible
+      },
+      callbackScope: this,
+    })
+  }
+
   _handleSendNavigation() {
-    console.log('handleSendNavigation')
     if (this.isLoading) return
     this.sendButton.on('pointerover', async () => {
       if (this.isLoading) return

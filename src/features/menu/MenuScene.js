@@ -10,11 +10,9 @@ const { width, fontSize, fontWhite, fontDark, height } = Consts
 export default class MenuScene extends Scene {
   constructor() {
     super('menuScene')
-    console.log('menu scene constructor')
   }
 
   create() {
-    console.log('menu scene create')
     this._buildBackground()
     this._buildText()
     this._buildNavigationButtons()

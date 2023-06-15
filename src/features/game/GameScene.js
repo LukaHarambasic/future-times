@@ -126,7 +126,6 @@ export default class GameScene extends Scene {
       }
       if (!chest.isCompacted && chest.hasToBeDestroyed) {
         chest.destroy()
-        console.log(this.hasAlreadyTakledToAi)
         if (this.hasAlreadyTakledToAi) {
           this.scene.start('gameOverScene')
           await SurvivorServiceInstance.saveHighscore(
@@ -134,7 +133,6 @@ export default class GameScene extends Scene {
             SurvivorServiceInstance.score,
           )
         } else {
-          console.log('else')
           this.chestGroup.getChildren().forEach(async (chest) => {
             chest.isGhost = true
           })
@@ -143,7 +141,6 @@ export default class GameScene extends Scene {
         }
       }
       if (chest.hasToBeDestroyed) {
-        console.log('DOES THIS EVER GETS CALLED?')
         chest.destroy()
       }
     })
