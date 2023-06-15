@@ -30,6 +30,7 @@ export default class GameScene extends Scene {
     this._buildText()
     this._handleResume()
     this.hammer = new Hammer(this)
+    this._buildDetails()
   }
 
   _handleResume() {
@@ -167,6 +168,16 @@ export default class GameScene extends Scene {
       .tileSprite(0, positionFactoryY, width, height - positionFactoryY, 'tiles_bg')
       .setOrigin(0, 0)
       .setAlpha(0.7)
+  }
+
+  _buildDetails() {
+    const positionX = width / 2 - 16
+    const positionY = Hammer.hammerY - 32
+    this.add.tileSprite(positionX, positionY, 32, 32, 'tiles_beam_end').setOrigin(0.5, 0)
+    this.add.tileSprite(positionX + 16, positionY, positionX + 16, 32, 'tiles_beam').setOrigin(0, 0)
+    this.add.tileSprite(width - 50, positionY - 26, 16, 30, 'deco_barrel').setOrigin(0, 0)
+    this.add.tileSprite(30, positionY + 64, 32, 32, 'deco_board').setOrigin(0, 0)
+    this.add.tileSprite(width / 2 + 30, positionY - 32, 32, 32, 'deco_box').setOrigin(0, 0)
   }
 
   _buildBelts() {

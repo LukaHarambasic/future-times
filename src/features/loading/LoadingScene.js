@@ -42,22 +42,18 @@ export default class LoadingScene extends Scene {
   }
 
   _loadImages() {
-    //background
     this.load.image('background_2', './graphics/background/2.png')
     this.load.image('background_3', './graphics/background/3.png')
     this.load.image('background_4', './graphics/background/4.png')
     this.load.image('background_5', './graphics/background/5.png')
-    // tiles -> TODO atlas
     this.load.image('tiles_bg', './graphics/tiles/background.png')
-    this.load.image('tiles_bl', './graphics/tiles/bottom_left.png')
-    this.load.image('tiles_bm', './graphics/tiles/bottom_middle.png')
-    this.load.image('tiles_br', './graphics/tiles/bottom_right.png')
-    this.load.image('tiles_ml', './graphics/tiles/middle_left.png')
     this.load.image('tiles_mm', './graphics/tiles/middle_middle.png')
-    this.load.image('tiles_mr', './graphics/tiles/middle_right.png')
-    this.load.image('tiles_tl', './graphics/tiles/top_left.png')
     this.load.image('tiles_tm', './graphics/tiles/top_middle.png')
-    this.load.image('tiles_tr', './graphics/tiles/top_right.png')
+    this.load.image('tiles_beam', './graphics/tiles/beam.png')
+    this.load.image('tiles_beam_end', './graphics/tiles/beam_end.png')
+    this.load.image('deco_barrel', './graphics/decoration/barrel.png')
+    this.load.image('deco_board', './graphics/decoration/board.png')
+    this.load.image('deco_box', './graphics/decoration/box.png')
   }
 
   _loadAtlas() {
